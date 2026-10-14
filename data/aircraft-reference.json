@@ -1,0 +1,468 @@
+{
+  "Embraer ERJ-135": {
+    "icao": "ER3",
+    "seats": 37,
+    "src": "wi",
+    "fix": "was 100 (Fokker 100)"
+  },
+  "Embraer ERJ-140": {
+    "icao": "ERD",
+    "seats": 44,
+    "src": "wi",
+    "fix": "was 141 (BAe 146-100)"
+  },
+  "Embraer ERJ-145": {
+    "icao": "ER4",
+    "seats": 50,
+    "src": "wi",
+    "fix": "was 143 (BAe 146-300)"
+  },
+  "Embraer ERJ-170": {
+    "icao": "E70",
+    "seats": 72,
+    "src": "wi"
+  },
+  "Embraer ERJ-175": {
+    "icao": "E75",
+    "seats": 78,
+    "src": "wi"
+  },
+  "Embraer ERJ-190": {
+    "icao": "E90",
+    "seats": 100,
+    "src": "wi"
+  },
+  "Embraer ERJ-195": {
+    "icao": "E95",
+    "seats": 116,
+    "src": "wi"
+  },
+  "Embraer E195-E2": {
+    "icao": "295",
+    "seats": 132,
+    "src": "wi",
+    "fix": "was E95 (ERJ-195); 295 is v13.1-only"
+  },
+  "Embraer EMB-120 Brasilia": {
+    "icao": "EM2",
+    "seats": 30,
+    "src": "typ"
+  },
+  "Boeing 737-200": {
+    "icao": "732",
+    "seats": 130,
+    "src": "typ"
+  },
+  "Boeing 737-300": {
+    "icao": "733",
+    "seats": 140,
+    "src": "wi"
+  },
+  "Boeing 737-400": {
+    "icao": "734",
+    "seats": 168,
+    "src": "wi"
+  },
+  "Boeing 737-500": {
+    "icao": "735",
+    "seats": 122,
+    "src": "wi"
+  },
+  "Boeing 737-800": {
+    "icao": "738",
+    "seats": 189,
+    "src": "wi"
+  },
+  "Boeing 747-200": {
+    "icao": "742",
+    "seats": 452,
+    "src": "typ"
+  },
+  "Boeing 747-300": {
+    "icao": "743",
+    "seats": 470,
+    "src": "typ"
+  },
+  "Boeing 747-400": {
+    "icao": "744",
+    "seats": 524,
+    "src": "typ"
+  },
+  "Boeing 747SP": {
+    "icao": "74L",
+    "seats": 331,
+    "src": "typ"
+  },
+  "Boeing 767-200": {
+    "icao": "762",
+    "seats": 216,
+    "src": "typ"
+  },
+  "Boeing 767-300": {
+    "icao": "763",
+    "seats": 269,
+    "src": "typ"
+  },
+  "Bombardier CRJ-100": {
+    "icao": "CR1",
+    "seats": 50,
+    "src": "wi"
+  },
+  "Bombardier CRJ-200": {
+    "icao": "CR2",
+    "seats": 50,
+    "src": "wi"
+  },
+  "Bombardier CRJ-700": {
+    "icao": "CR7",
+    "seats": 70,
+    "src": "wi"
+  },
+  "Bombardier CRJ-900": {
+    "icao": "CR9",
+    "seats": 90,
+    "src": "wi"
+  },
+  "Airbus A319-100": {
+    "icao": "319",
+    "seats": 156,
+    "src": "typ"
+  },
+  "Airbus A320-200": {
+    "icao": "320",
+    "seats": 180,
+    "src": "wi"
+  },
+  "Airbus A300B2": {
+    "icao": "AB3",
+    "seats": 281,
+    "src": "typ"
+  },
+  "Airbus A300B4": {
+    "icao": "AB4",
+    "seats": 281,
+    "src": "typ"
+  },
+  "Airbus A330-200": {
+    "icao": "332",
+    "seats": 300,
+    "src": "typ"
+  },
+  "Airbus A330-300": {
+    "icao": "333",
+    "seats": 335,
+    "src": "typ"
+  },
+  "Airbus A340-200": {
+    "icao": "342",
+    "seats": 300,
+    "src": "typ"
+  },
+  "Airbus A340-300": {
+    "icao": "343",
+    "seats": 335,
+    "src": "typ"
+  },
+  "Airbus A340-500": {
+    "icao": "345",
+    "seats": 313,
+    "src": "typ"
+  },
+  "Airbus A340-600": {
+    "icao": "346",
+    "seats": 380,
+    "src": "typ"
+  },
+  "Airbus A350-900": {
+    "icao": "359",
+    "seats": 339,
+    "src": "typ"
+  },
+  "De Havilland Canada DHC-8-100": {
+    "icao": "DH1",
+    "seats": 37,
+    "src": "typ"
+  },
+  "De Havilland Canada DHC-8-300": {
+    "icao": "DH3",
+    "seats": 50,
+    "src": "typ"
+  },
+  "De Havilland DHC-8-400": {
+    "icao": "DH4",
+    "seats": 78,
+    "src": "wi"
+  },
+  "De Havilland Canada DHC-6-300 Twin Otter": {
+    "icao": "DHT",
+    "seats": 19,
+    "src": "typ"
+  },
+  "British Aerospace 146-100": {
+    "icao": "141",
+    "seats": 82,
+    "src": "typ"
+  },
+  "British Aerospace 146-200": {
+    "icao": "142",
+    "seats": 100,
+    "src": "typ"
+  },
+  "British Aerospace Avro RJ85": {
+    "icao": "ARJ",
+    "seats": 100,
+    "src": "typ"
+  },
+  "British Aerospace Jetstream 31": {
+    "icao": "J31",
+    "seats": 19,
+    "src": "typ"
+  },
+  "British Aerospace Jetstream 41": {
+    "icao": "J41",
+    "seats": 29,
+    "src": "typ"
+  },
+  "ATR 42": {
+    "icao": "AT4",
+    "seats": 48,
+    "src": "typ"
+  },
+  "ATR 72": {
+    "icao": "AT7",
+    "seats": 72,
+    "src": "typ"
+  },
+  "Dornier 328JET-300": {
+    "icao": "FRJ",
+    "seats": 32,
+    "src": "typ"
+  },
+  "Dornier 328-100": {
+    "icao": "D38",
+    "seats": 32,
+    "src": "typ"
+  },
+  "Dornier Do-228-200": {
+    "icao": "D28",
+    "seats": 19,
+    "src": "typ"
+  },
+  "McDonnell Douglas MD-82": {
+    "icao": "M82",
+    "seats": 172,
+    "src": "typ"
+  },
+  "McDonnell Douglas MD-83": {
+    "icao": "M83",
+    "seats": 172,
+    "src": "typ"
+  },
+  "McDonnell Douglas DC-9-30": {
+    "icao": "D93",
+    "seats": 115,
+    "src": "typ"
+  },
+  "McDonnell Douglas DC-10-10": {
+    "icao": "D10",
+    "seats": 270,
+    "src": "typ"
+  },
+  "McDonnell Douglas DC-10-30": {
+    "icao": "D11",
+    "seats": 270,
+    "src": "typ"
+  },
+  "Pilatus PC-24": {
+    "icao": null,
+    "seats": 10,
+    "src": "typ",
+    "note": "No ICAO equivalent-aircraft row — business jet, outside the ICEC fleet. Cannot be costed with this method."
+  },
+  "Boeing 777-200ER": {
+    "icao": "772",
+    "seats": 301,
+    "src": "typ",
+    "note": "Indicative reference configuration. Confirm aircraft and seating allocation."
+  },
+  "Boeing 777-200LR": {
+    "icao": "77L",
+    "seats": 317,
+    "src": "typ",
+    "note": "Indicative reference configuration. Confirm aircraft and seating allocation."
+  },
+  "Boeing 777-300ER": {
+    "icao": "77W",
+    "seats": 396,
+    "src": "typ",
+    "note": "Indicative reference configuration. Confirm aircraft and seating allocation."
+  },
+  "Boeing 787-8": {
+    "icao": "788",
+    "seats": 248,
+    "src": "typ",
+    "note": "Indicative reference configuration. Confirm aircraft and seating allocation."
+  },
+  "Boeing 787-9": {
+    "icao": "789",
+    "seats": 296,
+    "src": "typ",
+    "note": "Indicative reference configuration. Confirm aircraft and seating allocation."
+  },
+  "Boeing 787-10": {
+    "icao": "781",
+    "seats": 336,
+    "src": "typ",
+    "note": "Indicative reference configuration. Confirm aircraft and seating allocation."
+  },
+  "Boeing 737-700": {
+    "icao": "73G",
+    "seats": 149,
+    "src": "typ",
+    "note": "Indicative reference configuration. Confirm aircraft and seating allocation."
+  },
+  "Boeing 737-900": {
+    "icao": "739",
+    "seats": 189,
+    "src": "typ",
+    "note": "Indicative reference configuration. Confirm aircraft and seating allocation."
+  },
+  "Boeing 737 MAX 8": {
+    "icao": "7M8",
+    "seats": 189,
+    "src": "typ",
+    "note": "Indicative reference configuration. Confirm aircraft and seating allocation."
+  },
+  "Boeing 737 MAX 9": {
+    "icao": "7M9",
+    "seats": 193,
+    "src": "typ",
+    "note": "Indicative reference configuration. Confirm aircraft and seating allocation."
+  },
+  "Airbus A321-200": {
+    "icao": "321",
+    "seats": 220,
+    "src": "typ",
+    "note": "Indicative reference configuration. Confirm aircraft and seating allocation."
+  },
+  "Airbus A320neo": {
+    "icao": "32N",
+    "seats": 180,
+    "src": "typ",
+    "note": "Indicative reference configuration. Confirm aircraft and seating allocation."
+  },
+  "Airbus A321neo": {
+    "icao": "32Q",
+    "seats": 220,
+    "src": "typ",
+    "note": "Indicative reference configuration. Confirm aircraft and seating allocation."
+  },
+  "Airbus A350-1000": {
+    "icao": "351",
+    "seats": 410,
+    "src": "typ",
+    "note": "Indicative reference configuration. Confirm aircraft and seating allocation."
+  },
+  "Airbus A380-800": {
+    "icao": "388",
+    "seats": 555,
+    "src": "typ",
+    "note": "Indicative reference configuration. Confirm aircraft and seating allocation."
+  },
+  "Airbus A330-900neo": {
+    "icao": "339",
+    "seats": 350,
+    "src": "typ",
+    "note": "Indicative reference configuration. Confirm aircraft and seating allocation."
+  },
+  "Airbus A220-300": {
+    "icao": "223",
+    "seats": 145,
+    "src": "typ",
+    "note": "Indicative reference configuration. Confirm aircraft and seating allocation."
+  },
+  "De Havilland Canada DHC-8-200": {
+    "icao": "DH2",
+    "seats": 37,
+    "src": "typ",
+    "note": "Indicative reference configuration. Confirm aircraft and seating allocation."
+  },
+  "De Havilland Canada DHC-7": {
+    "icao": "DH7",
+    "seats": 50,
+    "src": "typ",
+    "note": "Indicative reference configuration. Confirm aircraft and seating allocation."
+  },
+  "Cessna 208B Grand Caravan": {
+    "icao": "CNF",
+    "seats": 12,
+    "src": "typ",
+    "note": "Indicative reference configuration. Confirm aircraft and seating allocation."
+  },
+  "Cessna 208 Caravan": {
+    "icao": "CNC",
+    "seats": 9,
+    "src": "typ",
+    "note": "Indicative reference configuration. Confirm aircraft and seating allocation."
+  },
+  "Pilatus PC-12": {
+    "icao": null,
+    "seats": 9,
+    "src": "typ",
+    "note": "Indicative reference configuration. Confirm aircraft and seating allocation."
+  },
+  "Beechcraft King Air 200": {
+    "icao": "BE2",
+    "seats": 9,
+    "src": "typ",
+    "note": "Indicative reference configuration. Confirm aircraft and seating allocation."
+  },
+  "Cessna 172 Skyhawk": {
+    "icao": null,
+    "seats": 3,
+    "src": "typ",
+    "note": "Indicative reference configuration. Confirm aircraft and seating allocation."
+  },
+  "Gippsland GA8 Airvan": {
+    "icao": null,
+    "seats": 7,
+    "src": "typ",
+    "note": "Indicative reference configuration. Confirm aircraft and seating allocation."
+  },
+  "Beechcraft Baron 58": {
+    "icao": null,
+    "seats": 5,
+    "src": "typ",
+    "note": "Indicative reference configuration. Confirm aircraft and seating allocation."
+  },
+  "Cessna 210 Centurion": {
+    "icao": null,
+    "seats": 5,
+    "src": "typ",
+    "note": "Indicative reference configuration. Confirm aircraft and seating allocation."
+  },
+  "Quest Kodiak 100": {
+    "icao": null,
+    "seats": 9,
+    "src": "typ",
+    "note": "Indicative reference configuration. Confirm aircraft and seating allocation."
+  },
+  "Cessna 206": {
+    "icao": null,
+    "seats": 5,
+    "src": "typ",
+    "note": "Indicative reference configuration. Confirm aircraft and seating allocation."
+  },
+  "Beechcraft 1900": {
+    "icao": "BEH",
+    "seats": 19,
+    "src": "typ",
+    "note": "Indicative reference configuration. Confirm aircraft and seating allocation."
+  },
+  "Unlisted aircraft — documented estimate": {
+    "icao": null,
+    "seats": 1,
+    "src": "typ",
+    "note": "Indicative reference configuration. Confirm aircraft and seating allocation."
+  }
+}

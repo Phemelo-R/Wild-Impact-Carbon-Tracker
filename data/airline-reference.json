@@ -1,0 +1,721 @@
+[
+  {
+    "name": "Airlink",
+    "countryCode": "ZA",
+    "aircraft": [
+      "Embraer E195-E2",
+      "Embraer ERJ-135",
+      "Embraer ERJ-140",
+      "Embraer ERJ-170",
+      "Embraer ERJ-175",
+      "Embraer ERJ-190",
+      "Embraer ERJ-195"
+    ],
+    "source": "Supplied South African fleet workbook",
+    "checked": "supplied dataset"
+  },
+  {
+    "name": "Aeronexus Corporation",
+    "countryCode": "ZA",
+    "aircraft": ["Boeing 767-300"],
+    "source": "Supplied South African fleet workbook",
+    "checked": "supplied dataset"
+  },
+  {
+    "name": "Africa Charter Airline",
+    "countryCode": "ZA",
+    "aircraft": ["Boeing 737-300", "Boeing 737-400", "Boeing 737-500"],
+    "source": "Supplied South African fleet workbook",
+    "checked": "supplied dataset"
+  },
+  {
+    "name": "Avex Air Transport",
+    "countryCode": "ZA",
+    "aircraft": ["Dornier 328JET-300"],
+    "source": "Supplied South African fleet workbook",
+    "checked": "supplied dataset"
+  },
+  {
+    "name": "Cemair",
+    "countryCode": "ZA",
+    "aircraft": [
+      "Bombardier CRJ-100",
+      "Bombardier CRJ-200",
+      "Bombardier CRJ-700",
+      "Bombardier CRJ-900",
+      "De Havilland Canada DHC-8-100",
+      "De Havilland Canada DHC-8-300",
+      "De Havilland DHC-8-400"
+    ],
+    "source": "Supplied South African fleet workbook",
+    "checked": "supplied dataset"
+  },
+  {
+    "name": "Cobra Aviation",
+    "countryCode": "ZA",
+    "aircraft": ["Boeing 737-300"],
+    "source": "Supplied South African fleet workbook",
+    "checked": "supplied dataset"
+  },
+  {
+    "name": "Comair Flight Services",
+    "countryCode": "ZA",
+    "aircraft": ["Pilatus PC-24"],
+    "source": "Supplied South African fleet workbook",
+    "checked": "supplied dataset"
+  },
+  {
+    "name": "Execujet Aviation",
+    "countryCode": "ZA",
+    "aircraft": ["Embraer ERJ-135", "Pilatus PC-24"],
+    "source": "Supplied South African fleet workbook",
+    "checked": "supplied dataset"
+  },
+  {
+    "name": "Federal Airline",
+    "countryCode": "ZA",
+    "aircraft": ["Embraer ERJ-145"],
+    "source": "Supplied South African fleet workbook",
+    "checked": "supplied dataset"
+  },
+  {
+    "name": "FlySafair",
+    "countryCode": "ZA",
+    "aircraft": ["Boeing 737-400", "Boeing 737-800"],
+    "source": "Supplied South African fleet workbook",
+    "checked": "supplied dataset"
+  },
+  {
+    "name": "Global Aviation Operations",
+    "countryCode": "ZA",
+    "aircraft": ["Airbus A320-200", "Boeing 737-300", "Boeing 737-400"],
+    "source": "Supplied South African fleet workbook",
+    "checked": "supplied dataset"
+  },
+  {
+    "name": "Lift",
+    "countryCode": "ZA",
+    "aircraft": ["Airbus A320-200", "Boeing 737-300", "Boeing 737-400"],
+    "source": "Supplied South African fleet workbook",
+    "checked": "supplied dataset"
+  },
+  {
+    "name": "National Airways Corporation",
+    "countryCode": "ZA",
+    "aircraft": ["Embraer EMB-120 Brasilia"],
+    "source": "Supplied South African fleet workbook",
+    "checked": "supplied dataset"
+  },
+  {
+    "name": "Paramount Aerospace Systems",
+    "countryCode": "ZA",
+    "aircraft": ["Boeing 737-500"],
+    "source": "Supplied South African fleet workbook",
+    "checked": "supplied dataset"
+  },
+  {
+    "name": "Safair",
+    "countryCode": "ZA",
+    "aircraft": ["Boeing 737-300", "Boeing 737-400"],
+    "source": "Supplied South African fleet workbook",
+    "checked": "supplied dataset"
+  },
+  {
+    "name": "Sahara African Aviation",
+    "countryCode": "ZA",
+    "aircraft": ["Embraer EMB-120 Brasilia", "Embraer ERJ-145"],
+    "source": "Supplied South African fleet workbook",
+    "checked": "supplied dataset"
+  },
+  {
+    "name": "Solenta Aviation",
+    "countryCode": "ZA",
+    "aircraft": ["ATR 72", "Embraer ERJ-135", "Embraer ERJ-145"],
+    "source": "Supplied South African fleet workbook",
+    "checked": "supplied dataset"
+  },
+  {
+    "name": "South African Airways",
+    "countryCode": "ZA",
+    "aircraft": ["Airbus A320-200", "Airbus A330-300", "Airbus A340-300"],
+    "source": "Supplied South African fleet workbook",
+    "checked": "supplied dataset"
+  },
+  {
+    "name": "Star Air",
+    "countryCode": "ZA",
+    "aircraft": ["Boeing 737-300"],
+    "source": "Supplied South African fleet workbook",
+    "checked": "supplied dataset"
+  },
+  {
+    "name": "Summerset Charters",
+    "countryCode": "ZA",
+    "aircraft": ["Embraer EMB-120 Brasilia"],
+    "source": "Supplied South African fleet workbook",
+    "checked": "supplied dataset"
+  },
+  {
+    "name": "Swift Flite",
+    "countryCode": "ZA",
+    "aircraft": ["Dornier 328-100", "Embraer EMB-120 Brasilia"],
+    "source": "Supplied South African fleet workbook",
+    "checked": "supplied dataset"
+  },
+  {
+    "name": "TAB Charters",
+    "countryCode": "ZA",
+    "aircraft": ["Embraer EMB-120 Brasilia"],
+    "source": "Supplied South African fleet workbook",
+    "checked": "supplied dataset"
+  },
+  {
+    "name": "Air Botswana",
+    "countryCode": "BW",
+    "aircraft": ["ATR 72", "Embraer ERJ-170", "Embraer ERJ-175", "Embraer ERJ-190"],
+    "source": "https://airbotswana.co.bw/node/247",
+    "checked": "reference consulted 28 September 2026; confirm variant"
+  },
+  {
+    "name": "Mack Air",
+    "countryCode": "BW",
+    "aircraft": ["Cessna 208B Grand Caravan"],
+    "source": "https://mackair.co.bw/our-fleet/",
+    "checked": "reference consulted 28 September 2026; confirm variant"
+  },
+  {
+    "name": "Moremi Air",
+    "countryCode": "BW",
+    "aircraft": [],
+    "source": "https://www.caab.co.bw/non-scheduled-air-operators/",
+    "checked": "fleet not independently verified"
+  },
+  {
+    "name": "Wilderness Air Botswana",
+    "countryCode": "BW",
+    "aircraft": ["Cessna 208B Grand Caravan"],
+    "source": "https://www.wildernessdestinations.com/about/the-wilderness-family/wilderness-air",
+    "checked": "reference consulted 28 September 2026; confirm variant"
+  },
+  {
+    "name": "Safari Air",
+    "countryCode": "BW",
+    "aircraft": [],
+    "source": "https://www.safariair.com/",
+    "checked": "fleet not independently verified"
+  },
+  {
+    "name": "Major Blue Air",
+    "countryCode": "BW",
+    "aircraft": [
+      "Cessna 208B Grand Caravan",
+      "Beechcraft King Air 200",
+      "Cessna 172 Skyhawk",
+      "Gippsland GA8 Airvan",
+      "Beechcraft Baron 58"
+    ],
+    "source": "https://www.majorblueair.com/fleet.html",
+    "checked": "reference consulted 28 September 2026; confirm variant"
+  },
+  {
+    "name": "Kenya Airways",
+    "countryCode": "KE",
+    "aircraft": ["Boeing 787-8", "Boeing 737-800", "Embraer ERJ-190"],
+    "source": "https://www.kenya-airways.com/en-gb/experience/our-aircraft/",
+    "checked": "reference consulted 28 September 2026; confirm variant"
+  },
+  {
+    "name": "Safarilink",
+    "countryCode": "KE",
+    "aircraft": [
+      "Cessna 208B Grand Caravan",
+      "De Havilland Canada DHC-8-100",
+      "De Havilland Canada DHC-8-200",
+      "De Havilland Canada DHC-8-300"
+    ],
+    "source": "https://flysafarilink.com/about-us/fleet",
+    "checked": "reference consulted 28 September 2026; confirm variant"
+  },
+  {
+    "name": "AirKenya",
+    "countryCode": "KE",
+    "aircraft": [
+      "Cessna 208B Grand Caravan",
+      "De Havilland Canada DHC-8-200",
+      "De Havilland Canada DHC-7",
+      "De Havilland Canada DHC-6-300 Twin Otter"
+    ],
+    "source": "https://airkenya.com/who-we-are/our-fleet/",
+    "checked": "reference consulted 28 September 2026; confirm variant"
+  },
+  {
+    "name": "Jambojet",
+    "countryCode": "KE",
+    "aircraft": [],
+    "source": "https://www.jambojet.com/",
+    "checked": "fleet not independently verified"
+  },
+  {
+    "name": "Skyward Express",
+    "countryCode": "KE",
+    "aircraft": [],
+    "source": "https://www.skywardexpress.co.ke/",
+    "checked": "fleet not independently verified"
+  },
+  {
+    "name": "Tropic Air Kenya",
+    "countryCode": "KE",
+    "aircraft": [],
+    "source": "https://www.tropicairkenya.com/",
+    "checked": "fleet not independently verified"
+  },
+  {
+    "name": "Air Tanzania",
+    "countryCode": "TZ",
+    "aircraft": [
+      "De Havilland Canada DHC-8-300",
+      "De Havilland DHC-8-400",
+      "Airbus A220-300",
+      "Boeing 737 MAX 9",
+      "Boeing 787-8"
+    ],
+    "source": "https://airtanzania.co.tz/about/8-discover",
+    "checked": "reference consulted 28 September 2026; confirm variant"
+  },
+  {
+    "name": "Precision Air",
+    "countryCode": "TZ",
+    "aircraft": [],
+    "source": "https://www.precisionairtz.com/",
+    "checked": "fleet not independently verified"
+  },
+  {
+    "name": "Coastal Aviation",
+    "countryCode": "TZ",
+    "aircraft": ["Cessna 208B Grand Caravan", "Pilatus PC-12"],
+    "source": "https://booking.coastal.co.tz/OurFleet/OurFleet",
+    "checked": "reference consulted 28 September 2026; confirm variant"
+  },
+  {
+    "name": "Auric Air",
+    "countryCode": "TZ",
+    "aircraft": [
+      "Cessna 208B Grand Caravan",
+      "De Havilland Canada DHC-8-100",
+      "De Havilland Canada DHC-8-200",
+      "De Havilland Canada DHC-8-300",
+      "Pilatus PC-12"
+    ],
+    "source": "https://auricair.com/About-Us/fleet",
+    "checked": "reference consulted 28 September 2026; confirm variant"
+  },
+  {
+    "name": "Regional Air",
+    "countryCode": "TZ",
+    "aircraft": [],
+    "source": "https://airkenya.com/",
+    "checked": "fleet not independently verified"
+  },
+  {
+    "name": "Flightlink",
+    "countryCode": "TZ",
+    "aircraft": [
+      "ATR 72",
+      "Beechcraft 1900",
+      "Cessna 208B Grand Caravan",
+      "Cessna 206"
+    ],
+    "source": "https://booking.flightlink.co.tz/about-us/Our-fleet",
+    "checked": "reference consulted 28 September 2026; confirm variant"
+  },
+  {
+    "name": "ZanAir",
+    "countryCode": "TZ",
+    "aircraft": [],
+    "source": "https://www.zanair.com/",
+    "checked": "fleet not independently verified"
+  },
+  {
+    "name": "LAM Mozambique Airlines",
+    "countryCode": "MZ",
+    "aircraft": [],
+    "source": "https://www.lam.co.mz/",
+    "checked": "fleet not independently verified"
+  },
+  {
+    "name": "Moçambique Expresso",
+    "countryCode": "MZ",
+    "aircraft": [],
+    "source": "https://www.lam.co.mz/",
+    "checked": "fleet not independently verified"
+  },
+  {
+    "name": "FlyNamibia",
+    "countryCode": "NA",
+    "aircraft": ["Embraer ERJ-145"],
+    "source": "https://www.flyairlink.com/sites/default/files/files/Schedule-May2025.pdf",
+    "checked": "2026-09-29"
+  },
+  {
+    "name": "Westair Aviation",
+    "countryCode": "NA",
+    "aircraft": [],
+    "source": "https://www.westair.com.na/",
+    "checked": "fleet not independently verified"
+  },
+  {
+    "name": "Scenic Air Namibia",
+    "countryCode": "NA",
+    "aircraft": [
+      "Cessna 208B Grand Caravan",
+      "Cessna 210 Centurion",
+      "Quest Kodiak 100"
+    ],
+    "source": "https://scenic-air.com/about-us/",
+    "checked": "reference consulted 28 September 2026; confirm variant"
+  },
+  {
+    "name": "Drukair",
+    "countryCode": "BT",
+    "aircraft": ["Airbus A319-100", "Airbus A320neo", "ATR 42", "Pilatus PC-24"],
+    "source": "https://drukair.com.bt/fleet-information/",
+    "checked": "reference consulted 28 September 2026; confirm variant"
+  },
+  {
+    "name": "Bhutan Airlines",
+    "countryCode": "BT",
+    "aircraft": ["Airbus A319-100"],
+    "source": "https://www.bhutanairlines.bt/about-us/corporate-profile/our-story",
+    "checked": "reference consulted 28 September 2026; confirm variant"
+  },
+  {
+    "name": "LATAM Airlines Chile",
+    "countryCode": "CL",
+    "aircraft": [
+      "Airbus A320-200",
+      "Airbus A320neo",
+      "Airbus A321-200",
+      "Boeing 787-8",
+      "Boeing 787-9"
+    ],
+    "source": "https://www.latamairlines.com/cl/es/destinos/sudafrica/vuelos-desde-santiago-a-johannesburgo",
+    "checked": "reference consulted 28 September 2026; confirm variant"
+  },
+  {
+    "name": "SKY Airline",
+    "countryCode": "CL",
+    "aircraft": [],
+    "source": "https://www.skyairline.com/",
+    "checked": "fleet not independently verified"
+  },
+  {
+    "name": "JetSMART",
+    "countryCode": "CL",
+    "aircraft": ["Airbus A320-200", "Airbus A320neo", "Airbus A321neo"],
+    "source": "https://jetsmart.com/cl/es/quienes-somos",
+    "checked": "reference consulted 28 September 2026; confirm variant"
+  },
+  {
+    "name": "Emirates",
+    "countryCode": "AE",
+    "aircraft": [
+      "Airbus A380-800",
+      "Airbus A350-900",
+      "Boeing 777-200LR",
+      "Boeing 777-300ER"
+    ],
+    "source": "https://www.emirates.com/english/experience/our-fleet/",
+    "checked": "reference consulted 28 September 2026; confirm variant"
+  },
+  {
+    "name": "Etihad Airways",
+    "countryCode": "AE",
+    "aircraft": [
+      "Airbus A380-800",
+      "Boeing 787-9",
+      "Boeing 787-10",
+      "Boeing 777-300ER",
+      "Airbus A321-200",
+      "Airbus A320-200"
+    ],
+    "source": "https://www.etihad.com/en/plan/fly-with-etihad/our-fleet",
+    "checked": "reference consulted 28 September 2026; confirm variant"
+  },
+  {
+    "name": "Qatar Airways",
+    "countryCode": "QA",
+    "aircraft": [
+      "Airbus A380-800",
+      "Airbus A350-900",
+      "Airbus A350-1000",
+      "Boeing 777-300ER",
+      "Boeing 787-8",
+      "Boeing 787-9",
+      "Airbus A320-200"
+    ],
+    "source": "https://www.qatarairways.com/en/fleet.html",
+    "checked": "reference consulted 28 September 2026; confirm variant"
+  },
+  {
+    "name": "Ethiopian Airlines",
+    "countryCode": "ET",
+    "aircraft": [
+      "Airbus A350-900",
+      "Airbus A350-1000",
+      "Boeing 787-8",
+      "Boeing 787-9",
+      "Boeing 777-200LR",
+      "Boeing 777-300ER",
+      "Boeing 737-800",
+      "Boeing 737 MAX 8",
+      "De Havilland DHC-8-400"
+    ],
+    "source": "https://www.ethiopianairlines.com/za/explore/fleet/seat-map/plane/a350-900-et-aya",
+    "checked": "reference consulted 28 September 2026; confirm variant"
+  },
+  {
+    "name": "British Airways",
+    "countryCode": "GB",
+    "aircraft": [
+      "Airbus A319-100",
+      "Airbus A320-200",
+      "Airbus A320neo",
+      "Airbus A321-200",
+      "Airbus A321neo",
+      "Airbus A350-1000",
+      "Airbus A380-800",
+      "Boeing 777-200ER",
+      "Boeing 777-300ER",
+      "Boeing 787-8",
+      "Boeing 787-9",
+      "Boeing 787-10",
+      "Embraer ERJ-190"
+    ],
+    "source": "https://www.britishairways.com/content/information/about-ba/fleet-facts",
+    "checked": "reference consulted 28 September 2026; confirm variant"
+  },
+  {
+    "name": "Virgin Atlantic",
+    "countryCode": "GB",
+    "aircraft": [
+      "Airbus A350-1000",
+      "Boeing 787-9",
+      "Airbus A330-900neo",
+      "Airbus A330-300"
+    ],
+    "source": "https://www.virginatlantic.com/en-US/experience/meet-our-fleet",
+    "checked": "reference consulted 28 September 2026; confirm variant"
+  },
+  {
+    "name": "Lufthansa",
+    "countryCode": "DE",
+    "aircraft": [],
+    "source": "https://www.lufthansa.com/",
+    "checked": "fleet not independently verified"
+  },
+  {
+    "name": "Condor",
+    "countryCode": "DE",
+    "aircraft": [],
+    "source": "https://www.condor.com/",
+    "checked": "fleet not independently verified"
+  },
+  {
+    "name": "Air France",
+    "countryCode": "FR",
+    "aircraft": [],
+    "source": "https://www.airfrance.com/",
+    "checked": "fleet not independently verified"
+  },
+  {
+    "name": "KLM",
+    "countryCode": "NL",
+    "aircraft": [
+      "Airbus A330-200",
+      "Airbus A330-300",
+      "Airbus A321neo",
+      "Boeing 737-700",
+      "Boeing 737-800",
+      "Boeing 737-900",
+      "Boeing 777-200ER",
+      "Boeing 777-300ER",
+      "Boeing 787-9",
+      "Boeing 787-10",
+      "Embraer ERJ-175",
+      "Embraer ERJ-190",
+      "Embraer E195-E2"
+    ],
+    "source": "https://www.klm.com/information/travel-class-extra-options/aircraft-types",
+    "checked": "reference consulted 28 September 2026; confirm variant"
+  },
+  {
+    "name": "SWISS",
+    "countryCode": "CH",
+    "aircraft": [
+      "Airbus A350-900",
+      "Boeing 777-300ER",
+      "Airbus A330-300",
+      "Airbus A340-300",
+      "Airbus A220-300",
+      "Airbus A320-200",
+      "Airbus A320neo",
+      "Airbus A321-200",
+      "Airbus A321neo"
+    ],
+    "source": "https://www.swiss.com/us/en/discover/fleet",
+    "checked": "reference consulted 28 September 2026; confirm variant"
+  },
+  {
+    "name": "Turkish Airlines",
+    "countryCode": "TR",
+    "aircraft": [],
+    "source": "https://www.turkishairlines.com/",
+    "checked": "fleet not independently verified"
+  },
+  {
+    "name": "Singapore Airlines",
+    "countryCode": "SG",
+    "aircraft": [
+      "Airbus A350-900",
+      "Airbus A380-800",
+      "Boeing 777-300ER",
+      "Boeing 787-10",
+      "Boeing 737 MAX 8"
+    ],
+    "source": "https://www.singaporeair.com/en_UK/us/flying-withus/our-story/our-fleet/",
+    "checked": "reference consulted 28 September 2026; confirm variant"
+  },
+  {
+    "name": "Cathay Pacific",
+    "countryCode": "HK",
+    "aircraft": [],
+    "source": "https://www.cathaypacific.com/",
+    "checked": "fleet not independently verified"
+  },
+  {
+    "name": "Qantas",
+    "countryCode": "AU",
+    "aircraft": [],
+    "source": "https://www.qantas.com/",
+    "checked": "fleet not independently verified"
+  },
+  {
+    "name": "Air Mauritius",
+    "countryCode": "MU",
+    "aircraft": [],
+    "source": "https://www.airmauritius.com/",
+    "checked": "fleet not independently verified"
+  },
+  {
+    "name": "RwandAir",
+    "countryCode": "RW",
+    "aircraft": [],
+    "source": "https://www.rwandair.com/",
+    "checked": "fleet not independently verified"
+  },
+  {
+    "name": "TAAG Angola Airlines",
+    "countryCode": "AO",
+    "aircraft": [],
+    "source": "https://www.taag.com/",
+    "checked": "fleet not independently verified"
+  },
+  {
+    "name": "EgyptAir",
+    "countryCode": "EG",
+    "aircraft": [],
+    "source": "https://www.egyptair.com/",
+    "checked": "fleet not independently verified"
+  },
+  {
+    "name": "Air Seychelles",
+    "countryCode": "SC",
+    "aircraft": [],
+    "source": "https://www.airseychelles.com/",
+    "checked": "fleet not independently verified"
+  },
+  {
+    "name": "Proflight Zambia",
+    "countryCode": "ZM",
+    "aircraft": [],
+    "source": "https://proflight-zambia.com/",
+    "checked": "fleet not independently verified"
+  },
+  {
+    "name": "Zambia Airways",
+    "countryCode": "ZM",
+    "aircraft": [],
+    "source": "https://www.zambia-airways.com/",
+    "checked": "fleet not independently verified"
+  },
+  {
+    "name": "Fastjet Zimbabwe",
+    "countryCode": "ZW",
+    "aircraft": [],
+    "source": "https://www.fastjet.com/",
+    "checked": "fleet not independently verified"
+  },
+  {
+    "name": "Air Zimbabwe",
+    "countryCode": "ZW",
+    "aircraft": [],
+    "source": "https://www.airzimbabwe.aero/",
+    "checked": "fleet not independently verified"
+  },
+  {
+    "name": "Eswatini Air",
+    "countryCode": "SZ",
+    "aircraft": [],
+    "source": "https://eswatiniair.co.sz/",
+    "checked": "fleet not independently verified"
+  },
+  {
+    "name": "United Airlines",
+    "countryCode": "US",
+    "aircraft": [],
+    "source": "https://www.united.com/",
+    "checked": "fleet not independently verified"
+  },
+  {
+    "name": "Delta Air Lines",
+    "countryCode": "US",
+    "aircraft": [],
+    "source": "https://www.delta.com/",
+    "checked": "fleet not independently verified"
+  },
+  {
+    "name": "Air Austral",
+    "countryCode": "RE",
+    "aircraft": [],
+    "source": "https://www.air-austral.com/",
+    "checked": "fleet not independently verified"
+  },
+  {
+    "name": "Air India",
+    "countryCode": "IN",
+    "aircraft": [],
+    "source": "https://www.airindia.com/",
+    "checked": "fleet not independently verified"
+  },
+  {
+    "name": "IndiGo",
+    "countryCode": "IN",
+    "aircraft": [],
+    "source": "https://www.goindigo.in/",
+    "checked": "fleet not independently verified"
+  },
+  {
+    "name": "Air China",
+    "countryCode": "CN",
+    "aircraft": [],
+    "source": "https://www.airchina.com/",
+    "checked": "fleet not independently verified"
+  },
+  {
+    "name": "Royal Air Maroc",
+    "countryCode": "MA",
+    "aircraft": [],
+    "source": "https://www.royalairmaroc.com/",
+    "checked": "fleet not independently verified"
+  }
+]

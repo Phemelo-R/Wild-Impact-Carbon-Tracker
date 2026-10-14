@@ -1,0 +1,441 @@
+{
+  "version": "2026-09-29-r3",
+  "factorSource": "https://assets.publishing.service.gov.uk/media/6846b0870392ed9b784c0187/2025-GHG-CF-methodology-paper.pdf",
+  "factorNote": "DESNZ 2025 Table 39 relative seat-space factors. Regional layouts use Economy 1 and Business 1.5. Wide-body layouts use Economy 1, Premium Economy 1.6, Business 2.9 and First 4. These are published averages, not measurements of each seat. Applying these by aircraft layout is this project’s allocation convention, not the complete DESNZ or ICAO calculator.",
+  "weights": {
+    "regional": {
+      "economy": 1,
+      "business": 1.5
+    },
+    "widebody": {
+      "economy": 1,
+      "premium": 1.6,
+      "business": 2.9,
+      "first": 4
+    }
+  },
+  "profiles": [
+    {
+      "id": "layout-001",
+      "operator": "FlySafair",
+      "aircraft": "Boeing 737-800",
+      "label": "189 seats",
+      "cabins": {
+        "economy": 189
+      },
+      "source": "https://flysafair.zendesk.com/hc/en-us/articles/203205681-Our-aircraft-and-fleet",
+      "checked": "2026-09-29",
+      "weightGroup": "regional",
+      "status": "Published airline layout"
+    },
+    {
+      "id": "layout-002",
+      "operator": "FlySafair",
+      "aircraft": "Boeing 737-400",
+      "label": "165 seats",
+      "cabins": {
+        "economy": 165
+      },
+      "source": "https://flysafair.zendesk.com/hc/en-us/articles/203205681-Our-aircraft-and-fleet",
+      "checked": "2026-09-29",
+      "weightGroup": "regional",
+      "status": "Published airline layout"
+    },
+    {
+      "id": "layout-003",
+      "operator": "Airlink",
+      "aircraft": "Embraer ERJ-135",
+      "label": "37 seats",
+      "cabins": {
+        "economy": 37
+      },
+      "source": "https://www.flyairlink.com/sites/default/files/files/Schedule-May2025.pdf",
+      "checked": "2026-09-29",
+      "weightGroup": "regional",
+      "status": "Published airline layout"
+    },
+    {
+      "id": "layout-004",
+      "operator": "Airlink",
+      "aircraft": "Embraer ERJ-140",
+      "label": "44 seats",
+      "cabins": {
+        "economy": 44
+      },
+      "source": "https://www.flyairlink.com/sites/default/files/files/Schedule-May2025.pdf",
+      "checked": "2026-09-29",
+      "weightGroup": "regional",
+      "status": "Published airline layout"
+    },
+    {
+      "id": "layout-005",
+      "operator": "Airlink",
+      "aircraft": "Embraer ERJ-190",
+      "label": "98 seats · 6 Business / 92 Economy",
+      "cabins": {
+        "business": 6,
+        "economy": 92
+      },
+      "source": "https://www.flyairlink.com/news/lanseria-harare",
+      "checked": "2026-09-29",
+      "weightGroup": "regional",
+      "status": "Published airline layout"
+    },
+    {
+      "id": "layout-006",
+      "operator": "Airlink",
+      "aircraft": "Embraer E195-E2",
+      "label": "136 seats · all Economy",
+      "cabins": {
+        "economy": 136
+      },
+      "source": "https://www.flyairlink.com/our-cabin/e195-e2-cabin",
+      "checked": "2026-09-29",
+      "weightGroup": "regional",
+      "status": "Published airline layout"
+    },
+    {
+      "id": "layout-007",
+      "operator": "FlyNamibia",
+      "aircraft": "Embraer ERJ-145",
+      "label": "50 seats",
+      "cabins": {
+        "economy": 50
+      },
+      "source": "https://www.flyairlink.com/sites/default/files/files/Schedule-May2025.pdf",
+      "checked": "2026-09-29",
+      "weightGroup": "regional",
+      "status": "Published airline layout"
+    },
+    {
+      "id": "layout-008",
+      "operator": "Kenya Airways",
+      "aircraft": "Boeing 787-8",
+      "label": "234 seats · 30 Business / 204 Economy",
+      "cabins": {
+        "business": 30,
+        "economy": 204
+      },
+      "source": "https://www.kenya-airways.com/en/experience/our-aircraft/boeing-787-8/",
+      "checked": "2026-09-29",
+      "weightGroup": "widebody",
+      "status": "Published airline layout"
+    },
+    {
+      "id": "layout-009",
+      "operator": "Kenya Airways",
+      "aircraft": "Boeing 737-800",
+      "label": "145 seats · 16 Business / 129 Economy",
+      "cabins": {
+        "business": 16,
+        "economy": 129
+      },
+      "source": "https://www.kenya-airways.com/en/experience/our-aircraft/boeing-737-800/",
+      "checked": "2026-09-29",
+      "weightGroup": "regional",
+      "status": "Published airline layout"
+    },
+    {
+      "id": "layout-010",
+      "operator": "Kenya Airways",
+      "aircraft": "Embraer ERJ-190",
+      "label": "96 seats · 12 Business / 84 Economy",
+      "cabins": {
+        "business": 12,
+        "economy": 84
+      },
+      "source": "https://www.kenya-airways.com/en/experience/our-aircraft/embraer-e190/",
+      "checked": "2026-09-29",
+      "weightGroup": "regional",
+      "status": "Published airline layout"
+    },
+    {
+      "id": "layout-011",
+      "operator": "Emirates",
+      "aircraft": "Airbus A380-800",
+      "label": "484 seats · four cabins",
+      "cabins": {
+        "first": 14,
+        "business": 76,
+        "premium": 56,
+        "economy": 338
+      },
+      "source": "https://www.emirates.com/media-centre/emirates-to-showcase-its-iconic-airbus-a380-at-the-bahrain-international-airshow/",
+      "checked": "2026-09-29",
+      "weightGroup": "widebody",
+      "status": "Published airline layout"
+    },
+    {
+      "id": "layout-012",
+      "operator": "Ethiopian Airlines",
+      "aircraft": "Boeing 787-8",
+      "label": "ET-AOO layout · 276 seats",
+      "cabins": {
+        "business": 30,
+        "economy": 246
+      },
+      "source": "https://www.ethiopianairlines.com/et/explore/fleet/seat-map/plane/b787-8-et-aoo",
+      "checked": "2026-09-29",
+      "weightGroup": "widebody",
+      "status": "Published airline layout"
+    },
+    {
+      "id": "layout-013",
+      "operator": "Ethiopian Airlines",
+      "aircraft": "Boeing 787-9",
+      "label": "ET-AUO layout · 315 seats",
+      "cabins": {
+        "business": 30,
+        "economy": 285
+      },
+      "source": "https://www.ethiopianairlines.com/us/explore/fleet/seat-map/plane/b787-9-et-auo",
+      "checked": "2026-09-29",
+      "weightGroup": "widebody",
+      "status": "Published airline layout"
+    },
+    {
+      "id": "layout-014",
+      "operator": "South African Airways",
+      "aircraft": "Airbus A320-200",
+      "label": "ZS-SZE · 138 seats",
+      "cabins": {
+        "business": 24,
+        "economy": 114
+      },
+      "source": "https://www.planespotters.net/airframe/airbus-a320-200-zs-sze-south-african-airways/rqpmk2",
+      "checked": "2026-09-29",
+      "weightGroup": "regional",
+      "status": "Published airline layout",
+      "note": "Representative published configuration; aircraft substitutions and other layouts are possible."
+    },
+    {
+      "id": "layout-015",
+      "operator": "South African Airways",
+      "aircraft": "Airbus A330-300",
+      "label": "ZS-SXM · 249 seats",
+      "cabins": {
+        "business": 46,
+        "economy": 203
+      },
+      "source": "https://www.planespotters.net/airframe/airbus-a330-300-zs-sxm-south-african-airways/enlgl8",
+      "checked": "2026-09-29",
+      "weightGroup": "widebody",
+      "status": "Published airline layout",
+      "note": "Representative published configuration; aircraft substitutions and other layouts are possible."
+    },
+    {
+      "id": "layout-016",
+      "operator": "South African Airways",
+      "aircraft": "Airbus A340-300",
+      "label": "ZS-SXH · 253 seats",
+      "cabins": {
+        "business": 38,
+        "economy": 215
+      },
+      "source": "https://www.planespotters.net/airframe/airbus-a340-300-zs-sxh-south-african-airways/e5vl73",
+      "checked": "2026-09-29",
+      "weightGroup": "widebody",
+      "status": "Published airline layout",
+      "note": "Representative published configuration; aircraft substitutions and other layouts are possible."
+    },
+    {
+      "id": "layout-017",
+      "operator": "Airlink",
+      "aircraft": "Embraer ERJ-170",
+      "label": "ZS-YBA · 74 seats",
+      "cabins": {
+        "business": 6,
+        "economy": 68
+      },
+      "source": "https://www.planespotters.net/airframe/embraer-erj-170-zs-yba-airlink/roxpp0",
+      "checked": "2026-09-29",
+      "weightGroup": "regional",
+      "status": "Published airline layout",
+      "note": "Representative published configuration; aircraft substitutions and other layouts are possible."
+    },
+    {
+      "id": "layout-018",
+      "operator": "Airlink",
+      "aircraft": "Embraer ERJ-195",
+      "label": "ZS-YDF · 107 seats",
+      "cabins": {
+        "business": 11,
+        "economy": 96
+      },
+      "source": "https://www.planespotters.net/airframe/embraer-erj-195-zs-ydf-airlink/e96dnp",
+      "checked": "2026-09-29",
+      "weightGroup": "regional",
+      "status": "Published airline layout",
+      "note": "Representative published configuration; aircraft substitutions and other layouts are possible."
+    },
+    {
+      "id": "layout-019",
+      "operator": "Air Botswana",
+      "aircraft": "ATR 72",
+      "label": "A2-ABL · 70 seats",
+      "cabins": {
+        "economy": 70
+      },
+      "source": "https://www.planespotters.net/airframe/atr-72-a2-abl-air-botswana/3857g5",
+      "checked": "2026-09-29",
+      "weightGroup": "regional",
+      "status": "Published airline layout",
+      "note": "Representative published configuration; aircraft substitutions and other layouts are possible."
+    },
+    {
+      "id": "layout-020",
+      "operator": "Air Botswana",
+      "aircraft": "Embraer ERJ-175",
+      "label": "A2-ABE · 88 seats",
+      "cabins": {
+        "economy": 88
+      },
+      "source": "https://www.planespotters.net/airline/Air-Botswana",
+      "checked": "2026-09-29",
+      "weightGroup": "regional",
+      "status": "Published airline layout",
+      "note": "Representative published configuration; aircraft substitutions and other layouts are possible."
+    },
+    {
+      "id": "layout-021",
+      "operator": "Air Tanzania",
+      "aircraft": "Airbus A220-300",
+      "label": "132 seats · 12 Business / 120 Economy",
+      "cabins": {
+        "business": 12,
+        "economy": 120
+      },
+      "source": "https://www.airtanzania.co.tz/14-our-fleet/67-airbus220-300-cs300",
+      "checked": "2026-09-29",
+      "weightGroup": "regional",
+      "status": "Published airline layout",
+      "note": "Representative published configuration; aircraft substitutions and other layouts are possible."
+    },
+    {
+      "id": "layout-022",
+      "operator": "Air Tanzania",
+      "aircraft": "De Havilland DHC-8-400",
+      "label": "76 seats · 6 Business / 70 Economy",
+      "cabins": {
+        "business": 6,
+        "economy": 70
+      },
+      "source": "https://www.airtanzania.co.tz/sw/careers/14-our-fleet/66-dash-8-q400",
+      "checked": "2026-09-29",
+      "weightGroup": "regional",
+      "status": "Published airline layout",
+      "note": "Representative published configuration; aircraft substitutions and other layouts are possible."
+    },
+    {
+      "id": "layout-023",
+      "operator": "Air Tanzania",
+      "aircraft": "Boeing 787-8",
+      "label": "262 seats · 22 Business / 240 Economy",
+      "cabins": {
+        "business": 22,
+        "economy": 240
+      },
+      "source": "https://airtanzania.co.tz/our-fleet/14-our-fleet/68-boeing-787-8-dreamliner",
+      "checked": "2026-09-29",
+      "weightGroup": "widebody",
+      "status": "Published airline layout",
+      "note": "Representative published configuration; aircraft substitutions and other layouts are possible."
+    },
+    {
+      "id": "layout-024",
+      "operator": "Air Tanzania",
+      "aircraft": "Boeing 737 MAX 9",
+      "label": "181 seats · 16 Business / 165 Economy",
+      "cabins": {
+        "business": 16,
+        "economy": 165
+      },
+      "source": "https://www.airtanzania.co.tz/14-our-fleet/113-boeing-737-max9",
+      "checked": "2026-09-29",
+      "weightGroup": "regional",
+      "status": "Published airline layout",
+      "note": "Representative published configuration; aircraft substitutions and other layouts are possible."
+    },
+    {
+      "id": "layout-025",
+      "operator": "Qatar Airways",
+      "aircraft": "Boeing 777-300ER",
+      "label": "A7-BEH · 354 seats",
+      "cabins": {
+        "business": 42,
+        "economy": 312
+      },
+      "source": "https://www.planespotters.net/airframe/boeing-777-300er-a7-beh-qatar-airways/edwk9q",
+      "checked": "2026-09-29",
+      "weightGroup": "widebody",
+      "status": "Published airline layout",
+      "note": "Representative published configuration; aircraft substitutions and other layouts are possible."
+    },
+    {
+      "id": "layout-026",
+      "operator": "Emirates",
+      "aircraft": "Airbus A380-800",
+      "label": "A6-EDT · 517 seats · three cabins",
+      "cabins": {
+        "first": 14,
+        "business": 76,
+        "economy": 427
+      },
+      "source": "https://www.planespotters.net/airframe/airbus-a380-800-a6-edt-emirates/ekdo7n",
+      "checked": "2026-09-29",
+      "weightGroup": "widebody",
+      "status": "Published airline layout",
+      "note": "Representative published configuration; aircraft substitutions and other layouts are possible."
+    },
+    {
+      "id": "layout-027",
+      "operator": "Emirates",
+      "aircraft": "Airbus A380-800",
+      "label": "A6-EEU · 468 seats · four cabins",
+      "cabins": {
+        "first": 14,
+        "business": 76,
+        "premium": 56,
+        "economy": 322
+      },
+      "source": "https://www.planespotters.net/airframe/airbus-a380-800-a6-eeu-emirates/ejnzyx",
+      "checked": "2026-09-29",
+      "weightGroup": "widebody",
+      "status": "Published airline layout",
+      "note": "Representative published configuration; aircraft substitutions and other layouts are possible."
+    },
+    {
+      "id": "layout-028",
+      "operator": "Emirates",
+      "aircraft": "Boeing 777-300ER",
+      "label": "Retrofitted · 330 seats · four cabins",
+      "cabins": {
+        "first": 8,
+        "business": 38,
+        "premium": 24,
+        "economy": 260
+      },
+      "source": "https://www.emirates.com/media-centre/emirates-welcomes-its-first-retrofitted-boeing-777-in-africa/",
+      "checked": "2026-09-29",
+      "weightGroup": "widebody",
+      "status": "Published airline layout",
+      "note": "Representative published configuration; aircraft substitutions and other layouts are possible."
+    },
+    {
+      "id": "layout-029",
+      "operator": "Emirates",
+      "aircraft": "Boeing 777-300ER",
+      "label": "A6-ECT · 354 seats · three cabins",
+      "cabins": {
+        "first": 8,
+        "business": 42,
+        "economy": 304
+      },
+      "source": "https://www.planespotters.net/airframe/boeing-777-300er-a6-ect-emirates/rq1n8y",
+      "checked": "2026-09-29",
+      "weightGroup": "widebody",
+      "status": "Published airline layout",
+      "note": "Representative published configuration; aircraft substitutions and other layouts are possible."
+    }
+  ]
+}

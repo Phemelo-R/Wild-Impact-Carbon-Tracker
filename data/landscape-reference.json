@@ -1,0 +1,86 @@
+[
+  {
+    "name": "Head Office — Sandton",
+    "countryCode": "ZA",
+    "country": "South Africa",
+    "airport": "JNB"
+  },
+  {
+    "name": "Greater Kruger",
+    "countryCode": "ZA",
+    "country": "South Africa",
+    "airport": "HDS"
+  },
+  {
+    "name": "iSimangaliso",
+    "countryCode": "ZA",
+    "country": "South Africa",
+    "airport": "DUR"
+  },
+  {
+    "name": "Okavango Delta",
+    "countryCode": "BW",
+    "country": "Botswana",
+    "airport": "MUB"
+  },
+  {
+    "name": "Masai Mara",
+    "countryCode": "KE",
+    "country": "Kenya",
+    "airport": "WIL"
+  },
+  {
+    "name": "Bazaruto Archipelago",
+    "countryCode": "MZ",
+    "country": "Mozambique",
+    "airport": "VNX"
+  },
+  {
+    "name": "Sossusvlei",
+    "countryCode": "NA",
+    "country": "Namibia",
+    "airport": "WDH"
+  },
+  {
+    "name": "Lake Manyara",
+    "countryCode": "TZ",
+    "country": "Tanzania",
+    "airport": "ARK"
+  },
+  {
+    "name": "Mnemba Island",
+    "countryCode": "TZ",
+    "country": "Tanzania",
+    "airport": "ZNZ"
+  },
+  {
+    "name": "Ngorongoro Crater",
+    "countryCode": "TZ",
+    "country": "Tanzania",
+    "airport": "ARK"
+  },
+  {
+    "name": "Pololeti",
+    "countryCode": "TZ",
+    "country": "Tanzania",
+    "airport": "JRO"
+  },
+  {
+    "name": "West and Central Serengeti",
+    "countryCode": "TZ",
+    "country": "Tanzania",
+    "airport": "SEU"
+  },
+  {
+    "name": "Jigme Dorji",
+    "countryCode": "BT",
+    "country": "Bhutan",
+    "airport": "PBH"
+  },
+  {
+    "name": "Araucanía",
+    "countryCode": "CL",
+    "country": "Chile",
+    "airport": "ZCO"
+  }
+]
