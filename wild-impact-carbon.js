@@ -1,7 +1,7 @@
 'use strict';
 
 // Wild Impact-specific adaptation of the Les Hyperion Carbon Tracker.
-// Reference datasets are bundled locally so this copy has no dependency on the Les Hyperion repository.
+// Reference datasets are bundled locally so that this copy has no dependency on the Les Hyperion repository.
 const WILD_IMPACT_DATA_ROOT = './data/';
 const WILD_IMPACT_STORAGE_KEY = 'wild-impact-carbon-tracker-v1';
 const WILD_IMPACT_CUSTOM_AIRCRAFT = 'Unlisted aircraft — documented estimate';
@@ -667,20 +667,70 @@ const startWildImpactTracker = (carbonData) => {
     }
   };
 
+  const populateRecommendationCountries = () => {
+    const countryNames = new Map(carbonData.airports.map((airport) => [airport.countryCode, airport.country]));
+    const operatorCodes = [...new Set(carbonData.operators.map((operator) => operator.countryCode))];
+    const countries = operatorCodes.map((code) => [code, countryNames.get(code) || code]).sort((a, b) => a[1].localeCompare(b[1]));
+    const select = elementById('recommendation-country');
+    select.replaceChildren(...countries.map(([code, name]) => new Option(name, code)));
+    select.value = countries.some(([code]) => code === 'ZA') ? 'ZA' : countries[0]?.[0] || '';
+    renderAirlineRecommendations();
+  };
+
+  const renderAirlineRecommendations = () => {
+    const selectedCountry = currentValue('recommendation-country');
+    const standardDistanceKm = 1000;
+    const standardFlightNauticalMiles = (standardDistanceKm + 100) / 1.852;
+    const operatorScores = carbonData.operators.filter((operator) => operator.countryCode === selectedCountry).map((operator) => {
+      const aircraftScores = (operator.aircraft || []).map((aircraftName) => {
+        const aircraft = carbonData.aircraft[aircraftName];
+        if (!aircraft || !aircraft.seats || !carbonData.curves[aircraft.icao]) return null;
+        const fuelEstimate = interpolateFuel(carbonData.curves[aircraft.icao], standardFlightNauticalMiles);
+        if (!fuelEstimate || !Number.isFinite(fuelEstimate.fuel) || fuelEstimate.fuel <= 0) return null;
+        return { aircraftName, kgPerPassengerKm: (fuelEstimate.fuel * 3.16 * 0.85) / (aircraft.seats * 0.8 * standardDistanceKm) };
+      }).filter(Boolean);
+      if (!aircraftScores.length) return null;
+      return { name: operator.name, score: aircraftScores.reduce((sum, aircraft) => sum + aircraft.kgPerPassengerKm, 0) / aircraftScores.length, aircraftCount: aircraftScores.length, aircraft: aircraftScores.sort((a, b) => a.kgPerPassengerKm - b.kgPerPassengerKm) };
+    }).filter(Boolean).sort((a, b) => a.score - b.score).slice(0, 5);
+
+    const target = elementById('airline-recommendations');
+    if (!operatorScores.length) {
+      target.innerHTML = '<p>No operators in this country have aircraft with supported fuel curves in the current reference data.</p>';
+      return;
+    }
+    const bestScore = operatorScores[0].score;
+    target.innerHTML = operatorScores.map((operator, index) => {
+      const aircraftSummary = operator.aircraft.slice(0, 3).map((aircraft) => aircraft.aircraftName).join(', ');
+      const moreAircraft = operator.aircraft.length > 3 ? ` + ${operator.aircraft.length - 3} more` : '';
+      const comparison = index === 0 ? 'Lowest modelled estimate in this country' : `${formatNumber(((operator.score / bestScore) - 1) * 100, 0)}% above the lowest estimate`;
+      return `<article class="recommendation-item"><div class="recommendation-rank">${index + 1}</div><div><strong>${escapeHtml(operator.name)}</strong><p>${escapeHtml(aircraftSummary + moreAircraft)}</p><p>${comparison} · ${operator.aircraftCount} supported aircraft model${operator.aircraftCount === 1 ? '' : 's'}</p></div><div class="recommendation-value">${formatNumber(operator.score, 4)}<small>kg CO₂ / passenger-km</small></div></article>`;
+    }).join('');
+  };
+
   const switchMode = (mode) => {
     activeMode = mode;
+    const recommendations = mode === 'recommendations';
     elementById('flight-view').hidden = mode !== 'flight';
     elementById('ebike-view').hidden = mode !== 'ebike';
+    elementById('recommendations-view').hidden = !recommendations;
+    elementById('summary-section').hidden = recommendations;
+    elementById('figures-section').hidden = recommendations;
+    elementById('records-section').hidden = recommendations;
+    elementById('methods-section').hidden = recommendations;
     elementById('flight-figures').hidden = mode !== 'flight';
     elementById('bike-figures').hidden = mode !== 'ebike';
-    elementById('summary-title').textContent = mode === 'flight' ? 'Flight totals' : 'E-bike totals';
-    elementById('figures-title').textContent = mode === 'flight' ? 'Flight footprint' : 'E-bike impact';
-    elementById('records-title').textContent = mode === 'flight' ? 'Flight records' : 'E-bike records';
-    elementById('record-search').placeholder = mode === 'flight' ? 'Search travellers, routes, airlines…' : 'Search rangers, registrations…';
+    if (!recommendations) {
+      elementById('summary-title').textContent = mode === 'flight' ? 'Flight totals' : 'E-bike totals';
+      elementById('figures-title').textContent = mode === 'flight' ? 'Flight footprint' : 'E-bike impact';
+      elementById('records-title').textContent = mode === 'flight' ? 'Flight records' : 'E-bike records';
+      elementById('record-search').placeholder = mode === 'flight' ? 'Search travellers, routes, airlines…' : 'Search rangers, registrations…';
+    }
     document.querySelectorAll('.transport-tab[data-mode]').forEach((tab) => tab.classList.toggle('active', tab.dataset.mode === mode));
-    renderSummary();
-    renderRecords();
-    drawCurrentCharts();
+    if (!recommendations) {
+      renderSummary();
+      renderRecords();
+      drawCurrentCharts();
+    }
   };
 
   const exportWorkbook = () => {
@@ -966,7 +1016,9 @@ const startWildImpactTracker = (carbonData) => {
   initialiseDateInputs();
   fillLandscapes();
   countryOptions();
+  populateRecommendationCountries();
   populateDefaultFlightRoute();
+  elementById('recommendation-country').addEventListener('change', renderAirlineRecommendations);
   elementById('flight-landscape').addEventListener('change', () => {
     const landscape = currentLandscape('flight-landscape');
     if (routeMode === 'domestic' && landscape) {
