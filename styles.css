@@ -46,9 +46,7 @@ a { color: inherit; }
 .hero-copy { max-width: 720px; margin: 26px 0 0; color: var(--ink); font-size: 1rem; }
 .hero-provenance { max-width: 720px; margin: 12px 0 0; color: var(--muted); font-size: .78rem; }
 .hero-mark { display: flex; justify-content: flex-end; }
-.sunburst { width: min(290px, 55vw); aspect-ratio: 1; position: relative; border: 1px solid rgba(111,112,108,.16); border-radius: 50%; }
-.sunburst::before, .sunburst::after { content: ""; position: absolute; inset: 16%; border: 28px solid transparent; border-top-color: var(--wild-orange); border-radius: 50%; transform: rotate(20deg); }
-.sunburst::after { transform: rotate(200deg); border-top-color: #ff7a42; }
+.hero-africa-map { display: block; width: min(460px, 100%); max-height: 330px; object-fit: contain; margin-left: auto; }
 
 .status-box { margin: 25px 0 0; padding: 13px 16px; border-left: 4px solid var(--wild-orange); background: var(--white); color: var(--muted); box-shadow: var(--shadow); }
 .status-box.ready { color: var(--ink); }
@@ -65,13 +63,30 @@ a { color: inherit; }
 .button-secondary:hover { background: var(--soft); }
 .wide { width: 100%; }
 
-.transport-tabs { display: grid; grid-template-columns: repeat(4, 1fr); margin-top: 32px; border-bottom: 1px solid var(--line); }
+.transport-tabs { display: grid; grid-template-columns: repeat(5, 1fr); margin-top: 32px; border-bottom: 1px solid var(--line); }
 .transport-tab { min-height: 58px; border: 0; border-bottom: 4px solid transparent; background: transparent; color: var(--muted); font-weight: 700; text-align: left; padding: 0 14px; }
 .transport-tab.active { color: var(--ink); border-bottom-color: var(--wild-orange); }
 .transport-tab.disabled { opacity: .45; }
 .transport-tab span { display: block; margin-top: -3px; color: var(--wild-orange); font-size: 9px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; }
 
 .mode-view { padding-top: 50px; }
+.recommendation-controls { max-width: 440px; margin-bottom: 24px; }
+.recommendation-controls .field { margin-bottom: 0; }
+.recommendation-columns { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; }
+.recommendation-panel { padding: 26px; background: var(--white); border-top: 4px solid var(--wild-orange); box-shadow: var(--shadow); }
+.recommendation-panel h3 { margin: 0 0 15px; font-size: 1.15rem; line-height: 1.35; }
+.recommendation-list { display: grid; gap: 10px; }
+.recommendation-item { display: grid; grid-template-columns: 36px 1fr auto; align-items: start; gap: 12px; padding: 13px 0; border-bottom: 1px solid var(--line); }
+.recommendation-rank { color: var(--wild-orange); font-weight: 800; font-size: 1.15rem; }
+.recommendation-item strong { display: block; font-size: .88rem; }
+.recommendation-item p { margin: 4px 0 0; color: var(--muted); font-size: .75rem; line-height: 1.5; }
+.recommendation-value { text-align: right; white-space: nowrap; font-size: .78rem; font-weight: 700; }
+.recommendation-value small { display: block; color: var(--muted); font-weight: 500; font-size: .65rem; }
+.vehicle-class-list { display: flex; flex-wrap: wrap; gap: 8px; margin: 18px 0; }
+.vehicle-class-list span { padding: 7px 11px; border: 1px solid var(--line); background: var(--paper); font-size: .75rem; font-weight: 700; }
+.recommendation-methods { margin-top: 22px; padding: 20px 24px; background: var(--white); border: 1px solid var(--line); }
+.recommendation-methods summary { cursor: pointer; font-weight: 700; }
+.recommendation-methods p { max-width: 1000px; color: var(--muted); font-size: .85rem; }
 .section-heading { display: flex; justify-content: space-between; align-items: flex-start; gap: 25px; margin-bottom: 28px; }
 .section-heading h2 { margin: 0; font-size: clamp(2rem, 4vw, 3.45rem); line-height: 1.05; letter-spacing: -.045em; font-weight: 600; }
 .section-heading > div:first-child p:last-child { max-width: 780px; margin: 14px 0 0; color: var(--muted); }
@@ -177,7 +192,7 @@ tbody tr:hover { background: #fff9f5; }
 @media (max-width: 900px) {
   .page-shell { width: min(100% - 34px, 760px); }
   .hero-inner, .entry-grid, .flight-chart-grid, .bike-chart-grid, .methods-grid, .footer-grid { grid-template-columns: 1fr; }
-  .hero-mark { display: none; }
+  .hero-africa-map { width: min(320px, 80%); margin: 18px auto 0; }
   .tracker-toolbar { align-items: flex-start; flex-direction: column; }
   .summary-grid { grid-template-columns: 1fr 1fr; }
   .summary-grid article:nth-child(2) { border-right: 0; }
@@ -193,6 +208,7 @@ tbody tr:hover { background: #fff9f5; }
   .header-title { display: none; }
   .hero-inner { min-height: 310px; padding: 45px 0; }
   .transport-tabs { grid-template-columns: 1fr 1fr; }
+  .recommendation-columns { grid-template-columns: 1fr; }
   .transport-tab { min-height: 62px; }
   .field-grid, .summary-grid { grid-template-columns: 1fr; }
   .summary-grid article, .summary-grid article + article { padding: 16px 0; border-right: 0; border-top: 1px solid var(--line); }
