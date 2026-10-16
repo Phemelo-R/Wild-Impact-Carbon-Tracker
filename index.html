@@ -33,7 +33,7 @@
           <p class="hero-provenance">The carbon tracker is an adaptation of the Les Hyperion Carbon Tracker by Phemelo-R.</p>
         </div>
         <div class="hero-mark" aria-hidden="true">
-          <div class="sunburst"></div>
+          <img class="hero-africa-map" src="assets/wild-impact-landscapes-africa.png" alt="Map of Africa with Wild Impact landscape countries highlighted in orange">
         </div>
       </div>
     </section>
@@ -54,11 +54,12 @@
         </div>
       </section>
 
-      <nav class="transport-tabs" aria-label="Transport mode">
+      <nav class="transport-tabs" aria-label="Tracker sections">
         <button class="transport-tab active" data-mode="flight" type="button">Flights</button>
         <button class="transport-tab" data-mode="ebike" type="button">E-bikes</button>
         <button class="transport-tab disabled" type="button" disabled>Vehicles <span>Coming soon</span></button>
         <button class="transport-tab disabled" type="button" disabled>Boats <span>Coming soon</span></button>
+        <button class="transport-tab" data-mode="recommendations" type="button">Recommendations</button>
       </nav>
 
       <section id="flight-view" class="mode-view">
@@ -250,7 +251,7 @@
         </div>
       </section>
 
-      <section class="summary-section">
+      <section id="summary-section" class="summary-section">
         <div class="section-heading compact-heading">
           <div>
             <p class="section-number">02 / TRACKED EMISSIONS</p>
@@ -271,7 +272,7 @@
         </div>
       </section>
 
-      <section class="figures-section">
+      <section id="figures-section" class="figures-section">
         <div class="section-heading compact-heading">
           <div>
             <p class="section-number">03 / FIGURES</p>
@@ -309,7 +310,41 @@
         </div>
       </section>
 
-      <section class="records-section">
+      <section id="recommendations-view" class="mode-view" hidden>
+        <div class="section-heading">
+          <div>
+            <p class="section-number">05 / LOWER-CARBON PROCUREMENT</p>
+            <h2>Recommendations</h2>
+            <p>Compare operators using the aircraft and fuel-curve reference data already used by the tracker. Rankings are estimates for screening and procurement discussions, not a guarantee of the emissions of a specific booked flight.</p>
+          </div>
+          <div class="mode-note">Aircraft model · passenger-km</div>
+        </div>
+        <div class="recommendation-controls entry-panel">
+          <label class="field"><span>Country where you are booking / operating</span><select id="recommendation-country"></select></label>
+          <p class="field-help">The country filter selects operators listed in that country’s reference fleet. It does not restrict the route destination.</p>
+        </div>
+        <div class="recommendation-columns">
+          <section class="recommendation-panel">
+            <p class="section-number">TOP 5 / AIR OPERATORS</p>
+            <h3>Lower estimated CO₂ per passenger-km</h3>
+            <div id="airline-recommendations" class="recommendation-list" aria-live="polite"></div>
+          </section>
+          <section class="recommendation-panel">
+            <p class="section-number">VEHICLE PROCUREMENT</p>
+            <h3>Vehicle recommendations</h3>
+            <p>Vehicle rankings will appear here once the vehicle database is connected. The comparison will be split by vehicle class so that cars, vans, buses and trucks are compared like-for-like.</p>
+            <div class="vehicle-class-list"><span>Cars</span><span>Vans</span><span>Buses</span><span>Trucks</span></div>
+            <p class="field-help">The intended output is a top 10 within each selected class, ranked by estimated operational CO₂ per kilometre. Vehicle purchase or rental recommendations should also consider vehicle size, fuel, payload and intended use.</p>
+          </section>
+        </div>
+        <details class="recommendation-methods">
+          <summary>How the aircraft ranking is calculated</summary>
+          <p>Each operator’s listed aircraft are evaluated at a standard 1,000 km flight distance using the ICAO fuel curves. The estimate uses reference seating capacity, 80% seat occupancy and a common 0.85 cargo allocation, then reports estimated operational CO₂ per passenger-kilometre. Operators are ranked by the mean of their eligible aircraft models; aircrafts without supported fuel curves are excluded. Actual results vary with route, load factor, cabin layout, aircraft age and configuration.</p>
+          <p>Because this is a standardised comparison rather than a route-specific calculation, use it to shortlist operators, not as a claim that one airline will always emit less on every route. The next update will compare operators on the actual route and the aircraft scheduled for that service.</p>
+        </details>
+      </section>
+
+      <section id="records-section" class="records-section">
         <div class="section-heading compact-heading records-heading">
           <div><p class="section-number">04 / RECORDS</p><h2 id="records-title">Flight records</h2></div>
           <div class="records-controls">
@@ -329,7 +364,7 @@
         </div>
       </section>
 
-      <section class="methods-section">
+      <section id="methods-section" class="methods-section">
         <details>
           <summary>Methods, boundaries &amp; sources</summary>
           <div class="methods-grid">
