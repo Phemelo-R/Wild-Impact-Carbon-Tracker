@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#ff4a00">
-  <meta name="description" content="Wild Impact Carbon Tracker — tracks carbon emission for flights and electric motorcycles for Landscape Conservation.">
+  <meta name="description" content="Wild Impact Carbon Tracker — records fuel-based emissions for flights, boats, and electric motorcycles in Landscape Conservation.">
   <title>Wild Impact Carbon Tracker</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -29,7 +29,7 @@
         <div>
           <p class="kicker">LANDSCAPE CONSERVATION</p>
           <h1>Wild Impact<br><span>Carbon Tracker</span></h1>
-          <p class="hero-copy">Document all company travel emissions, monitor avoided emissions from electric motorcycles, and keep a consistent carbon record for Wild Impact programmes.</p>
+          <p class="hero-copy">Record fuel-based boat emissions and company flight emissions, monitor avoided emissions from electric motorcycles, and maintain consistent records across Wild Impact landscapes.</p>
           <p class="hero-provenance">The carbon tracker is an adaptation of the Les Hyperion Carbon Tracker by Phemelo-R.</p>
         </div>
         <div class="hero-mark" aria-hidden="true">
@@ -58,7 +58,7 @@
         <button class="transport-tab active" data-mode="flight" type="button">Flights</button>
         <button class="transport-tab" data-mode="ebike" type="button">E-bikes</button>
         <button class="transport-tab disabled" type="button" disabled>Vehicles <span>Coming soon</span></button>
-        <button class="transport-tab disabled" type="button" disabled>Boats <span>Coming soon</span></button>
+        <button class="transport-tab" data-mode="boat" type="button">Boats</button>
         <button class="transport-tab" data-mode="recommendations" type="button">Recommendations</button>
       </nav>
 
@@ -251,6 +251,75 @@
         </div>
       </section>
 
+      <section id="boat-view" class="mode-view" hidden>
+        <div class="section-heading">
+          <div>
+            <p class="section-number">01 / WATER TRANSPORT</p>
+            <h2>Boat emissions</h2>
+            <p>Enter the petrol consumed by the entire boat during the journey. Keep the trip particulars for monitoring, while emissions are calculated from litres alone.</p>
+          </div>
+          <div class="mode-note">UK DESNZ 2026 · direct fuel combustion</div>
+        </div>
+        <div class="entry-grid">
+          <form id="boat-form" class="entry-panel">
+            <div class="field-grid">
+              <label class="field"><span>Journey date</span><input id="boat-date" type="date" required></label>
+              <label class="field"><span>Landscape / seascape</span><input id="boat-landscape" type="text" maxlength="140" value="Benguerra, Mozambique" list="boat-landscape-options" required></label>
+            </div>
+            <datalist id="boat-landscape-options"><option value="Benguerra, Mozambique"></option></datalist>
+            <div class="field-grid">
+              <label class="field"><span>Boat name / ID</span><input id="boat-vessel" type="text" maxlength="120" value="Chissumba" list="boat-vessel-options" required></label>
+              <label class="field"><span>Activity</span><input id="boat-activity" type="text" maxlength="120" list="boat-activity-options" placeholder="e.g. Dive, Transfer, BRUVS" required></label>
+            </div>
+            <datalist id="boat-vessel-options"><option value="Chissumba"></option></datalist>
+            <datalist id="boat-activity-options"><option value="Dive"></option><option value="Transfer"></option><option value="BRUVS"></option><option value="Sardinha"></option></datalist>
+            <label class="field"><span>Site / destination</span><input id="boat-site" type="text" maxlength="140" list="boat-site-options" placeholder="e.g. 2 Mile, Shark Reef, VNX" required></label>
+            <datalist id="boat-site-options"></datalist>
+            <div class="field-grid">
+              <label class="field"><span>Skipper</span><input id="boat-skipper" type="text" maxlength="120" list="boat-skipper-options" placeholder="Skipper name"></label>
+              <label class="field"><span>Guide / crew</span><input id="boat-guide" type="text" maxlength="180" list="boat-guide-options" placeholder="Guide or crew"></label>
+            </div>
+            <datalist id="boat-skipper-options"></datalist>
+            <datalist id="boat-guide-options"></datalist>
+            <div class="field-grid">
+              <label class="field"><span>Time started</span><input id="boat-start-time" type="time"></label>
+              <label class="field"><span>Time ended</span><input id="boat-end-time" type="time"></label>
+            </div>
+            <div class="field-grid">
+              <label class="field"><span>Engine hours (optional)</span><input id="boat-engine-hours" type="number" min="0" max="48" step="any" placeholder="e.g. 2.5"></label>
+              <label class="field"><span>Passengers (PAX)</span><input id="boat-pax" type="number" min="0" step="1" placeholder="e.g. 4"></label>
+            </div>
+            <label class="field boat-fuel-field"><span>Petrol used by the whole boat (litres)</span><input id="boat-petrol" type="number" min="0.001" step="any" inputmode="decimal" placeholder="e.g. 45" required></label>
+            <p class="field-help">Enter the combined petrol consumption of all engines. Do not double the litres for the two Suzuki DF80A outboards. If a logged amount also includes quad bikes, enter only the separately known boat portion; leave uncertain trips out.</p>
+            <details class="advanced-details"><summary>Optional operational details &amp; provenance</summary>
+              <div class="field-grid">
+                <label class="field"><span>Room / group</span><input id="boat-group" type="text" maxlength="140"></label>
+                <label class="field"><span>Engine configuration</span><input id="boat-engines" type="text" maxlength="180" value="2 × Suzuki DF80A · petrol · 58.8 kW each"></label>
+              </div>
+              <label class="field"><span>Notes / source of fuel measurement</span><textarea id="boat-notes" rows="3" maxlength="3000" placeholder="e.g. Recorded in daily boat log; measured from refuelling"></textarea></label>
+            </details>
+            <p id="boat-error" class="form-error" role="alert"></p>
+            <button class="button button-primary wide" type="submit">Save boat journey</button>
+            <button id="boat-cancel" class="button button-secondary wide" type="button" hidden>Cancel edit</button>
+          </form>
+          <aside class="result-panel">
+            <p class="section-number">CURRENT BOAT JOURNEY</p>
+            <div id="boat-result" class="result-main">Enter petrol used to calculate emissions.</div>
+            <div id="boat-breakdown" class="calculation-list"></div>
+            <p class="field-help">UK DESNZ 2026: 100% mineral petrol, provisional assumption for Mozambique; direct combustion only. CO₂e already includes CH₄ and N₂O.</p>
+            <p class="field-help">Two engines do not double the result when the entered litres already represent fuel consumed by the whole boat.</p>
+            <div class="boat-import-panel">
+              <p class="section-number">HISTORIC BOAT LOG</p>
+              <h3>Import Benguerra boat hours</h3>
+              <p class="field-help">Select the existing 2026 Excel log. Only journeys with recorded petrol are imported. Trips without petrol and quad-only journeys are excluded. If a note explicitly states a quad-bike allocation (such as 10 L), that quantity is deducted from the logged petrol; ambiguous mixed fuel is excluded. The spreadsheet stays in your browser; no personal details are bundled into the website.</p>
+              <button id="boat-import-button" class="button button-secondary wide" type="button">Select boat-hours Excel file</button>
+              <input id="boat-import-file" type="file" accept=".xlsx,.xls" hidden>
+              <p id="boat-import-status" class="field-help" role="status"></p>
+            </div>
+          </aside>
+        </div>
+      </section>
+
       <section id="summary-section" class="summary-section">
         <div class="section-heading compact-heading">
           <div>
@@ -269,6 +338,12 @@
           <article><span>CO₂ avoided</span><strong id="bike-total-saved">0.000</strong><small>tCO₂</small></article>
           <article><span>Electric distance</span><strong id="bike-total-distance">0</strong><small>km</small></article>
           <article><span>Recording periods</span><strong id="bike-total-records">0</strong><small>records</small></article>
+        </div>
+        <div id="boat-summary" class="summary-grid" hidden>
+          <article><span id="boat-emissions-label">Total CO₂e</span><strong id="boat-total-emissions">0.000</strong><small id="boat-total-unit">t CO₂e</small></article>
+          <article><span>Boat petrol consumed</span><strong id="boat-total-petrol">0</strong><small>litres</small></article>
+          <article><span>Recorded journeys</span><strong id="boat-total-journeys">0</strong><small>trips</small></article>
+          <article><span>Engine hours logged</span><strong id="boat-total-hours">0</strong><small>hours · where provided</small></article>
         </div>
       </section>
 
@@ -306,6 +381,20 @@
               <div class="chart-card-heading"><h3>Cumulative CO₂ saved</h3><span>tCO₂</span></div>
               <div class="chart-box"><canvas id="bike-cumulative-chart"></canvas></div>
             </article>
+          </div>
+        </div>
+        <div id="boat-figures" hidden>
+          <div class="boat-chart-controls entry-panel">
+            <label class="field"><span>Gas displayed</span><select id="boat-gas"><option value="co2e">CO₂e</option><option value="co2">CO₂</option><option value="ch4">CH₄</option><option value="n2o">N₂O</option></select></label>
+            <label class="field"><span>Site</span><select id="boat-site-filter"><option value="">All sites</option></select></label>
+            <label class="field"><span>Activity</span><select id="boat-activity-filter"><option value="">All activities</option></select></label>
+            <button class="button button-secondary" id="boat-clear-filters" type="button">Reset filters</button>
+          </div>
+          <p id="boat-filter-status" class="field-help" aria-live="polite"></p>
+          <div class="chart-grid boat-chart-grid">
+            <article class="chart-card chart-card-full"><div class="chart-card-heading"><h3>Monthly boat emissions</h3><span id="boat-month-chart-unit">kg CO₂e</span></div><div class="chart-box"><canvas id="boat-month-chart"></canvas></div></article>
+            <article class="chart-card"><div class="chart-card-heading"><h3>Emissions by site</h3><span id="boat-site-chart-unit">kg CO₂e</span></div><div class="chart-box"><canvas id="boat-site-chart"></canvas></div></article>
+            <article class="chart-card"><div class="chart-card-heading"><h3>Emissions by activity</h3><span id="boat-activity-chart-unit">kg CO₂e</span></div><div class="chart-box"><canvas id="boat-activity-chart"></canvas></div></article>
           </div>
         </div>
       </section>
@@ -376,6 +465,13 @@
               <p><a href="https://assets.publishing.service.gov.uk/media/6846b0870392ed9b784c0187/2025-GHG-CF-methodology-paper.pdf" target="_blank" rel="noopener">2025 Government GHG conversion factors for comapanies (cabin allocation)</a></p>
             </div>
             <div>
+              <h3>Boats</h3>
+              <p>Fuel-based combustion: litres used by the entire boat × the UK DESNZ 2026 petrol (100% mineral petrol) factor. CO₂: 2.33955 kg/L; CH₄: 0.00820 kg CO₂e/L ÷ 28; N₂O: 0.00597 kg CO₂e/L ÷ 265; total CO₂e: 2.35372 kg/L. These are direct-combustion factors; upstream fuel production is excluded.</p>
+              <p>The CH₄ and N₂O charts display the physical masses of these gases, not their CO₂e contributions. Factors use the AR5 100-year GWP basis of the UK 2026 publication. UK fuel composition may differ from Mozambican petrol; do not assume the UK biofuel-blend average applies.</p>
+              <p>Engine hours, passengers and personnel are operational metadata only. Do not multiply total boat petrol by engine count; exclude missing fuel and unresolved mixed boat/quad-bike fuel entries rather than imputing them.</p>
+              <p><a href="https://www.gov.uk/government/publications/greenhouse-gas-reporting-conversion-factors-2026" target="_blank" rel="noopener">UK government 2026 GHG conversion factors (full dataset and methodology)</a></p>
+            </div>
+            <div>
               <h3>E-bikes</h3>
               <p>Estimated electricity use is distance × 0.0405 kWh/km unless measured charging is supplied. Charging emissions are calculated from electricity × grid share × 0.226 kg CO₂/kWh. The boda-boda baseline is 0.058373626 kg CO₂/km and the selected replacement share is applied to that baseline.</p>
               <p>For the project default, charging is treated as grid-powered from April–August 2025 and solar-powered from September 2025. Solar generation has zero operational emissions inside this accounting boundary; manufacture and lifecycle emissions are excluded.</p>
@@ -405,6 +501,7 @@
 
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.6/dist/chart.umd.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
+  <script src="boat-calculations.js"></script>
   <script src="wild-impact-carbon.js"></script>
 </body>
 </html>

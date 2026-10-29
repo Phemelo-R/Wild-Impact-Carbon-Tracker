@@ -72,6 +72,7 @@ const startWildImpactTracker = (carbonData) => {
   let deletedRecord = null;
   let flightCharts = {};
   let bikeCharts = {};
+  let boatCharts = {};
   let records = [];
 
   const currentValue = (id) => elementById(id).value.trim();
@@ -412,6 +413,149 @@ const startWildImpactTracker = (carbonData) => {
     }
   };
 
+  const boatInputs = () => ({
+    date: currentValue('boat-date'), landscape: currentValue('boat-landscape'), vessel: currentValue('boat-vessel'),
+    activity: currentValue('boat-activity'), site: currentValue('boat-site'), skipper: currentValue('boat-skipper'),
+    guide: currentValue('boat-guide'), started: currentValue('boat-start-time'), ended: currentValue('boat-end-time'),
+    engineHours: currentValue('boat-engine-hours') === '' ? null : numericValue('boat-engine-hours'),
+    pax: currentValue('boat-pax') === '' ? null : numericValue('boat-pax'),
+    group: currentValue('boat-group'), engines: currentValue('boat-engines'), notes: currentValue('boat-notes'),
+    petrolLitres: currentValue('boat-petrol') === '' ? null : numericValue('boat-petrol'),
+  });
+
+  const renderBoatCalculation = () => {
+    const resultBox = elementById('boat-result');
+    const breakdownBox = elementById('boat-breakdown');
+    if (currentValue('boat-petrol') === '') {
+      resultBox.textContent = 'Enter petrol used to calculate emissions.';
+      breakdownBox.replaceChildren();
+      elementById('boat-error').textContent = '';
+      return;
+    }
+    try {
+      const result = WildImpactBoat.calculate(numericValue('boat-petrol'));
+      resultBox.innerHTML = `<strong>${formatNumber(result.co2eKg, 2)} <small>kg CO₂e</small></strong>`;
+      breakdownBox.innerHTML = [
+        ['Total boat petrol', `${formatNumber(result.petrolLitres, 2)} L`],
+        ['CO₂', `${formatNumber(result.co2Kg, 2)} kg`],
+        ['CH₄', `${formatNumber(result.ch4Kg, 4)} kg`],
+        ['N₂O', `${formatNumber(result.n2oKg, 5)} kg`],
+        ['CO₂e', `${formatNumber(result.co2eKg, 2)} kg`],
+        ['Combustion factor', `${WildImpactBoat.factors.co2e} kg CO₂e/L · UK ${WildImpactBoat.factors.year}`],
+      ].map(([label, value]) => `<div class="calculation-item"><span>${label}</span><strong>${value}</strong></div>`).join('');
+      elementById('boat-error').textContent = '';
+    } catch (error) {
+      resultBox.textContent = error.message;
+      breakdownBox.replaceChildren();
+    }
+  };
+
+  const saveBoat = () => {
+    const input = boatInputs();
+    if (!safeDate(input.date)) throw new Error('Choose a valid journey date.');
+    if (!input.landscape || !input.vessel || !input.site || !input.activity) throw new Error('Enter landscape, vessel, site and activity.');
+    if (input.engineHours !== null && (!Number.isFinite(input.engineHours) || input.engineHours < 0 || input.engineHours > 48)) throw new Error('Enter valid engine hours or leave them blank.');
+    if (input.pax !== null && (!Number.isInteger(input.pax) || input.pax < 0)) throw new Error('Passenger count must be a whole number.');
+    if ((input.started && !input.ended) || (!input.started && input.ended)) throw new Error('Enter both start and end times, or leave both blank.');
+    const emissions = WildImpactBoat.calculate(input.petrolLitres);
+    const record = {
+      ...input,
+      id: editingRecord?.mode === 'boat' ? editingRecord.id : (globalThis.crypto?.randomUUID?.() ?? Date.now() + '-' + Math.random().toString(36).slice(2)),
+      mode: 'boat', name: input.vessel,
+      emissionsKg: emissions.co2eKg, co2Kg: emissions.co2Kg, co2eKg: emissions.co2eKg,
+      factorYear: emissions.factorYear, fuelFactorCode: 'UK-DESNZ-2026-PETROL-100-MINERAL',
+      updatedAt: new Date().toISOString(),
+    };
+    records = records.filter((item) => item.id !== record.id);
+    records.unshift(record);
+    persistence.save();
+    clearBoatForm();
+    refresh();
+    showToast('Boat journey saved.');
+  };
+
+  const clearBoatForm = () => {
+    editingRecord = null;
+    elementById('boat-form').reset();
+    elementById('boat-date').value = todayIso();
+    elementById('boat-landscape').value = 'Benguerra, Mozambique';
+    elementById('boat-vessel').value = 'Chissumba';
+    elementById('boat-engines').value = '2 × Suzuki DF80A · petrol · 58.8 kW each';
+    elementById('boat-cancel').hidden = true;
+    elementById('boat-error').textContent = '';
+    renderBoatCalculation();
+  };
+
+  const boatGasKeys = { co2e: 'co2eKg', co2: 'co2Kg', ch4: 'ch4Kg', n2o: 'n2oKg' };
+  const boatGasNames = { co2e: 'CO₂e', co2: 'CO₂', ch4: 'CH₄', n2o: 'N₂O' };
+  const currentBoatGas = () => currentValue('boat-gas') || 'co2e';
+  const boatGasValue = (record, gas = currentBoatGas()) => {
+    // Old boat backups without factor snapshots are reproducible using their recorded litres.
+    const calculated = WildImpactBoat.calculate(record.petrolLitres);
+    return calculated[boatGasKeys[gas]];
+  };
+  const filteredBoatRecords = () => records.filter((record) => record.mode === 'boat'
+    && (!currentValue('boat-site-filter') || normaliseText(record.site) === currentValue('boat-site-filter'))
+    && (!currentValue('boat-activity-filter') || normaliseText(record.activity) === currentValue('boat-activity-filter')));
+
+  const updateBoatFilterOptions = () => {
+    for (const [field, key, label] of [['boat-site-filter', 'site', 'All sites'], ['boat-activity-filter', 'activity', 'All activities']]) {
+      const select = elementById(field);
+      const selected = select.value;
+      const uniqueValues = new Map();
+      records.filter((record) => record.mode === 'boat').forEach((record) => {
+        const value = String(record[key] || '').trim();
+        if (value && !uniqueValues.has(normaliseText(value))) uniqueValues.set(normaliseText(value), value);
+      });
+      const choices = [...uniqueValues.entries()].sort((a,b) => a[1].localeCompare(b[1]));
+      select.replaceChildren(new Option(label, ''), ...choices.map(([value, name]) => new Option(name, value)));
+      select.value = choices.some(([value]) => value === selected) ? selected : '';
+    }
+    for (const [id, key] of [['boat-site-options', 'site'], ['boat-activity-options', 'activity'], ['boat-skipper-options', 'skipper'], ['boat-guide-options', 'guide'], ['boat-vessel-options', 'vessel'], ['boat-landscape-options', 'landscape']]) {
+      const unique = [...new Set(records.filter((record) => record.mode === 'boat').map((record) => record[key]).filter(Boolean))];
+      if (id === 'boat-vessel-options') unique.push('Chissumba');
+      if (id === 'boat-landscape-options') unique.push('Benguerra, Mozambique');
+      if (id === 'boat-activity-options') unique.push('Dive', 'Transfer', 'BRUVS', 'Sardinha');
+      elementById(id).replaceChildren(...[...new Set(unique)].sort().map((value) => new Option(value, value)));
+    }
+  };
+
+  const updateBoatSummary = () => {
+    const subset = filteredBoatRecords();
+    const litres = subset.reduce((total, record) => total + Number(record.petrolLitres || 0), 0);
+    const hours = subset.reduce((total, record) => total + Number(record.engineHours || 0), 0);
+    const gas = currentBoatGas();
+    const totalKg = subset.reduce((total, record) => total + boatGasValue(record, gas), 0);
+    const isMinorGas = gas === 'ch4' || gas === 'n2o';
+    const unit = isMinorGas ? `kg ${boatGasNames[gas]}` : `t ${boatGasNames[gas]}`;
+    elementById('boat-emissions-label').textContent = `Filtered ${boatGasNames[gas]}`;
+    elementById('boat-total-emissions').textContent = formatNumber(isMinorGas ? totalKg : totalKg / 1000, isMinorGas ? 4 : 3);
+    elementById('boat-total-unit').textContent = unit;
+    elementById('boat-total-petrol').textContent = formatNumber(litres, 1);
+    elementById('boat-total-hours').textContent = formatNumber(hours, 1);
+    elementById('boat-total-journeys').textContent = formatNumber(subset.length, 0);
+    elementById('boat-filter-status').textContent = `${subset.length} of ${records.filter((record) => record.mode === 'boat').length} boat journeys shown. Chart values are physical kg of the selected gas (CO₂e is kg CO₂-equivalent).`;
+  };
+
+  const drawBoatCharts = () => {
+    const subset = filteredBoatRecords();
+    const gas = currentBoatGas();
+    const title = boatGasNames[gas];
+    ['boat-month-chart-unit', 'boat-site-chart-unit', 'boat-activity-chart-unit'].forEach((id) => elementById(id).textContent = `kg ${title}`);
+    const accumulate = (key) => {
+      const totals = new Map();
+      subset.forEach((record) => { const value = key === 'month' ? record.date.slice(0, 7) : String(record[key] || 'Unspecified').trim(); totals.set(value, (totals.get(value) || 0) + boatGasValue(record, gas)); });
+      return [...totals.entries()];
+    };
+    const months = accumulate('month').sort((a,b) => a[0].localeCompare(b[0]));
+    const sites = accumulate('site').sort((a,b) => b[1] - a[1]);
+    const activities = accumulate('activity').sort((a,b) => b[1] - a[1]);
+    const options = () => ({ ...chartBaseOptions(), plugins: { ...chartBaseOptions().plugins, legend: { display: false } }, scales: { x: { grid: { display: false }, ticks: { color: chartTextColour() } }, y: { beginAtZero: true, grid: { color: chartGridColour() }, ticks: { color: chartTextColour() }, title: { display: true, text: `kg ${title}`, color: chartTextColour() } } } });
+    boatCharts.month = new Chart(elementById('boat-month-chart'), { type: 'bar', data: { labels: months.map(([name]) => name), datasets: [{ label: `kg ${title}`, data: months.map(([, amount]) => amount), backgroundColor: '#ff4a00', borderRadius: 3, maxBarThickness: 52 }] }, options: options() });
+    boatCharts.site = new Chart(elementById('boat-site-chart'), { type: 'bar', data: { labels: sites.map(([name]) => name), datasets: [{ label: `kg ${title}`, data: sites.map(([, amount]) => amount), backgroundColor: '#667b6d', borderRadius: 3 }] }, options: { ...options(), indexAxis: 'y', scales: { x: { beginAtZero: true, ticks: { color: chartTextColour() }, grid: { color: chartGridColour() } }, y: { grid: { display: false }, ticks: { color: chartTextColour() } } } } });
+    boatCharts.activity = new Chart(elementById('boat-activity-chart'), { type: 'bar', data: { labels: activities.map(([name]) => name), datasets: [{ label: `kg ${title}`, data: activities.map(([, amount]) => amount), backgroundColor: '#c9a75c', borderRadius: 3, maxBarThickness: 60 }] }, options: options() });
+  };
+
   const refreshStorageStatus = () => {
     try { elementById('storage-status').textContent = `Saved locally · ${records.length} records`; } catch (error) {}
   };
@@ -437,8 +581,10 @@ const startWildImpactTracker = (carbonData) => {
   const destroyCharts = () => {
     Object.values(flightCharts).forEach((chart) => chart?.destroy());
     Object.values(bikeCharts).forEach((chart) => chart?.destroy());
+    Object.values(boatCharts).forEach((chart) => chart?.destroy());
     flightCharts = {};
     bikeCharts = {};
+    boatCharts = {};
   };
 
   const chartTextColour = () => getComputedStyle(document.body).color || '#000000';
@@ -481,11 +627,13 @@ const startWildImpactTracker = (carbonData) => {
 
   const drawCurrentCharts = () => {
     destroyCharts();
-    const hasRecords = records.some((record) => record.mode === activeMode);
+    const hasRecords = activeMode === 'boat' ? filteredBoatRecords().length > 0 : records.some((record) => record.mode === activeMode);
     elementById('chart-empty').hidden = hasRecords;
+    elementById('chart-empty').textContent = activeMode === 'boat' && records.some((record) => record.mode === 'boat') ? 'No boat trips match the selected filters.' : 'Save records to populate these figures.';
     if (!hasRecords || typeof Chart === 'undefined') return;
     if (activeMode === 'flight') drawFlightCharts();
-    else drawBikeCharts();
+    else if (activeMode === 'ebike') drawBikeCharts();
+    else if (activeMode === 'boat') drawBoatCharts();
   };
 
   const renderSummary = () => {
@@ -502,25 +650,31 @@ const startWildImpactTracker = (carbonData) => {
     elementById('bike-total-records').textContent = formatNumber(bikes.length, 0);
     elementById('flight-summary').hidden = activeMode !== 'flight';
     elementById('bike-summary').hidden = activeMode !== 'ebike';
+    elementById('boat-summary').hidden = activeMode !== 'boat';
+    updateBoatSummary();
   };
 
   const renderRecords = () => {
     const query = normaliseText(currentValue('record-search'));
-    const recordsForMode = records.filter((record) => record.mode === activeMode && normaliseText([record.name, record.landscape, record.from, record.to, record.airline, record.aircraft, record.registration].join(' ')).includes(query)).sort((a, b) => b.date.localeCompare(a.date));
+    const recordsForMode = records.filter((record) => record.mode === activeMode && normaliseText([record.name, record.landscape, record.from, record.to, record.airline, record.aircraft, record.registration, record.site, record.activity, record.skipper, record.guide, record.notes].join(' ')).includes(query)).sort((a, b) => b.date.localeCompare(a.date));
     const head = elementById('records-head');
     const body = elementById('records-body');
     if (activeMode === 'flight') {
       head.innerHTML = '<tr><th>Date</th><th>Traveller(s)</th><th>Landscape</th><th>Route / aircraft / cabin</th><th>Distance</th><th>Emissions</th><th>Actions</th></tr>';
       body.innerHTML = recordsForMode.length ? recordsForMode.map((record) => `<tr><td>${record.date}<br><span class="field-help">${financialYear(record.date)}</span></td><td>${escapeHtml(record.name)}</td><td>${escapeHtml(record.landscape)}</td><td>${escapeHtml(record.from)} → ${escapeHtml(record.to)}<br><span class="field-help">${escapeHtml(record.aircraft)} · ${escapeHtml(record.cabinLabel)}</span></td><td>${formatNumber(record.distance, 0)} km</td><td>${formatNumber(record.emissionsKg)} kg</td><td><button class="table-action" data-edit="${record.id}">Edit</button><button class="table-action" data-delete="${record.id}">Delete</button></td></tr>`).join('') : '<tr><td colspan="7">No flight records yet.</td></tr>';
+    } else if (activeMode === 'boat') {
+      head.innerHTML = '<tr><th>Date / hours</th><th>Site / activity</th><th>Boat / crew</th><th>Passengers</th><th>Fuel (L)</th><th>CO₂ (kg)</th><th>CO₂e (kg)</th><th>Actions</th></tr>';
+      body.innerHTML = recordsForMode.length ? recordsForMode.map((record) => `<tr><td>${escapeHtml(record.date)}<br><span class="field-help">${escapeHtml([record.started, record.ended].filter(Boolean).join('–'))}${record.engineHours !== null && record.engineHours !== undefined ? ` · ${formatNumber(record.engineHours, 2)} engine h` : ''}</span></td><td>${escapeHtml(record.site)}<br><span class="field-help">${escapeHtml(record.activity)} · ${escapeHtml(record.landscape)}</span></td><td>${escapeHtml(record.vessel)}<br><span class="field-help">${escapeHtml([record.skipper, record.guide].filter(Boolean).join(' / '))}</span></td><td>${record.pax ?? '—'}</td><td>${formatNumber(record.petrolLitres, 2)}</td><td>${formatNumber(boatGasValue(record, 'co2'), 2)}</td><td>${formatNumber(boatGasValue(record, 'co2e'), 2)}</td><td><button class="table-action" data-edit="${escapeHtml(record.id)}">Edit</button><button class="table-action" data-delete="${escapeHtml(record.id)}">Delete</button></td></tr>`).join('') : '<tr><td colspan="8">No boat journeys recorded yet.</td></tr>';
     } else {
       head.innerHTML = '<tr><th>Period</th><th>Ranger</th><th>Landscape</th><th>Motorcycle</th><th>Distance</th><th>Charging</th><th>Avoided</th><th>Actions</th></tr>';
       body.innerHTML = recordsForMode.length ? recordsForMode.map((record) => `<tr><td>${record.start} – ${record.end}</td><td>${escapeHtml(record.name)}</td><td>${escapeHtml(record.landscape)}</td><td>${escapeHtml(record.registration)}</td><td>${formatNumber(record.distance, 1)} km</td><td>${formatNumber(record.emissionsKg)} kg</td><td>${formatNumber(record.savedKg)} kg</td><td><button class="table-action" data-edit="${record.id}">Edit</button><button class="table-action" data-delete="${record.id}">Delete</button></td></tr>`).join('') : '<tr><td colspan="8">No e-bike records yet.</td></tr>';
     }
-    elementById('record-status').textContent = `${recordsForMode.length} ${activeMode === 'flight' ? 'flight' : 'e-bike'} records shown.`;
+    elementById('record-status').textContent = `${recordsForMode.length} ${activeMode === 'flight' ? 'flight' : activeMode === 'boat' ? 'boat' : 'e-bike'} records shown.`;
   };
 
   const refresh = () => {
     refreshStorageStatus();
+    updateBoatFilterOptions();
     renderSummary();
     renderRecords();
     drawCurrentCharts();
@@ -643,6 +797,12 @@ const startWildImpactTracker = (carbonData) => {
       elementById('flight-cancel').hidden = false;
       renderFlightCalculation();
       elementById('flight-view').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    } else if (record.mode === 'boat') {
+      switchMode('boat');
+      for (const [field, key] of [['boat-date','date'], ['boat-landscape','landscape'], ['boat-vessel','vessel'], ['boat-activity','activity'], ['boat-site','site'], ['boat-skipper','skipper'], ['boat-guide','guide'], ['boat-start-time','started'], ['boat-end-time','ended'], ['boat-engine-hours','engineHours'], ['boat-pax','pax'], ['boat-group','group'], ['boat-engines','engines'], ['boat-notes','notes'], ['boat-petrol','petrolLitres']]) elementById(field).value = record[key] ?? '';
+      elementById('boat-cancel').hidden = false;
+      renderBoatCalculation();
+      elementById('boat-view').scrollIntoView({ behavior: 'smooth', block: 'start' });
     } else {
       switchMode('ebike');
       elementById('bike-start').value = record.start;
@@ -712,6 +872,7 @@ const startWildImpactTracker = (carbonData) => {
     const recommendations = mode === 'recommendations';
     elementById('flight-view').hidden = mode !== 'flight';
     elementById('ebike-view').hidden = mode !== 'ebike';
+    elementById('boat-view').hidden = mode !== 'boat';
     elementById('recommendations-view').hidden = !recommendations;
     elementById('summary-section').hidden = recommendations;
     elementById('figures-section').hidden = recommendations;
@@ -719,11 +880,12 @@ const startWildImpactTracker = (carbonData) => {
     elementById('methods-section').hidden = recommendations;
     elementById('flight-figures').hidden = mode !== 'flight';
     elementById('bike-figures').hidden = mode !== 'ebike';
+    elementById('boat-figures').hidden = mode !== 'boat';
     if (!recommendations) {
-      elementById('summary-title').textContent = mode === 'flight' ? 'Flight totals' : 'E-bike totals';
-      elementById('figures-title').textContent = mode === 'flight' ? 'Flight footprint' : 'E-bike impact';
-      elementById('records-title').textContent = mode === 'flight' ? 'Flight records' : 'E-bike records';
-      elementById('record-search').placeholder = mode === 'flight' ? 'Search travellers, routes, airlines…' : 'Search rangers, registrations…';
+      elementById('summary-title').textContent = mode === 'flight' ? 'Flight totals' : mode === 'boat' ? 'Boat totals' : 'E-bike totals';
+      elementById('figures-title').textContent = mode === 'flight' ? 'Flight footprint' : mode === 'boat' ? 'Boat footprint' : 'E-bike impact';
+      elementById('records-title').textContent = mode === 'flight' ? 'Flight records' : mode === 'boat' ? 'Boat records' : 'E-bike records';
+      elementById('record-search').placeholder = mode === 'flight' ? 'Search travellers, routes, airlines…' : mode === 'boat' ? 'Search boats, sites, activities, skippers…' : 'Search rangers, registrations…';
     }
     document.querySelectorAll('.transport-tab[data-mode]').forEach((tab) => tab.classList.toggle('active', tab.dataset.mode === mode));
     if (!recommendations) {
@@ -742,6 +904,7 @@ const startWildImpactTracker = (carbonData) => {
     const bikeRecords = records
       .filter((record) => record.mode === 'ebike')
       .sort((a, b) => a.date.localeCompare(b.date));
+    const boatRecords = records.filter((record) => record.mode === 'boat').sort((a, b) => a.date.localeCompare(b.date));
 
     const gridShareForRecord = (record) => {
       if (record.charging === 'grid') return 100;
@@ -769,11 +932,21 @@ const startWildImpactTracker = (carbonData) => {
     const monthSet = new Set([
       ...flightRecords.map((record) => record.date.slice(0, 7)),
       ...bikeRecords.map((record) => record.date.slice(0, 7)),
+      ...boatRecords.map((record) => record.date.slice(0, 7)),
     ]);
     const reportingMonths = [...monthSet].sort();
 
     const cachedFlightTotals = new Map();
     const cachedBikeTotals = new Map();
+    const cachedBoatTotals = new Map();
+    boatRecords.forEach((record) => {
+      const month = record.date.slice(0, 7);
+      const current = cachedBoatTotals.get(month) || { petrol: 0, co2: 0, co2e: 0 };
+      current.petrol += Number(record.petrolLitres || 0);
+      current.co2 += boatGasValue(record, 'co2');
+      current.co2e += boatGasValue(record, 'co2e');
+      cachedBoatTotals.set(month, current);
+    });
 
     flightRecords.forEach((record) => {
       const month = record.date.slice(0, 7);
@@ -901,10 +1074,31 @@ const startWildImpactTracker = (carbonData) => {
       ]);
     });
 
+    // The master Boats sheet intentionally contains just CO₂ and CO₂e, not CH₄/N₂O columns.
+    const boatRows = [[
+      'Record ID', 'Reporting month', 'Date', 'Financial year', 'Landscape / seascape', 'Boat ID',
+      'Site', 'Activity', 'Skipper', 'Guide / crew', 'Start time', 'End time', 'Engine hours', 'PAX',
+      'Room / group', 'Engine configuration', 'Petrol used (L)', 'CO₂ factor kg/L',
+      'CO₂ kg', 'CO₂e factor kg/L', 'CO₂e kg', 'Source / notes'
+    ]];
+    boatRecords.forEach((record, index) => {
+      const row = index + 2;
+      const co2 = boatGasValue(record, 'co2');
+      const co2e = boatGasValue(record, 'co2e');
+      boatRows.push([
+        record.id, record.date.slice(0, 7), record.date, financialYear(record.date),
+        record.landscape, record.vessel, record.site, record.activity, record.skipper || '', record.guide || '',
+        record.started || '', record.ended || '', record.engineHours ?? '', record.pax ?? '', record.group || '',
+        record.engines || '', Number(record.petrolLitres), WildImpactBoat.factors.co2,
+        formulaCell(`=Q${row}*R${row}`, co2, '#,##0.000'), WildImpactBoat.factors.co2e,
+        formulaCell(`=Q${row}*T${row}`, co2e, '#,##0.000'), record.notes || '',
+      ]);
+    });
+
     const summaryRows = [[
       'Month', 'Financial year', 'Flight CO₂ (t)', 'E-bike distance (km)',
       'Boda-boda baseline (t)', 'Charging emissions (t)', 'CO₂ saved (t)',
-      'Cumulative CO₂ saved (t)'
+      'Cumulative CO₂ saved (t)', 'Boat petrol (L)', 'Boat CO₂ (t)', 'Boat CO₂e (t)'
     ]];
 
     reportingMonths.forEach((month, index) => {
@@ -916,6 +1110,7 @@ const startWildImpactTracker = (carbonData) => {
         .slice(0, index + 1)
         .reduce((total, currentMonth) => total + ((cachedBikeTotals.get(currentMonth)?.savedKg || 0) / 1000), 0);
 
+      const boatMonth = cachedBoatTotals.get(month) || { petrol: 0, co2: 0, co2e: 0 };
       summaryRows.push([
         month,
         financialYear(`${month}-01`),
@@ -929,6 +1124,9 @@ const startWildImpactTracker = (carbonData) => {
           cumulativeCached,
           '#,##0.000'
         ),
+        formulaCell(`=SUMIF(Boats!$B$2:$B$10001,A${row},Boats!$Q$2:$Q$10001)`, boatMonth.petrol, '#,##0.0'),
+        formulaCell(`=SUMIF(Boats!$B$2:$B$10001,A${row},Boats!$S$2:$S$10001)/1000`, boatMonth.co2 / 1000, '#,##0.000'),
+        formulaCell(`=SUMIF(Boats!$B$2:$B$10001,A${row},Boats!$U$2:$U$10001)/1000`, boatMonth.co2e / 1000, '#,##0.000'),
       ]);
     });
 
@@ -943,6 +1141,8 @@ const startWildImpactTracker = (carbonData) => {
       ['E-bikes — boda-boda baseline', 'Baseline kg = Distance km × Boda-boda baseline kg/km × Substitution percentage ÷ 100. The Baseline kg column is an Excel formula.', 'Wild Impact project factor carried from the Les Hyperion tracker.'],
       ['E-bikes — CO₂ saved', 'CO₂ saved kg = Boda-boda baseline kg − Charging emissions kg. CO₂ saved tonnes = CO₂ saved kg ÷ 1,000. Both columns are Excel formulas.', 'Wild Impact Carbon Tracker accounting convention. Negative values are retained.'],
       ['Monthly Summary', 'Monthly totals are SUMIF formulas linked directly to the Flights and E-bikes worksheets. Cumulative CO₂ saved adds the current monthly saving to the previous month.', 'The cached values shown on export are recalculated from the saved record inputs, so historical automatic charging uses the project grid-before-September-2025 rule even where an older saved result was stale.'],
+      ['Boats — direct combustion', 'Enter total petrol consumed by all engines on the boat (litres). Boat CO₂ kg = litres × 2.33955; boat CO₂e kg = litres × 2.35372. Both figures are formula cells on the Boats sheet. CH₄ and N₂O are calculated for app charts only, not added to the master Boats sheet.', 'UK DESNZ 2026 full conversion factors: https://www.gov.uk/government/publications/greenhouse-gas-reporting-conversion-factors-2026 — petrol (100% mineral). UK-based fuel composition is an assumed proxy for Mozambique.'],
+      ['Boats — exclusions', 'Do not estimate fuel from engine hours; blank or unresolvable mixed-fuel entries should not be saved. If petrol is already a whole-boat quantity, do not double for twin engines.', 'Direct combustion only; no well-to-tank factor added; no double counting of CH₄/N₂O.'],
       ['Data provenance', 'This is a Wild Impact-specific adaptation of the Les Hyperion Carbon Tracker. The Wild Impact copy contains its own local reference-data files and does not depend on the Les Hyperion repository at runtime.', 'Developed and modified in 2026 for the Landscape Conservation Department.'],
     ];
 
@@ -953,9 +1153,10 @@ const startWildImpactTracker = (carbonData) => {
     const summarySheet = XLSX.utils.aoa_to_sheet(summaryRows);
     const flightSheet = XLSX.utils.aoa_to_sheet(flightRows);
     const bikeSheet = XLSX.utils.aoa_to_sheet(bikeRows);
+    const boatSheet = XLSX.utils.aoa_to_sheet(boatRows);
     const methodsSheet = XLSX.utils.aoa_to_sheet(methodsRows);
 
-    [summarySheet, flightSheet, bikeSheet, methodsSheet].forEach((sheet) => {
+    [summarySheet, flightSheet, bikeSheet, boatSheet, methodsSheet].forEach((sheet) => {
       sheet['!freeze'] = { xSplit: 0, ySplit: 1 };
       if (sheet['!ref']) sheet['!autofilter'] = { ref: sheet['!ref'] };
     });
@@ -976,11 +1177,13 @@ const startWildImpactTracker = (carbonData) => {
       { wch: 20 }, { wch: 14 }, { wch: 24 }, { wch: 15 }, { wch: 17 }, { wch: 22 },
       { wch: 17 }, { wch: 18 }, { wch: 50 }
     ];
+    boatSheet['!cols'] = boatRows[0].map((_, i) => ({ wch: [27, 14, 14, 14, 26, 20, 20, 20, 18, 20, 12, 12, 14, 9, 20, 34, 17, 19, 17, 21, 19, 48][i] }));
     methodsSheet['!cols'] = [{ wch: 28 }, { wch: 105 }, { wch: 65 }];
 
     XLSX.utils.book_append_sheet(workbook, summarySheet, 'Monthly Summary');
     XLSX.utils.book_append_sheet(workbook, flightSheet, 'Flights');
     XLSX.utils.book_append_sheet(workbook, bikeSheet, 'E-bikes');
+    XLSX.utils.book_append_sheet(workbook, boatSheet, 'Boats');
     XLSX.utils.book_append_sheet(workbook, methodsSheet, 'Methods');
 
     XLSX.writeFile(workbook, `Wild-Impact-Carbon-${todayIso()}.xlsx`, {
@@ -988,6 +1191,95 @@ const startWildImpactTracker = (carbonData) => {
       cellFormula: true,
     });
     showToast('Excel workbook exported with formula-driven calculations, Monthly Summary and Methods sheets.');
+  };
+
+  const importBoatHoursWorkbook = async (file) => {
+    if (typeof XLSX === 'undefined') throw new Error('Excel import library unavailable. Check the internet connection.');
+    const workbook = XLSX.read(await file.arrayBuffer(), { type: 'array', cellDates: true });
+    const monthSheets = new Set(['jan', 'feb', 'march', 'april', 'may', 'june', 'july', 'august', 'september', 'october', 'november', 'december']);
+    const selectedSheets = workbook.SheetNames.filter((name) => monthSheets.has(normaliseText(name)));
+    if (!selectedSheets.length) throw new Error('No monthly boat-log tabs found. Expected Jan, Feb, March … December.');
+    const imported = [];
+    const exclusions = { noFuel: 0, quad: 0, splitQuad: 0, invalid: 0 };
+    const timeLabel = (value) => {
+      if (value instanceof Date) return `${String(value.getUTCHours()).padStart(2, '0')}:${String(value.getUTCMinutes()).padStart(2, '0')}`;
+      if (typeof value === 'number' && Number.isFinite(value)) {
+        const minutes = Math.round(((value % 1 + 1) % 1) * 1440) % 1440;
+        return `${String(Math.floor(minutes / 60)).padStart(2, '0')}:${String(minutes % 60).padStart(2, '0')}`;
+      }
+      const valueString = String(value || '').trim();
+      return /^\d{1,2}:\d{2}/.test(valueString) ? valueString.slice(0, 5).padStart(5, '0') : '';
+    };
+    const hoursValue = (value) => {
+      if (value === null || value === '' || value === undefined) return null;
+      if (value instanceof Date) return value.getUTCHours() + value.getUTCMinutes() / 60;
+      if (typeof value === 'number') return value <= 1 ? value * 24 : value;
+      const hours = String(value).split(':').map(Number);
+      return hours.length >= 2 && hours.every(Number.isFinite) ? hours[0] + hours[1] / 60 : null;
+    };
+    const dateValue = (value) => {
+      if (value instanceof Date) return `${value.getUTCFullYear()}-${String(value.getUTCMonth() + 1).padStart(2, '0')}-${String(value.getUTCDate()).padStart(2, '0')}`;
+      if (typeof value === 'number') {
+        const parts = XLSX.SSF.parse_date_code(value);
+        return parts ? `${parts.y}-${String(parts.m).padStart(2, '0')}-${String(parts.d).padStart(2, '0')}` : '';
+      }
+      if (typeof value === 'string' && /^\d{4}-\d{2}-\d{2}$/.test(value.trim())) return value.trim();
+      return '';
+    };
+    for (const sheetName of selectedSheets) {
+      const sheet = XLSX.utils.sheet_to_json(workbook.Sheets[sheetName], { header: 1, raw: true, defval: '' });
+      const monthHasExpectedColumns = sheet.some((row) => String(row[0] || '').trim().toUpperCase() === 'DATE' && String(row[12] || '').toUpperCase().includes('PETROL USED'));
+      if (!monthHasExpectedColumns) continue;
+      sheet.forEach((row, index) => {
+        const date = dateValue(row[0]);
+        const activity = String(row[1] || '').trim();
+        if (!date || !activity || /^opening\s*bal/i.test(activity)) return;
+        const notes = String(row[14] || '').trim();
+        if (/quad/i.test(activity)) { exclusions.quad += 1; return; }
+        const loggedPetrol = row[12] === '' || row[12] == null ? NaN : Number(String(row[12]).replace(',', '.'));
+        if (!Number.isFinite(loggedPetrol) || loggedPetrol <= 0) { exclusions.noFuel += 1; return; }
+        let quadAllocation = 0;
+        if (/quad/i.test(notes)) {
+          // Subtract only an explicitly documented amount, never an inferred allocation.
+          const listedQuadFuel = notes.match(/(\d+(?:[.,]\d+)?)\s*(?:l\b|litres?\b|liters?\b)/i);
+          quadAllocation = listedQuadFuel ? Number(listedQuadFuel[1].replace(',', '.')) : NaN;
+          if (!Number.isFinite(quadAllocation) || quadAllocation <= 0 || quadAllocation >= loggedPetrol) { exclusions.quad += 1; return; }
+          exclusions.splitQuad += 1;
+        }
+        const petrol = loggedPetrol - quadAllocation;
+        const site = String(row[2] || '').trim();
+        if (!site) { exclusions.invalid += 1; return; }
+        const engineHours = hoursValue(row[10]);
+        const pax = row[6] === '' ? null : Number(row[6]);
+        const importedId = `benguerra-boat-hours-${date}-${sheetName.toLowerCase()}-${index+1}`;
+        const record = {
+          id: importedId, mode: 'boat', date, name: 'Chissumba', landscape: 'Benguerra, Mozambique', vessel: 'Chissumba',
+          site, activity, skipper: String(row[3] || '').trim(), guide: String(row[4] || '').trim(),
+          group: String(row[5] || '').trim(), started: timeLabel(row[7]), ended: timeLabel(row[8]),
+          engineHours: engineHours !== null && engineHours >= 0 && engineHours <= 48 ? engineHours : null,
+          pax: Number.isInteger(pax) && pax >= 0 ? pax : null,
+          petrolLitres: petrol, engines: '2 × Suzuki DF80A · petrol · 58.8 kW each',
+          notes: `Source: ${file.name} · ${sheetName}!${index+1}` + (quadAllocation ? ` · Logged ${loggedPetrol} L; ${quadAllocation} L quad-bike fuel excluded` : '') + (notes ? ` · ${notes}` : ''),
+          co2Kg: petrol * WildImpactBoat.factors.co2,
+          co2eKg: petrol * WildImpactBoat.factors.co2e,
+          emissionsKg: petrol * WildImpactBoat.factors.co2e,
+          factorYear: 2026, fuelFactorCode: 'UK-DESNZ-2026-PETROL-100-MINERAL',
+          updatedAt: new Date().toISOString(),
+        };
+        imported.push(record);
+      });
+    }
+    if (!imported.length) throw new Error('No eligible boat trips with recorded petrol were found.');
+    const alreadyRecorded = new Set(records.map((record) => record.id));
+    const fresh = imported.filter((record) => !alreadyRecorded.has(record.id));
+    const details = `${fresh.length} new boat journeys eligible; ${imported.length - fresh.length} previously imported; ${exclusions.splitQuad} with explicitly documented quad-bike fuel deducted; ${exclusions.noFuel} without petrol, ${exclusions.quad} quad-only or unallocatable, ${exclusions.invalid} missing site excluded.`;
+    if (!fresh.length) { elementById('boat-import-status').textContent = details; showToast('No new boat journeys to import.'); return; }
+    if (!window.confirm(`${details}\n\nImport the eligible records into this browser’s master database?`)) { elementById('boat-import-status').textContent = 'Import cancelled. ' + details; return; }
+    records.unshift(...fresh);
+    persistence.save();
+    refresh();
+    elementById('boat-import-status').textContent = `${fresh.length} boat records imported. ${exclusions.splitQuad} split-fuel rows corrected; ${exclusions.noFuel + exclusions.quad + exclusions.invalid} rows excluded. The original spreadsheet was not changed.`;
+    showToast(`${fresh.length} boat journeys imported.`);
   };
 
   const exportBackup = () => {
@@ -1014,6 +1306,7 @@ const startWildImpactTracker = (carbonData) => {
 
   persistence.load();
   initialiseDateInputs();
+  clearBoatForm();
   fillLandscapes();
   countryOptions();
   populateRecommendationCountries();
@@ -1049,6 +1342,14 @@ const startWildImpactTracker = (carbonData) => {
   elementById('bike-charging').addEventListener('change', renderBikeCalculation);
   elementById('ebike-form').addEventListener('submit', (event) => { event.preventDefault(); try { saveBike(); } catch (error) { elementById('bike-error').textContent = error.message; } });
   elementById('bike-cancel').addEventListener('click', clearBikeForm);
+  elementById('boat-form').addEventListener('submit', (event) => { event.preventDefault(); try { saveBoat(); } catch (error) { elementById('boat-error').textContent = error.message; } });
+  elementById('boat-cancel').addEventListener('click', clearBoatForm);
+  elementById('boat-petrol').addEventListener('input', renderBoatCalculation);
+  elementById('boat-gas').addEventListener('change', () => { updateBoatSummary(); drawCurrentCharts(); });
+  ['boat-site-filter', 'boat-activity-filter'].forEach((id) => elementById(id).addEventListener('change', () => { updateBoatSummary(); drawCurrentCharts(); }));
+  elementById('boat-clear-filters').addEventListener('click', () => { elementById('boat-site-filter').value = ''; elementById('boat-activity-filter').value = ''; updateBoatSummary(); drawCurrentCharts(); });
+  elementById('boat-import-button').addEventListener('click', () => elementById('boat-import-file').click());
+  elementById('boat-import-file').addEventListener('change', async (event) => { const file = event.target.files[0]; if (!file) return; try { await importBoatHoursWorkbook(file); } catch (error) { elementById('boat-import-status').textContent = error.message; showToast('Boat import failed: ' + error.message); } finally { event.target.value = ''; } });
   elementById('record-search').addEventListener('input', renderRecords);
   elementById('toggle-records').addEventListener('click', () => {
     const content = elementById('records-content');
@@ -1065,8 +1366,9 @@ const startWildImpactTracker = (carbonData) => {
   window.addEventListener('resize', () => { if (window.wildImpactResizeTimer) clearTimeout(window.wildImpactResizeTimer); window.wildImpactResizeTimer = setTimeout(drawCurrentCharts, 150); });
 
   elementById('app-status').classList.add('ready');
-  elementById('app-status').textContent = 'Tracker ready. Start by recording a flight or e-bike period.';
+  elementById('app-status').textContent = 'Tracker ready. Record flights, e-bike periods and boat journeys; export them together in one workbook.';
   refresh();
   renderFlightCalculation();
   renderBikeCalculation();
+  renderBoatCalculation();
 };

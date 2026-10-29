@@ -225,3 +225,17 @@ tbody tr:hover { background: #fff9f5; }
   .record-search { width: 100%; }
   .records-toggle { width: 100%; }
 }
+
+/* Boat log: fuel-first entry and operational filters */
+.boat-fuel-field { padding: 16px; margin: 18px 0 6px; background: #fff3e9; border-left: 4px solid var(--wild-orange); }
+.boat-fuel-field span { font-weight: 800; }
+.boat-fuel-field input { font-size: 1.4rem; font-weight: 700; }
+.boat-chart-controls { display: grid; grid-template-columns: minmax(130px, .8fr) 1fr 1fr auto; gap: 18px; align-items: end; margin: 0 0 14px; }
+.boat-chart-controls .field { margin: 0; }
+.boat-chart-grid { grid-template-columns: 1fr 1fr; margin-top: 18px; }
+@media (max-width: 900px) { .boat-chart-controls { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 560px) { .boat-chart-controls, .boat-chart-grid { grid-template-columns: 1fr; } }
+
+.boat-import-panel { margin-top: 24px; padding: 18px 0 0; border-top: 1px solid rgba(0,0,0,.16); }
+.boat-import-panel h3 { font-size: 1rem; margin: 0 0 8px; }
+.boat-import-panel .button { margin-top: 12px; }
