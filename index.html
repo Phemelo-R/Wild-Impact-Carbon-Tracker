@@ -1,507 +1,459 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en-GB">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#ff4a00">
-  <meta name="description" content="Wild Impact Carbon Tracker — records fuel-based emissions for flights, boats, and electric motorcycles in Landscape Conservation.">
-  <title>Wild Impact Carbon Tracker</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="icon" type="image/png" href="assets/wild-impact-mark.png">
-  <link rel="stylesheet" href="styles.css">
-</head>
-<body>
-  <div class="brand-strip"></div>
+ <head>
+  <meta http-equiv="Content-Security-Policy"
+        content="default-src 'self'; script-src 'self' https://cdn.jsdelivr.net; style-src 'self'; img-src 'self' data:; connect-src 'self'; font-src 'self' data:; object-src 'none'; base-uri 'self'; form-action 'self'"/>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1" name="viewport"/>
+  <meta content="#F15A29" name="theme-color"/>
+  <meta content="Wild Impact Landscape Conservation &mdash; local-first carbon tracker" name="description"/>
+  <title>
+   Wild Impact &middot; Carbon Tracker
+  </title>
+  <link href="assets/wild-impact-mark.png" rel="icon"/>
+  <link href="styles/site.css" rel="stylesheet"/>
+ </head>
+ <body>
+  <a class="skip-link" href="#main-content">
+   Skip to content
+  </a>
+  <div class="accent-line">
+  </div>
   <header class="site-header">
-    <div class="page-shell header-inner">
-      <a class="brand" href="#top" aria-label="Wild Impact Carbon Tracker home">
-        <img class="brand-logo" src="assets/wild-impact-logo.png" alt="Wild Impact" width="220" height="68">
-      </a>
-      <div class="header-title">CARBON TRACKER</div>
-    </div>
+   <div class="page-shell header-content">
+    <a aria-label="Wild Impact Carbon Tracker &mdash; home" class="brand-lockup" href="index.html">
+     <img alt="" height="42" src="assets/wild-impact-mark.png" width="42"/>
+     <span>
+      <strong>
+       WILD IMPACT
+      </strong>
+      <small>
+       Landscape Conservation / Carbon Tracker
+      </small>
+     </span>
+    </a>
+    <button aria-controls="site-navigation" aria-expanded="false" class="menu-toggle" id="menu-toggle" type="button">
+     Menu
+    </button>
+    <nav aria-label="Primary navigation" class="main-nav" id="site-navigation">
+     <a aria-current="page" class="nav-link is-active" href="index.html">
+      Overview
+     </a>
+     <a aria-current="false" class="nav-link" href="pages/e-bikes.html">
+      E-bikes
+     </a>
+     <a aria-current="false" class="nav-link" href="pages/flights.html">
+      Flights
+     </a>
+     <a aria-current="false" class="nav-link" href="pages/boats.html">
+      Boats
+     </a>
+     <a aria-current="false" class="nav-link" href="pages/vehicles.html">
+      Vehicles
+     </a>
+    </nav>
+   </div>
   </header>
-
-  <main id="top">
-    <section class="hero">
-      <div class="page-shell hero-inner">
-        <div>
-          <p class="kicker">LANDSCAPE CONSERVATION</p>
-          <h1>Wild Impact<br><span>Carbon Tracker</span></h1>
-          <p class="hero-copy">Record fuel-based boat emissions and company flight emissions, monitor avoided emissions from electric motorcycles, and maintain consistent records across Wild Impact landscapes.</p>
-          <p class="hero-provenance">The carbon tracker is an adaptation of the Les Hyperion Carbon Tracker by Phemelo-R.</p>
-        </div>
-        <div class="hero-mark" aria-hidden="true">
-          <img class="hero-africa-map" src="assets/wild-impact-landscapes-africa.png" alt="Map of Africa with Wild Impact landscape countries highlighted in orange">
-        </div>
+  <main id="main-content">
+   <section class="home-hero">
+    <div class="page-shell home-hero-grid">
+     <div class="home-hero-copy">
+      <p class="kicker">
+       LANDSCAPE CONSERVATION / CARBON ACCOUNTING
+      </p>
+      <h1>
+       Calculate your
+       <br/>
+       <em>
+       Emissions.
+       </em>
+       <br/>
+       Analyse trends.
+       <br/>
+       Take action.
+      </h1>
+      <p>
+       Welcome to Wild Impact&rsquo;s Carbon Tracker — a workspace for calculating greenhouse gas emissions from 
+       Wild Impact&rsquo;s Vehicle fleet, Electric motorcycles, Flight trips, and Boat usage throughout all landscapes
+       across Africa. The tracker is designed to support the organisation&rsquo;s operational carbon accounting and reporting
+       to donors, partners and internal stakeholders. It is not a public-facing emissions reporting tool, nor is it intended 
+       to replace independently verified carbon accounting methodologies. The tracker is intended to be used by Wild Impact staff.
+      </p>
+      <div class="hero-actions">
+       <a class="button button-primary" href="pages/boats.html">
+        Record an activity
+       </a>
+       <a class="button button-outline" href="#modules">
+        Explore modules
+       </a>
       </div>
-    </section>
-
-    <div class="page-shell">
-      <div id="app-status" class="status-box" role="status">Loading carbon tracker data…</div>
-
-      <section class="tracker-toolbar" aria-label="Tracker actions">
-        <div>
-          <span id="storage-status" class="status-pill">Preparing local storage</span>
-          <p class="microcopy">Records are stored locally in this browser. Export a backup before changing device or browser.</p>
-        </div>
-        <div class="action-row">
-          <button id="export-workbook" class="button button-primary" type="button">Export Workbook</button>
-          <button id="export-backup" class="button button-secondary" type="button">Backup</button>
-          <button id="import-backup-button" class="button button-secondary" type="button">Import</button>
-          <input id="import-backup" type="file" accept="application/json,.json" hidden>
-        </div>
-      </section>
-
-      <nav class="transport-tabs" aria-label="Tracker sections">
-        <button class="transport-tab active" data-mode="flight" type="button">Flights</button>
-        <button class="transport-tab" data-mode="ebike" type="button">E-bikes</button>
-        <button class="transport-tab disabled" type="button" disabled>Vehicles <span>Coming soon</span></button>
-        <button class="transport-tab" data-mode="boat" type="button">Boats</button>
-        <button class="transport-tab" data-mode="recommendations" type="button">Recommendations</button>
-      </nav>
-
-      <section id="flight-view" class="mode-view">
-        <div class="section-heading">
-          <div>
-            <p class="section-number">01 / AIR TRAVEL</p>
-            <h2>Flight emissions</h2>
-            <p>Log a flight leg, select the aircraft used, and allocate the journey to the landscape or programme it supports.</p>
-          </div>
-          <div class="mode-note">ICAO-based project estimates</div>
-        </div>
-
-        <div class="entry-grid">
-          <form id="flight-form" class="entry-panel">
-            <div class="form-tabs" role="tablist" aria-label="Flight classification">
-              <button id="domestic-mode" class="form-tab active" type="button">Domestic</button>
-              <button id="international-mode" class="form-tab" type="button">International</button>
-            </div>
-
-            <div class="field-grid">
-              <label class="field">
-                <span>Flight date</span>
-                <input id="flight-date" type="date" required>
-              </label>
-              <label class="field">
-                <span>Landscape / Seascape</span>
-                <select id="flight-landscape" required></select>
-              </label>
-            </div>
-
-            <label class="field">
-              <span>Traveller names — one per line</span>
-              <textarea id="flight-names" rows="4" maxlength="15000" required placeholder="First traveller&#10;Second traveller"></textarea>
-            </label>
-            <p id="passenger-count" class="field-help">0 passengers</p>
-
-            <label class="field">
-              <span>Departure country</span>
-              <select id="departure-country"></select>
-            </label>
-            <label class="field">
-              <span>Departure airport</span>
-              <input id="flight-from" type="search" autocomplete="off" placeholder="Search airport, city or IATA code" required>
-              <div id="flight-from-results" class="search-results" hidden></div>
-            </label>
-
-            <div id="international-country-row" class="field-grid" hidden>
-              <label class="field">
-                <span>Arrival country</span>
-                <select id="arrival-country"></select>
-              </label>
-            </div>
-
-            <label class="field">
-              <span>Arrival airport</span>
-              <input id="flight-to" type="search" autocomplete="off" placeholder="Search airport, city or IATA code" required>
-              <div id="flight-to-results" class="search-results" hidden></div>
-            </label>
-
-            <button id="reverse-route" class="link-button" type="button">Reverse route ↔</button>
-
-            <div class="field-grid">
-              <label class="field">
-                <span>Airline country</span>
-                <select id="airline-country"></select>
-              </label>
-              <label class="field">
-                <span>Operating airline</span>
-                <input id="flight-airline" type="search" autocomplete="off" placeholder="Search airline" required>
-                <div id="flight-airline-results" class="search-results" hidden></div>
-              </label>
-            </div>
-
-            <label class="field">
-              <span>Aircraft used</span>
-              <select id="flight-aircraft" required></select>
-            </label>
-
-            <div class="field-grid">
-              <label class="field">
-                <span>Cabin class</span>
-                <select id="flight-cabin" required></select>
-              </label>
-              <label class="field">
-                <span>Seating layout</span>
-                <select id="flight-layout" required></select>
-              </label>
-            </div>
-
-            <details class="advanced-details">
-              <summary>Aircraft settings &amp; documented estimates</summary>
-              <label class="check-row"><input id="show-all-aircraft" type="checkbox"> Show all aircraft types</label>
-              <label class="field">
-                <span>Custom aircraft name</span>
-                <input id="custom-aircraft" type="text" maxlength="150" placeholder="Only needed for an unlisted type">
-              </label>
-              <div class="field-grid">
-                <label class="field">
-                  <span>Manual CO₂ per passenger (kg)</span>
-                  <input id="manual-flight-kg" type="number" min="0" step="any">
-                </label>
-                <label class="field">
-                  <span>Manual estimate source</span>
-                  <input id="manual-flight-source" type="text" maxlength="1000">
-                </label>
-              </div>
-            </details>
-
-            <p id="flight-error" class="form-error" role="alert"></p>
-            <button class="button button-primary wide" type="submit">Save flight</button>
-            <button id="flight-cancel" class="button button-secondary wide" type="button" hidden>Cancel edit</button>
-          </form>
-
-          <aside class="result-panel">
-            <p class="section-number">CURRENT FLIGHT</p>
-            <div id="flight-result" class="result-main">Select the route, aircraft and cabin to calculate.</div>
-            <div id="flight-breakdown" class="calculation-list"></div>
-          </aside>
-        </div>
-      </section>
-
-      <section id="ebike-view" class="mode-view" hidden>
-        <div class="section-heading">
-          <div>
-            <p class="section-number">01 / ELECTRIC MOTORCYCLES</p>
-            <h2>E-bike emissions &amp; avoided emissions</h2>
-            <p>Record ranger travel in the Masai Mara and compare electricity use against the replaced boda-boda baseline.</p>
-          </div>
-          <div class="mode-note">Based on UK GHG conversion Factors for Company Reporting</div>
-        </div>
-
-        <div class="entry-grid">
-          <form id="ebike-form" class="entry-panel">
-            <div class="field-grid">
-              <label class="field"><span>Period starts</span><input id="bike-start" type="date" required></label>
-              <label class="field"><span>Period ends</span><input id="bike-end" type="date" required></label>
-            </div>
-            <p class="field-help">Use one day or one calendar month per record. Do not overlap records for the same motorcycle.</p>
-
-            <div class="field-grid">
-              <label class="field"><span>Ranger / recorder</span><input id="bike-ranger" type="text" list="ranger-options" maxlength="150" required></label>
-              <label class="field"><span>Motorcycle registration / ID</span><input id="bike-registration" type="text" list="registration-options" maxlength="80" required></label>
-            </div>
-            <datalist id="ranger-options"></datalist>
-            <datalist id="registration-options"></datalist>
-
-            <label class="field"><span>Landscape / Seascape</span><select id="bike-landscape" required></select></label>
-            <label class="field"><span>Distance entry</span>
-              <select id="bike-distance-mode"><option value="distance">Distance travelled</option><option value="odometer">Opening and closing odometer</option></select>
-            </label>
-            <div id="bike-distance-fields">
-              <label class="field"><span>Distance travelled (km)</span><input id="bike-distance" type="number" min="0.01" step="any" required></label>
-            </div>
-            <div id="bike-odometer-fields" class="field-grid" hidden>
-              <label class="field"><span>Opening odometer (km)</span><input id="bike-opening" type="number" min="0" step="any"></label>
-              <label class="field"><span>Closing odometer (km)</span><input id="bike-closing" type="number" min="0" step="any"></label>
-            </div>
-
-            <label class="field"><span>Charging source</span>
-              <select id="bike-charging"><option value="auto">Project dates — grid Apr–Aug 2025; solar from Sep 2025</option><option value="solar">Solar</option><option value="grid">Grid</option><option value="mixed">Mixed grid and solar</option></select>
-            </label>
-            <label id="bike-grid-share-field" class="field" hidden><span>Grid share of charging (%)</span><input id="bike-grid-share" type="number" value="50" min="0" max="100" step="any"></label>
-
-            <details class="advanced-details">
-              <summary>Project factors &amp; measured charging</summary>
-              <div class="field-grid">
-                <label class="field"><span>Energy intensity (kWh/km)</span><input id="bike-energy-intensity" type="number" value="0.0405" min="0.0001" step="any"></label>
-                <label class="field"><span>Grid factor (kg/kWh)</span><input id="bike-grid-factor" type="number" value="0.226" min="0" step="any"></label>
-              </div>
-              <div class="field-grid">
-                <label class="field"><span>Boda-boda baseline (kg/km)</span><input id="bike-baseline-factor" type="number" value="0.05837362637362638" min="0.0001" step="any"></label>
-                <label class="field"><span>Travel replacing boda-boda (%)</span><input id="bike-substitution" type="number" value="100" min="0" max="100" step="any"></label>
-              </div>
-              <label class="field"><span>Measured charging electricity (kWh)</span><input id="bike-measured" type="number" min="0" step="any" placeholder="Leave blank to estimate"></label>
-              <label class="field"><span>Source / explanation for changed assumptions</span><textarea id="bike-factor-note" rows="3" maxlength="1000"></textarea></label>
-            </details>
-
-            <label class="field"><span>Record notes</span><input id="bike-note" type="text" maxlength="1000"></label>
-            <p id="bike-error" class="form-error" role="alert"></p>
-            <button class="button button-primary wide" type="submit">Save e-bike record</button>
-            <button id="bike-cancel" class="button button-secondary wide" type="button" hidden>Cancel edit</button>
-          </form>
-
-          <aside class="result-panel">
-            <p class="section-number">CURRENT RECORDING PERIOD</p>
-            <div id="bike-result" class="result-main">Enter the distance and charging details to calculate.</div>
-            <div id="bike-breakdown" class="calculation-list"></div>
-          </aside>
-        </div>
-      </section>
-
-      <section id="boat-view" class="mode-view" hidden>
-        <div class="section-heading">
-          <div>
-            <p class="section-number">01 / WATER TRANSPORT</p>
-            <h2>Boat emissions</h2>
-            <p>Enter the petrol consumed by the entire boat during the journey. Keep the trip particulars for monitoring, while emissions are calculated from litres alone.</p>
-          </div>
-          <div class="mode-note">UK DESNZ 2026 · direct fuel combustion</div>
-        </div>
-        <div class="entry-grid">
-          <form id="boat-form" class="entry-panel">
-            <div class="field-grid">
-              <label class="field"><span>Journey date</span><input id="boat-date" type="date" required></label>
-              <label class="field"><span>Landscape / seascape</span><input id="boat-landscape" type="text" maxlength="140" value="Benguerra, Mozambique" list="boat-landscape-options" required></label>
-            </div>
-            <datalist id="boat-landscape-options"><option value="Benguerra, Mozambique"></option></datalist>
-            <div class="field-grid">
-              <label class="field"><span>Boat name / ID</span><input id="boat-vessel" type="text" maxlength="120" value="Chissumba" list="boat-vessel-options" required></label>
-              <label class="field"><span>Activity</span><input id="boat-activity" type="text" maxlength="120" list="boat-activity-options" placeholder="e.g. Dive, Transfer, BRUVS" required></label>
-            </div>
-            <datalist id="boat-vessel-options"><option value="Chissumba"></option></datalist>
-            <datalist id="boat-activity-options"><option value="Dive"></option><option value="Transfer"></option><option value="BRUVS"></option><option value="Sardinha"></option></datalist>
-            <label class="field"><span>Site / destination</span><input id="boat-site" type="text" maxlength="140" list="boat-site-options" placeholder="e.g. 2 Mile, Shark Reef, VNX" required></label>
-            <datalist id="boat-site-options"></datalist>
-            <div class="field-grid">
-              <label class="field"><span>Skipper</span><input id="boat-skipper" type="text" maxlength="120" list="boat-skipper-options" placeholder="Skipper name"></label>
-              <label class="field"><span>Guide / crew</span><input id="boat-guide" type="text" maxlength="180" list="boat-guide-options" placeholder="Guide or crew"></label>
-            </div>
-            <datalist id="boat-skipper-options"></datalist>
-            <datalist id="boat-guide-options"></datalist>
-            <div class="field-grid">
-              <label class="field"><span>Time started</span><input id="boat-start-time" type="time"></label>
-              <label class="field"><span>Time ended</span><input id="boat-end-time" type="time"></label>
-            </div>
-            <div class="field-grid">
-              <label class="field"><span>Engine hours (optional)</span><input id="boat-engine-hours" type="number" min="0" max="48" step="any" placeholder="e.g. 2.5"></label>
-              <label class="field"><span>Passengers (PAX)</span><input id="boat-pax" type="number" min="0" step="1" placeholder="e.g. 4"></label>
-            </div>
-            <label class="field boat-fuel-field"><span>Petrol used by the whole boat (litres)</span><input id="boat-petrol" type="number" min="0.001" step="any" inputmode="decimal" placeholder="e.g. 45" required></label>
-            <p class="field-help">Enter the combined petrol consumption of all engines. Do not double the litres for the two Suzuki DF80A outboards. If a logged amount also includes quad bikes, enter only the separately known boat portion; leave uncertain trips out.</p>
-            <details class="advanced-details"><summary>Optional operational details &amp; provenance</summary>
-              <div class="field-grid">
-                <label class="field"><span>Room / group</span><input id="boat-group" type="text" maxlength="140"></label>
-                <label class="field"><span>Engine configuration</span><input id="boat-engines" type="text" maxlength="180" value="2 × Suzuki DF80A · petrol · 58.8 kW each"></label>
-              </div>
-              <label class="field"><span>Notes / source of fuel measurement</span><textarea id="boat-notes" rows="3" maxlength="3000" placeholder="e.g. Recorded in daily boat log; measured from refuelling"></textarea></label>
-            </details>
-            <p id="boat-error" class="form-error" role="alert"></p>
-            <button class="button button-primary wide" type="submit">Save boat journey</button>
-            <button id="boat-cancel" class="button button-secondary wide" type="button" hidden>Cancel edit</button>
-          </form>
-          <aside class="result-panel">
-            <p class="section-number">CURRENT BOAT JOURNEY</p>
-            <div id="boat-result" class="result-main">Enter petrol used to calculate emissions.</div>
-            <div id="boat-breakdown" class="calculation-list"></div>
-            <p class="field-help">UK DESNZ 2026: 100% mineral petrol, provisional assumption for Mozambique; direct combustion only. CO₂e already includes CH₄ and N₂O.</p>
-            <p class="field-help">Two engines do not double the result when the entered litres already represent fuel consumed by the whole boat.</p>
-            <div class="boat-import-panel">
-              <p class="section-number">HISTORIC BOAT LOG</p>
-              <h3>Import Benguerra boat hours</h3>
-              <p class="field-help">Select the existing 2026 Excel log. Only journeys with recorded petrol are imported. Trips without petrol and quad-only journeys are excluded. If a note explicitly states a quad-bike allocation (such as 10 L), that quantity is deducted from the logged petrol; ambiguous mixed fuel is excluded. The spreadsheet stays in your browser; no personal details are bundled into the website.</p>
-              <button id="boat-import-button" class="button button-secondary wide" type="button">Select boat-hours Excel file</button>
-              <input id="boat-import-file" type="file" accept=".xlsx,.xls" hidden>
-              <p id="boat-import-status" class="field-help" role="status"></p>
-            </div>
-          </aside>
-        </div>
-      </section>
-
-      <section id="summary-section" class="summary-section">
-        <div class="section-heading compact-heading">
-          <div>
-            <p class="section-number">02 / TRACKED EMISSIONS</p>
-            <h2 id="summary-title">Flight totals</h2>
-          </div>
-        </div>
-        <div id="flight-summary" class="summary-grid">
-          <article><span>Total flight emissions</span><strong id="flight-total-tonnes">0.000</strong><small>tCO₂</small></article>
-          <article><span>Flight legs</span><strong id="flight-total-legs">0</strong><small>records</small></article>
-          <article><span>Passenger journeys</span><strong id="flight-total-passengers">0</strong><small>travellers</small></article>
-          <article><span>Route distance</span><strong id="flight-total-distance">0</strong><small>km</small></article>
-        </div>
-        <div id="bike-summary" class="summary-grid" hidden>
-          <article><span>Charging emissions</span><strong id="bike-total-electric">0.000</strong><small>tCO₂</small></article>
-          <article><span>CO₂ avoided</span><strong id="bike-total-saved">0.000</strong><small>tCO₂</small></article>
-          <article><span>Electric distance</span><strong id="bike-total-distance">0</strong><small>km</small></article>
-          <article><span>Recording periods</span><strong id="bike-total-records">0</strong><small>records</small></article>
-        </div>
-        <div id="boat-summary" class="summary-grid" hidden>
-          <article><span id="boat-emissions-label">Total CO₂e</span><strong id="boat-total-emissions">0.000</strong><small id="boat-total-unit">t CO₂e</small></article>
-          <article><span>Boat petrol consumed</span><strong id="boat-total-petrol">0</strong><small>litres</small></article>
-          <article><span>Recorded journeys</span><strong id="boat-total-journeys">0</strong><small>trips</small></article>
-          <article><span>Engine hours logged</span><strong id="boat-total-hours">0</strong><small>hours · where provided</small></article>
-        </div>
-      </section>
-
-      <section id="figures-section" class="figures-section">
-        <div class="section-heading compact-heading">
-          <div>
-            <p class="section-number">03 / FIGURES</p>
-            <h2 id="figures-title">Flight footprint</h2>
-          </div>
-          <p id="chart-empty" class="field-help">Save records to populate these figures.</p>
-        </div>
-
-        <div id="flight-figures" class="chart-grid flight-chart-grid">
-          <article class="chart-card chart-card-large">
-            <div class="chart-card-heading"><h3>Monthly flight emissions</h3><span>tCO₂</span></div>
-            <div class="chart-box"><canvas id="flight-bar-chart"></canvas></div>
-          </article>
-          <article class="chart-card">
-            <div class="chart-card-heading"><h3>Emissions by landscape</h3><span>share of flight total</span></div>
-            <div class="chart-box"><canvas id="flight-pie-chart"></canvas></div>
-          </article>
-        </div>
-
-        <div id="bike-figures" hidden>
-          <div class="chart-grid bike-chart-grid">
-            <article class="chart-card chart-card-large">
-              <div class="chart-card-heading"><h3>Distance travelled &amp; CO₂ saved</h3><span>monthly</span></div>
-              <div class="chart-box"><canvas id="bike-distance-saved-chart"></canvas></div>
-            </article>
-            <article class="chart-card chart-card-large">
-              <div class="chart-card-heading"><h3>Charging emissions vs boda-boda baseline</h3><span>tCO₂ / month</span></div>
-              <div class="chart-box"><canvas id="bike-emissions-chart"></canvas></div>
-            </article>
-            <article class="chart-card chart-card-full">
-              <div class="chart-card-heading"><h3>Cumulative CO₂ saved</h3><span>tCO₂</span></div>
-              <div class="chart-box"><canvas id="bike-cumulative-chart"></canvas></div>
-            </article>
-          </div>
-        </div>
-        <div id="boat-figures" hidden>
-          <div class="boat-chart-controls entry-panel">
-            <label class="field"><span>Gas displayed</span><select id="boat-gas"><option value="co2e">CO₂e</option><option value="co2">CO₂</option><option value="ch4">CH₄</option><option value="n2o">N₂O</option></select></label>
-            <label class="field"><span>Site</span><select id="boat-site-filter"><option value="">All sites</option></select></label>
-            <label class="field"><span>Activity</span><select id="boat-activity-filter"><option value="">All activities</option></select></label>
-            <button class="button button-secondary" id="boat-clear-filters" type="button">Reset filters</button>
-          </div>
-          <p id="boat-filter-status" class="field-help" aria-live="polite"></p>
-          <div class="chart-grid boat-chart-grid">
-            <article class="chart-card chart-card-full"><div class="chart-card-heading"><h3>Monthly boat emissions</h3><span id="boat-month-chart-unit">kg CO₂e</span></div><div class="chart-box"><canvas id="boat-month-chart"></canvas></div></article>
-            <article class="chart-card"><div class="chart-card-heading"><h3>Emissions by site</h3><span id="boat-site-chart-unit">kg CO₂e</span></div><div class="chart-box"><canvas id="boat-site-chart"></canvas></div></article>
-            <article class="chart-card"><div class="chart-card-heading"><h3>Emissions by activity</h3><span id="boat-activity-chart-unit">kg CO₂e</span></div><div class="chart-box"><canvas id="boat-activity-chart"></canvas></div></article>
-          </div>
-        </div>
-      </section>
-
-      <section id="recommendations-view" class="mode-view" hidden>
-        <div class="section-heading">
-          <div>
-            <p class="section-number">05 / LOWER-CARBON PROCUREMENT</p>
-            <h2>Recommendations</h2>
-            <p>Compare operators using the aircraft and fuel-curve reference data already used by the tracker. Rankings are estimates for screening and procurement discussions, not a guarantee of the emissions of a specific booked flight.</p>
-          </div>
-          <div class="mode-note">Aircraft model · passenger-km</div>
-        </div>
-        <div class="recommendation-controls entry-panel">
-          <label class="field"><span>Country where you are booking / operating</span><select id="recommendation-country"></select></label>
-          <p class="field-help">The country filter selects operators listed in that country’s reference fleet. It does not restrict the route destination.</p>
-        </div>
-        <div class="recommendation-columns">
-          <section class="recommendation-panel">
-            <p class="section-number">TOP 5 / AIR OPERATORS</p>
-            <h3>Lower estimated CO₂ per passenger-km</h3>
-            <div id="airline-recommendations" class="recommendation-list" aria-live="polite"></div>
-          </section>
-          <section class="recommendation-panel">
-            <p class="section-number">VEHICLE PROCUREMENT</p>
-            <h3>Vehicle recommendations</h3>
-            <p>Vehicle rankings will appear here once the vehicle database is connected. The comparison will be split by vehicle class so that cars, vans, buses and trucks are compared like-for-like.</p>
-            <div class="vehicle-class-list"><span>Cars</span><span>Vans</span><span>Buses</span><span>Trucks</span></div>
-            <p class="field-help">The intended output is a top 10 within each selected class, ranked by estimated operational CO₂ per kilometre. Vehicle purchase or rental recommendations should also consider vehicle size, fuel, payload and intended use.</p>
-          </section>
-        </div>
-        <details class="recommendation-methods">
-          <summary>How the aircraft ranking is calculated</summary>
-          <p>Each operator’s listed aircraft are evaluated at a standard 1,000 km flight distance using the ICAO fuel curves. The estimate uses reference seating capacity, 80% seat occupancy and a common 0.85 cargo allocation, then reports estimated operational CO₂ per passenger-kilometre. Operators are ranked by the mean of their eligible aircraft models; aircrafts without supported fuel curves are excluded. Actual results vary with route, load factor, cabin layout, aircraft age and configuration.</p>
-          <p>Because this is a standardised comparison rather than a route-specific calculation, use it to shortlist operators, not as a claim that one airline will always emit less on every route. The next update will compare operators on the actual route and the aircraft scheduled for that service.</p>
-        </details>
-      </section>
-
-      <section id="records-section" class="records-section">
-        <div class="section-heading compact-heading records-heading">
-          <div><p class="section-number">04 / RECORDS</p><h2 id="records-title">Flight records</h2></div>
-          <div class="records-controls">
-            <input id="record-search" class="record-search" type="search" placeholder="Search records…" aria-label="Search records">
-            <button id="toggle-records" class="button button-secondary records-toggle" type="button" aria-expanded="true">Collapse records</button>
-          </div>
-        </div>
-        <div id="records-content">
-          <div class="table-wrap">
-            <table>
-              <thead id="records-head"></thead>
-              <tbody id="records-body"></tbody>
-            </table>
-          </div>
-          <button id="undo-delete" class="button button-secondary" type="button" hidden>Undo last deletion</button>
-          <p id="record-status" class="field-help"></p>
-        </div>
-      </section>
-
-      <section id="methods-section" class="methods-section">
-        <details>
-          <summary>Methods, boundaries &amp; sources</summary>
-          <div class="methods-grid">
-            <div>
-              <h3>Flights</h3>
-              <p>Flight distance is calculated as great-circle distance from one airport to another with a detour correction added. Aircraft fuel curves are interpolated between distance bands. Aircraft seating and cabin allocation are populated from the project reference catalogue where a verified layout exists; model-level estimates are labelled when a specific layout is unavailable.</p>
-              <p>Route allocation follows the ICAO regional allocation framework used by the project. CO₂ is calculated from estimated fuel and a 3.16 kg CO₂ per kg fuel conversion as per the ICAO; non-CO₂ aviation effects such as contrails and NOₓ are excluded.</p>
-              <p><a href="https://icec.icao.int/Documents/Methodology%20ICAO%20Carbon%20Emissions%20Calculator_v13_Final.pdf" target="_blank" rel="noopener">ICAO Carbon Emissions Calculator methodology v13.1</a></p>
-              <p><a href="https://assets.publishing.service.gov.uk/media/6846b0870392ed9b784c0187/2025-GHG-CF-methodology-paper.pdf" target="_blank" rel="noopener">2025 Government GHG conversion factors for comapanies (cabin allocation)</a></p>
-            </div>
-            <div>
-              <h3>Boats</h3>
-              <p>Fuel-based combustion: litres used by the entire boat × the UK DESNZ 2026 petrol (100% mineral petrol) factor. CO₂: 2.33955 kg/L; CH₄: 0.00820 kg CO₂e/L ÷ 28; N₂O: 0.00597 kg CO₂e/L ÷ 265; total CO₂e: 2.35372 kg/L. These are direct-combustion factors; upstream fuel production is excluded.</p>
-              <p>The CH₄ and N₂O charts display the physical masses of these gases, not their CO₂e contributions. Factors use the AR5 100-year GWP basis of the UK 2026 publication. UK fuel composition may differ from Mozambican petrol; do not assume the UK biofuel-blend average applies.</p>
-              <p>Engine hours, passengers and personnel are operational metadata only. Do not multiply total boat petrol by engine count; exclude missing fuel and unresolved mixed boat/quad-bike fuel entries rather than imputing them.</p>
-              <p><a href="https://www.gov.uk/government/publications/greenhouse-gas-reporting-conversion-factors-2026" target="_blank" rel="noopener">UK government 2026 GHG conversion factors (full dataset and methodology)</a></p>
-            </div>
-            <div>
-              <h3>E-bikes</h3>
-              <p>Estimated electricity use is distance × 0.0405 kWh/km unless measured charging is supplied. Charging emissions are calculated from electricity × grid share × 0.226 kg CO₂/kWh. The boda-boda baseline is 0.058373626 kg CO₂/km and the selected replacement share is applied to that baseline.</p>
-              <p>For the project default, charging is treated as grid-powered from April–August 2025 and solar-powered from September 2025. Solar generation has zero operational emissions inside this accounting boundary; manufacture and lifecycle emissions are excluded.</p>
-            </div>
-          </div>
-        </details>
-      </section>
+      <div class="hero-meta">
+       RECORDS RETAINED LOCALLY
+       <span class="meta-divider">
+        /
+       </span>
+       UK AND ICAO REFERENCE METHODS
+      </div>
+     </div>
+     <div class="hero-art">
+      <img alt="Illustrated map of African landscape countries highlighted in sunset orange" src="assets/wild-impact-landscapes-africa.png"/>
+     </div>
     </div>
-  </main>
+   </section>
+   <div class="page-shell content-layout">
+    <details class="learn-dropdown" id="carbon-guide">
+     <summary>
+      <span>
+       <strong>
+        Understanding the Carbon Project
+       </strong>
+       <small>
+        </p>This project started as a way to better understand and manage the carbon footprint of our operations across Africa. The main goal
+        was to reduce the carbon footprint of our operations, and to do so in a way that is transparent, evidence-based and aligned with
+        best practice. We wanted to contribute to the global effort to reduce greenhouse gas emissions and to support the transition to a 
+        low-carbon economy, as well as to improve the sustainability of our operations and to demonstrate our commitment to environmental 
+        stewardship.
+        </p>
 
-  <footer class="site-footer">
-    <div class="footer-landscape" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span></div>
-    <div class="page-shell footer-grid">
+        </p>This kicked off with a pilot project to measure the carbon footprint we have saved through the use of electric motorcycles in our operations, 
+        and to compare this with the carbon footprint of using petrol motorcycles. The pilot project was successful, highlighting a reduction in greenhouse 
+        gas emission through the use of electric motorcycles, We have now expanded the project to include all of our operations across Africa, including 
+        flights, boats and vehicles.</p>
+
+        </p>Formulas and assumptions used in the calculations are based on the UK DESNZ 2026 fuel factors, ICAO-based flight model, and other relevant sources. 
+        The tracker is designed to be a management instrument that makes it easy to track and report on the carbon carbon footprint of our operations, especially
+        when tasked to tracking complex emissions such as those from flights across multiple legs. For any issues or questions, please contact the developer 
+        <a href="mailto:phemelo.rutlokoane@wildimpact.earth">Phemelo-R</a></p>
+
+        </p>Click to expand.</p>
+       </small>
+      </span>
+     </summary>
+     <div class="learn-content">
+      <div class="learn-grid">
+       <article>
+        <span class="guide-index">
+         01 / CONCEPT
+        </span>
+        <h3>
+         What are greenhouse-gas emissions?
+        </h3>
+        <p>
+         Greenhouse-gas emission refer to the release of gases that trap heat in the atmosphere, contributing
+         to global warming and climate change. These emissions are primarily generated by human activities, such as
+         burning fossil fuels for energy, deforestation, and industrial processes. The main greenhouse gases are
+         <strong>Carbon Dioxide (CO₂), Methane (CH₄), and Nitrous Oxide (N₂O)</strong>. Each of these gases has a different global 
+         warming potential, which is a measure of how much heat they can trap in the atmosphere over a specific 
+         time period.
+        </p>
+       </article>
+       <article>
+        <span class="guide-index">
+         02 / PURPOSE
+        </span>
+        <h3>
+         Why calculate them?
+        </h3>
+        <p>
+         We calculate greenhouse-gas emission to understand the environmental impact of our operations and to
+         identify opportunities for reducing our carbon footprint. By quantifying emissions, we can set targets
+         for reduction, track progress over time, and make informed decisions about our activities.
+        </p>
+       </article>
+       <article>
+        <span class="guide-index">
+         03 / BOUNDARIES
+        </span>
+        <h3>
+         What is included?
+        </h3>
+        <p>
+         <p><strong>Electric motorcycles –</strong> Tracks charging emissions of electric motorcycles and the displaced petrol-motorcycle 
+            baseline for comparison. The baseline is based on the UK DESNZ 2026 fuel factors and the average fuel 
+            consumption of petrol motorcycles.</p>
+         <p><strong>Flights –</strong> Uses the ICAO-based model to calculate emissions from flights, including the impact of diffrent
+            aircraft types, flight distances, and passenger loads.</p>
+         <p><strong>Boats  –</strong> Uses measured or recorded petrol volumes and UK DESNZ 2026 fuel factors.</p>
+         <p><strong>Vehicles –</strong> Currently under development.</p>
+        </p>
+       </article>
+       <article>
+        <span class="guide-index">
+         04 / INTERPRETATION
+        </span>
+        <h3>
+         How should results be read?
+        </h3>
+        <p>
+         These are estimated emissions based on the activity data and calculation methods used. They are not 
+         independently verified, however, they provide close to accurate estimates of the greenhouse-gas
+         emissions associated with the recorded activities. There are many factors that can influence the accuracy
+         of the results, including the quality and completeness of the activity data, the assumptions made in the 
+         calculations, and the limitations of the models used. It is important to interpret the results with caution 
+         and to consider them as part of a broader context of environmental impact assessment. <strong>DO NOT fabricate
+         or manipulate activity data to achieve a desired outcome.</strong>
+        </p>
+       </article>
+    </details>
+    <section aria-label="Local data overview" class="section-block">
+     <div class="section-heading">
       <div>
-        <div class="footer-brand">WILD IMPACT</div>
-        <p>Earth. Wildlife. Humankind.</p>
+       <p class="section-number">
+        01 / WORKSPACE
+       </p>
+       <h2>
+        Summary statistics
+       </h2>
       </div>
-      <div class="footer-credit">
-        <strong>Wild Impact Carbon Tracker</strong>
-        <span>Developed and modified in 2026 for the Landscape Conservation Department.</span>
-        <span>Created by Phemelo-R.</span>
+      <p>
+       Summarised records of activities throughout all the modules.
+      </p>
+     </div>
+     <div class="home-stats">
+      <article>
+       <span>
+        Saved activity records
+       </span>
+       <strong id="home-total-records">
+        &mdash;
+       </strong>
+       <small>
+        Flights &middot; electric motorcycles &middot; boats
+       </small>
+      </article>
+      <article>
+       <span>
+        Recorded boat petrol
+       </span>
+       <strong id="home-boat-petrol">
+        &mdash;
+       </strong>
+       <small>
+        Litres &middot; eligible boat records
+       </small>
+      </article>
+      <article>
+       <span>
+        Recorded boat CO₂e
+       </span>
+       <strong id="home-boat-emissions">
+        &mdash;
+       </strong>
+       <small>
+        tonnes &middot; UK 2026 mineral petrol proxy
+       </small>
+      </article>
+      <article>
+       <span>
+        Flight legs
+       </span>
+       <strong id="home-flight-count">
+        &mdash;
+       </strong>
+       <small>
+        Saved route records
+       </small>
+      </article>
+     </div>
+     <div class="privacy-bar">
+      <span class="privacy-dot">
+      </span>
+      <p id="home-storage-status">
+       Checking locally saved data&hellip;
+      </p>
+      <div class="action-row">
+       <button class="button button-secondary" id="home-export-backup" type="button">
+        Download backup
+       </button>
+       <button class="button button-secondary" id="home-import-backup" type="button">
+        Restore JSON backup
+       </button>
+       <input accept=".json,application/json" hidden="" id="home-backup-file" type="file"/>
       </div>
+     </div>
+    </section>
+    <section class="section-block" id="modules">
+     <div class="section-heading">
+      <div>
+       <p class="section-number">
+        02 / SELECT A WORKFLOW
+       </p>
+       <h2>
+        The modules
+       </h2>
+      </div>
+      <p>
+       Select a module to record activities, calculate emissions and export results. Each module has its own calculation methods and reporting boundaries.
+      </p>
+     </div>
+     <div class="module-cards">
+      <a class="module-card" href="pages/flights.html">
+       <div class="module-card-header">
+        <span>
+         01 / AVIATION
+        </span>
+       </div>
+       <div class="module-card-art">
+        <img alt="" src="assets/module-flights.jpg"/>
+       </div>
+       <h3>
+        Flights
+       </h3>
+       <p>
+        Route-level calculations, aircraft configuration and cabin allocation.
+       </p>
+       <div class="module-card-bottom">
+        OPEN MODULE
+       </div>
+      </a>
+      <a class="module-card" href="pages/e-bikes.html">
+       <div class="module-card-header">
+        <span>
+         02 / ELECTRIC MOTORCYCLES
+        </span>
+       </div>
+       <div class="module-card-art">
+        <img alt="" src="assets/module-ebikes.jpg"/>
+       </div>
+       <h3>
+        E-bikes
+       </h3>
+       <p>
+        Charging emissions and the displaced petrol-motorcycle baseline.
+       </p>
+       <div class="module-card-bottom">
+        OPEN MODULE
+       </div>
+      </a>
+      <a class="module-card" href="pages/boats.html">
+       <div class="module-card-header">
+        <span>
+         03 / WATER TRANSPORT
+        </span>
+       </div>
+       <div class="module-card-art">
+        <img alt="" src="assets/module-boats.jpg"/>
+       </div>
+       <h3>
+        Boats
+       </h3>
+       <p>
+        Petrol-based emissions with operational trip details and monthly comparisons.
+       </p>
+       <div class="module-card-bottom">
+        OPEN MODULE
+       </div>
+      </a>
+      <a class="module-card vehicle-card" href="pages/vehicles.html">
+       <div class="module-card-header">
+        <span>
+         04 / ROAD TRANSPORT
+        </span>
+        <span class="coming-soon-tag">
+         COMING SOON
+        </span>
+       </div>
+       <div class="module-card-art">
+        <img alt="" src="assets/module-vehicles.jpg"/>
+       </div>
+       <h3>
+        Vehicles
+       </h3>
+       <p>
+        Preparing the fuel-based model for the operational fleet.
+       </p>
+       <div class="module-card-bottom">
+        VIEW MODULE
+       </div>
+      </a>
+     </div>
+    </section>
+    <section class="section-block approach-section">
+     <div>
+      <p class="section-number">
+       03 / HOW IT WORKS
+      </p>
+      <h2>
+       Simple inputs.
+       <br/>
+       Traceable results.
+      </h2>
+      <p>
+       Activity records are retained in browser storage and remain compatible with the existing JSON backup
+       format. Reported values depend on the underlying activity data and calculation boundaries.
+      </p>
+     </div>
+     <div class="approach-steps">
+      <article>
+       <span>
+        01
+       </span>
+       <div>
+        <h3>
+         Record
+        </h3>
+        <p>
+         Enter the activity details, fuel or other direct inputs relevant to the module.
+        </p>
+       </div>
+      </article>
+      <article>
+       <span>
+        02
+       </span>
+       <div>
+        <h3>
+         Calculate
+        </h3>
+        <p>
+         Apply documented factors and module-specific calculation methods.
+        </p>
+       </div>
+      </article>
+      <article>
+       <span>
+        03
+       </span>
+       <div>
+        <h3>
+         Review &amp; export
+        </h3>
+        <p>
+         Inspect figures, filter the records and download Excel or portable JSON backups.
+        </p>
+       </div>
+      </article>
+     </div>
+    </section>
+   </div>
+  </main>
+  <footer class="site-footer">
+   <div class="page-shell footer-inner">
+    <div>
+     <strong>
+      WILD IMPACT
+     </strong>
+     <p>
+      Landscape Conservation &middot; Carbon Tracker
+     </p>
     </div>
+    <div>
+     <span>
+      Cleaner operations. Reduced emissions. Better outcomes.
+     </span>
+     <p>
+      Developed by Phemelo-R (Biodiversity & Monitoring Intern).
+     </p>
+    </div>
+   </div>
   </footer>
-
-  <div id="toast" class="toast" role="status" aria-live="polite"></div>
-
-  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.6/dist/chart.umd.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
-  <script src="boat-calculations.js"></script>
-  <script src="wild-impact-carbon.js"></script>
-</body>
+  <div aria-live="polite" class="toast" id="toast" role="status">
+  </div>
+  <script defer="" src="scripts/boat-calculations.js">
+  </script>
+  <script defer="" src="scripts/site.js">
+  </script>
+  <script defer="" src="scripts/home.js">
+  </script>
+ </body>
 </html>

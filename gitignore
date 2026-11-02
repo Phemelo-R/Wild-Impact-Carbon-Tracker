@@ -1,0 +1,43 @@
+# Keep all operational records, staff details, and imported source data OFF GitHub.
+*.xlsx
+*.xls
+*.xlsm
+*.csv
+*.tsv
+*.sqlite
+*.db
+*.db3
+*.bak
+*.zip
+*Backup*.json
+*backup*.json
+*export*.json
+*Export*.json
+*.env
+.env.*
+*.pem
+*.key
+*.p12
+*.pfx
+
+# Local and editor artefacts.
+.DS_Store
+Thumbs.db
+__pycache__/
+node_modules/
+.vscode/
+.idea/
+*.log
+
+# Only bundled, public reference catalogues belong in data/.
+# Never add private records to data/.
+
+# New files in data/ are ignored unless explicitly approved as public reference data.
+/data/*
+!/data/airport-reference.json
+!/data/aircraft-reference.json
+!/data/airline-reference.json
+!/data/landscape-reference.json
+!/data/flight-configurations.json
+!/data/icao-legacy-fuel-curves.json
+!/data/icao-v13-fuel-curves.json
