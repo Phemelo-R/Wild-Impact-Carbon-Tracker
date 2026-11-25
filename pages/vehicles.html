@@ -1,266 +1,441 @@
 <!DOCTYPE html>
 <html lang="en-GB">
- <head>
-  <meta http-equiv="Content-Security-Policy"
-        content="default-src 'self'; script-src 'self' https://cdn.jsdelivr.net; style-src 'self'; img-src 'self' data:; connect-src 'self'; font-src 'self' data:; object-src 'none'; base-uri 'self'; form-action 'self'"/>
+<head>
   <meta charset="utf-8"/>
-  <meta content="width=device-width, initial-scale=1" name="viewport"/>
-  <meta content="#F15A29" name="theme-color"/>
-  <meta content="Wild Impact Carbon Tracker &mdash; Vehicles module" name="description"/>
-  <title>
-   Vehicles &middot; Wild Impact Carbon Tracker
-  </title>
-  <link href="../assets/wild-impact-mark.png" rel="icon"/>
-  <link href="../styles/site.css" rel="stylesheet"/>
- </head>
- <body>
-  <a class="skip-link" href="#main-content">
-   Skip to content
-  </a>
-  <div class="accent-line">
-  </div>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta http-equiv="Content-Security-Policy"
+        content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:;
+                 connect-src 'self'; font-src 'self' data:; object-src 'none';
+                 base-uri 'self'; form-action 'self'"/>
+  <meta name="theme-color" content="#F15A29"/>
+  <title>Vehicles · Wild Impact Carbon Tracker</title>
+  <link rel="icon" href="../assets/wild-impact-mark.png"/>
+  <link rel="stylesheet" href="../styles/site.css"/>
+  <script src="../scripts/vehicle-calculations.js" defer></script>
+  <script src="../scripts/vehicle-common.js" defer></script>
+  <script src="../scripts/vehicles.js" defer></script>
+  <script src="../scripts/site.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#main-content">Skip to content</a>
+  <div class="accent-line"></div>
   <header class="site-header">
-   <div class="page-shell header-content">
-    <a aria-label="Wild Impact Carbon Tracker &mdash; home" class="brand-lockup" href="../index.html">
-     <img alt="" height="42" src="../assets/wild-impact-mark.png" width="42"/>
-     <span>
-      <strong>
-       WILD IMPACT
-      </strong>
-      <small>
-       Landscape Conservation / Carbon Tracker
-      </small>
-     </span>
-    </a>
-    <button aria-controls="site-navigation" aria-expanded="false" class="menu-toggle" id="menu-toggle" type="button">
-     Menu
-    </button>
-    <nav aria-label="Primary navigation" class="main-nav" id="site-navigation">
-     <a aria-current="false" class="nav-link" href="../index.html">
-      Overview
-     </a>
-     <a aria-current="false" class="nav-link" href="../pages/e-bikes.html">
-      E-bikes
-     </a>
-     <a aria-current="false" class="nav-link" href="../pages/flights.html">
-      Flights
-     </a>
-     <a aria-current="false" class="nav-link" href="../pages/boats.html">
-      Boats
-     </a>
-     <a aria-current="page" class="nav-link is-active" href="../pages/vehicles.html">
-      Vehicles
-     </a>
-    </nav>
-   </div>
+    <div class="page-shell header-content">
+      <a class="brand-lockup" href="../index.html"
+         aria-label="Wild Impact Carbon Tracker home">
+        <img src="../assets/wild-impact-mark.png" width="42" height="42" alt=""/>
+        <span>
+          <strong>WILD IMPACT</strong>
+          <small>Landscape Conservation / Carbon Tracker</small>
+        </span>
+      </a>
+      <button type="button" class="menu-toggle" id="menu-toggle"
+              aria-controls="site-navigation" aria-expanded="false">Menu</button>
+      <nav class="main-nav" id="site-navigation" aria-label="Primary navigation">
+        <a class="nav-link" href="../index.html">Overview</a>
+        <a class="nav-link" href="./e-bikes.html">E-bikes</a>
+        <a class="nav-link" href="./flights.html">Flights</a>
+        <a class="nav-link" href="./boats.html">Boats</a>
+        <a class="nav-link is-active" href="./vehicles.html" aria-current="page">Vehicles</a>
+        <a class="nav-link" href="./vehicle-guide.html">Vehicle Guide</a>
+      </nav>
+    </div>
   </header>
   <main id="main-content">
-   <section class="module-hero">
-    <div class="page-shell module-hero-layout">
-     <div>
-      <p class="kicker">
-       CARBON TRACKER / VEHICLES
-      </p>
-      <h1>
-       Vehicles
-      </h1>
-      <p>
-       Preparing consistent fuel-based accounting for the operational fleet.
-      </p>
-     </div>
-     <div class="module-hero-aside">
-      <span class="eyebrow">
-       STATUS / IN DEVELOPMENT
-      </span>
-      <strong>
-       From vehicle emissions
-       <br/>
-       to company decisions.
-      </strong>
-      <span>
-       No emission calculations yet.
-      </span>
-     </div>
-    </div>
-   </section>
-   <div class="page-shell content-layout">
-    <details class="learn-dropdown" id="carbon-guide">
-     <summary>
-      <span>
-       <strong>
-        Understanding Vehicle emissions
-       </strong>
-       <small>
-        Click to expand.
-       </small>
-      </span>
-     </summary>
-     <div class="learn-content">
-      <div class="module-dropdown-media">
-       <img alt="Electric vehicle charging image used for the vehicles module" src="../assets/module-vehicles.jpg"/>
-       <div>
-        <span class="guide-index">
-         MODULE VISUAL
-        </span>
-        <h3>
-         Vehicle workflow
-        </h3>
-        <p>
-         The vehicle module is being prepared around fuel-based reporting and a structured operational record.
-        </p>
-       </div>
+    <section class="module-hero">
+      <div class="page-shell module-hero-layout">
+        <div>
+          <p class="kicker">CARBON TRACKER / VEHICLES</p>
+          <h1>Vehicles</h1>
+          <p>Distance-based carbon accounting for Wild Impact’s owned fleet of vehicles and petrol motorcycles.</p>
+        </div>
+        <div class="module-hero-aside">
+          <span class="eyebrow">Module / 04</span>
+          <strong>Record journeys.<br/>Interpret emissions.</strong>
+          <span>Fleet emission estimates based on distance.</span>
+        </div>
       </div>
-      <div class="learn-grid">
-       <article>
-        <span class="guide-index">
-         01 / INTRODUCTION
-        </span>
-        <h3>
-         Why vehicles?
-        </h3>
-        <p>
-         Vehicles are a common operational transport mode in our landscapes. Wild Impact has a fleet of vehicles 
-         that are used for fieldwork, site visits, meetings, and operational travel. These vehicles all consume
-         fuel and contribute to the overall carbon footprint of our operations. Wild Impact also uses rental 
-         vehicles and third-party transport services that may not be directly controlled, but still conribute
-         to the operational footprint. This module is intednded to recorded the fuel consumed by the entire 
-         vehicle during a journey and calculate the associated CO₂e emissions. For rental vehicles, the emissions
-         recorded by the rental company may be used if available, or the fuel consumed may be estimated based on the distance.
-        </p>
-       </article>
-       <article>
-        <span class="guide-index">
-         02 / PURPOSE
-        </span>
-        <h3>
-         Why calculate them?
-        </h3>
-        <p>
-         Road transport is a significant source of greenhouse-gas emissions in our operational landscapes, from game drives to 
-         fieldwork to site visits. Wild Impact is committed to reducing its carbon footprint and promoting sustainable practices.
-         By calculating emissions from vehicles, we can identify areas for imporvemnt, track progress over time, and make informed
-         decisions about vehicles rented, fleet vehicles to purchase, and operational planning.
-        </p>
-       </article>
-       <article>
-        <span class="guide-index">
-         03 / METHODOLOGY
-        </span>
-        <h3>
-         How do we calculate emissions?
-        </h3>
-        <p>
-         Yet to be concluded/decided upon. Coming soon.
-        </p>
-       </article>
-       <article>
-        <span class="guide-index">
-         04 / INTERPRETATION
-        </span>
-        <h3>
-         How should results be read?
-        </h3>
-        <p>
-         Coming soon.
-        </p>
-       </article>
-    </details>
-    <section class="vehicle-intro">
-     <div class="vehicle-intro-copy">
-      <span class="eyebrow">
-       MODULE / 04
-      </span>
-      <h2>
-       Vehicles are in preparation.
-      </h2>
-      <p>
-       The vehicle database is being structured around fuel-based reporting. This module is intentionally not
-       accepting activity records until its field definitions, source factors and export logic are verified.
-      </p>
-      <div class="vehicle-spec-grid">
-       <article>
-        <strong>
-         01
-        </strong>
-        <span>
-         Fuel type and actual litres consumed
-        </span>
-       </article>
-       <article>
-        <strong>
-         02
-        </strong>
-        <span>
-         Vehicle and trip identification
-        </span>
-       </article>
-       <article>
-        <strong>
-         03
-        </strong>
-        <span>
-         Distance, date and landscape
-        </span>
-       </article>
-       <article>
-        <strong>
-         04
-        </strong>
-        <span>
-         Method, factor year and provenance
-        </span>
-       </article>
-      </div>
-      <p class="small-print">
-       Do not place personnel registers, registration numbers, Ctrack exports or private fleet datasets in
-       GitHub. Continue using your existing backup export for all supported modules.
-      </p>
-      <a class="button button-primary" href="../index.html">
-       Return to overview
-      </a>
-     </div>
-     <div aria-hidden="true" class="vehicle-visual">
-      <div class="road-road">
-       <span>
-       </span>
-       <span>
-       </span>
-       <span>
-       </span>
-      </div>
-      <div class="vehicle-number">
-       04
-      </div>
-      <div class="vehicle-visual-caption">
-       FLEET / UPCOMING
-      </div>
-     </div>
     </section>
-   </div>
+    <div class="page-shell vehicle-layout">
+
+      <details class="learn-dropdown" id="carbon-guide">
+        <summary>
+          <span>
+            <strong>Understanding Vehicle emissions</strong>
+            <small>Click to expand.</small>
+          </span>
+        </summary>
+        <div class="learn-content">
+          <div class="module-dropdown-media">
+            <img src="../assets/module-vehicles.jpg" alt="Vehicle fieldwork and transport"/>
+            <div>
+              <span class="guide-index">ROAD TRANSPORT / VEHICLES</span>
+              <h3>Distance-based vehicle accounting</h3>
+              <p>Record distance, the correct vehicle variant,
+                and fuel consumption to estimate direct operational emissions.</p>
+            </div>
+          </div>
+          <div class="learn-grid">
+            <article>
+              <span class="guide-index">01 / INTRODUCTION</span>
+              <h3>Why vehicles?</h3>
+              <p>Tracking vehicle emissions is crucial for understanding the environmental impact 
+                of our operations and identifying opportunities for reduction.</p>
+            </article>
+            <article>
+              <span class="guide-index">02 / PURPOSE</span>
+              <h3>Why calculate them?</h3>
+              <p>We calculate vehicle emissions to identify vehicles that have the highest environmental 
+                impact from our fleet and compare them over time. Identifying vehicles with high emissions 
+                can aid us in managing vehicles and deciding which vehicles should run long distances and 
+                which should run short distances within our South African landscapes.</p>
+            </article>
+            <article>
+              <span class="guide-index">03 / METHODOLOGY</span>
+              <h3>How do we calculate emissions?</h3>
+              <p>For the combustion vehicles and motorcycles owned, manufacturer fuel economy as well as
+                the distance travelled are used to calculate the operational emissions. The calculation is 
+                based on the formula:</p>
+
+              <strong><p>Estimated Litres used = Distance travelled × fleet-reported L/100 km ÷ 100</p></strong>
+
+              <p>The litres are then multiplied by the UK DESNZ 2026 average-biofuel-blend factors to calculate 
+                the operational emissions.</p>
+            </article>
+            <article>
+              <span class="guide-index">04 / INTERPRETATION</span>
+              <h3>How should results be read?</h3>
+              <p>Results are indicative operational emissions, not measured fuel use,
+                lifecycle footprints or audited reporting. Fuel CO₂ and fuel CO₂e are
+                reported separately; grid emissions are provided as CO₂e. Categories
+                A–E are internal, relative per-km bands, not official environmental grades.</p>
+            </article>
+      </details>
+
+      <p class="vehicle-status" id="vehicle-status" role="status" aria-live="polite">
+        Loading the owned-fleet model catalogue…
+      </p>
+
+
+      <section class="vehicle-panel" aria-labelledby="fleet-import-title">
+        <div class="vehicle-section-title">
+          <div>
+            <p class="eyebrow">PRIVATE FLEET REGISTER</p>
+            <h2 id="fleet-import-title">Link owned assets locally</h2>
+          </div>
+          <span class="vehicle-pill">No server upload</span>
+        </div>
+        <p>Model specifications are included in the tracker, but asset IDs, registration numbers,
+          and any annual insurance premiums are <strong>not published</strong> with the site.
+          To identify the actual vehicle used, import the original fleet CSV on this device.
+          The file is processed in your browser and its records remain in local storage.</p>
+        <div class="vehicle-fleet-import-actions">
+          <label class="vehicle-file-control">Choose private fleet CSV
+            <input id="vehicle-fleet-file" type="file" accept=".csv,text/csv"/>
+          </label>
+          <button id="vehicle-fleet-clear" type="button" class="button button-secondary">
+            Forget local fleet list
+          </button>
+        </div>
+        <p id="vehicle-fleet-status" class="vehicle-note" role="status">
+          No private fleet has been imported on this device.
+        </p>
+      </section>
+
+      <section class="vehicle-panel" aria-labelledby="vehicle-settings-title">
+        <div class="vehicle-section-title">
+          <div>
+            <p class="eyebrow">MODEL SETTINGS</p>
+            <h2 id="vehicle-settings-title">Location, energy and prices</h2>
+          </div>
+          <p class="vehicle-hint">Changes follow you between Vehicles and Vehicle Guide in this browser.</p>
+        </div>
+        <div class="vehicle-field-grid">
+          <label>Country / pricing region
+            <select id="vehicle-country">
+              <option value="ZA">South Africa · ZAR</option>
+              <option value="BW">Botswana · BWP</option>
+              <option value="KE">Kenya · KES</option>
+              <option value="MZ">Mozambique · MZN</option>
+              <option value="TZ">Tanzania · TZS</option>
+              <option value="NA">Namibia · NAD</option>
+              <option value="ZM">Zambia · ZMW</option>
+              <option value="GB">United Kingdom · GBP</option>
+              <option value="US">United States · USD</option>
+              <option value="EU">Euro area · EUR</option>
+              <option value="OTHER">Other location / custom</option>
+            </select>
+          </label>
+          <label>Operating landscape
+            <input id="vehicle-location" type="text" maxlength="100"
+                   placeholder="e.g. Lubombo, Greater Kruger, Masaai Mara"/>
+          </label>
+          <label>Grid factor (kg CO₂e/kWh)
+            <input id="vehicle-grid-factor" type="number" min="0.00001" max="10"
+                   step="0.001" value="0.960" placeholder="Enter local factor"/>
+          </label>
+          <label>Grid factor reference year
+            <input id="vehicle-grid-year" type="text" maxlength="16"
+                   value="2024" placeholder="e.g. 2026"/>
+          </label>
+          <label>Charging efficiency
+            <input id="vehicle-charge-efficiency" type="number"
+                   min="0.5" max="1" step="0.01" value="0.90"/>
+            <small class="vehicle-field-help">Fraction of electricity drawn from the grid
+              that reaches the vehicle battery; 0.90 assumes 10% charging losses.</small>
+          </label>
+          <label>Petrol price <span class="currency-unit">ZAR/L</span>
+            <input id="vehicle-petrol-price" type="number" min="0.01" step="0.01"
+                   placeholder="Enter local pump price"/>
+          </label>
+          <label>Diesel price <span class="currency-unit">ZAR/L</span>
+            <input id="vehicle-diesel-price" type="number" min="0.01" step="0.01"
+                   placeholder="Enter local pump price"/>
+          </label>
+          <label>Electricity price <span class="currency-unit">ZAR/kWh</span>
+            <input id="vehicle-electric-price" type="number" min="0.01" step="0.01"
+                   placeholder="Enter relevant tariff"/>
+          </label>
+        </div>
+        <div class="vehicle-field-grid" id="vehicle-custom-fields" hidden>
+          <label>Custom country name
+            <input id="vehicle-custom-country" type="text" maxlength="100"
+                   placeholder="Enter country"/>
+          </label>
+          <label>ISO currency code
+            <input id="vehicle-custom-currency" type="text" maxlength="3"
+                   value="USD" pattern="[A-Za-z]{3}" placeholder="e.g. ZAR"/>
+          </label>
+        </div>
+        <p class="vehicle-note" id="vehicle-currency-label">Price currency: ZAR.</p>
+        <p class="vehicle-note" id="vehicle-grid-warning"></p>
+        <p class="vehicle-note">
+          Fuel factors are fixed to the UK DESNZ 2026 average-biofuel-blend profile:
+          petrol 2.06107 kg CO₂/L (2.075 kg CO₂e/L) and diesel 2.55035 kg CO₂/L
+          (2.58354 kg CO₂e/L). They are not interchangeable with electricity's
+          CO₂e factor. Selecting a different country clears old prices to avoid mixing currencies.
+        </p>
+      </section>
+
+      <section class="vehicle-panel" aria-labelledby="vehicle-trip-title">
+        <div class="vehicle-section-title">
+          <div>
+            <p class="eyebrow">CARBON ACCOUNTING</p>
+            <h2 id="vehicle-trip-title">Calculate a vehicle journey</h2>
+          </div>
+          <a class="button button-secondary" href="./vehicle-guide.html">
+            Explore Fleet Guide
+          </a>
+        </div>
+        <form id="vehicle-form" novalidate>
+          <div class="vehicle-field-grid">
+            <label>Owned fleet asset
+              <select id="vehicle-fleet-asset">
+                <option value="">Choose an imported asset, or search a fleet model below</option>
+              </select>
+            </label>
+            <label>Asset ID
+              <input id="vehicle-asset-id" type="text" maxlength="80" readonly
+                     placeholder="Populated when you select an asset"/>
+            </label>
+            <label>Driver / Person recording the journey
+              <input id="vehicle-driver" type="text" maxlength="100" required
+                     autocomplete="name" placeholder="Full name"/>
+            </label>
+            <label>Number plate / registration
+              <input id="vehicle-registration" type="text" maxlength="40"
+                     placeholder="Filled when an asset is selected"/>
+            </label>
+            <label>Journey date
+              <input id="vehicle-trip-date" type="date" required/>
+            </label>
+            <label>Landscape
+              <input id="vehicle-landscape" type="text" maxlength="120" required
+                     placeholder="e.g. iSimangaliso, Greater Kruger"/>
+            </label>
+            <label>Vehicle arrangement
+              <select id="vehicle-ownership">
+                <option value="company">Company controlled</option>
+                <option value="rental">Rental</option>
+                <option value="third-party">Third-party / other</option>
+              </select>
+            </label>
+            <label>Distance travelled (km)
+              <input id="vehicle-trip-km" type="number" min="0.1"
+                     max="200000" step="0.1" required/>
+            </label>
+          </div>
+          <div class="vehicle-search-tools">
+            <div class="vehicle-field-grid">
+              <label>Search manufacturer, model or variant
+                <input id="vehicle-model-search" type="search"
+                       role="combobox" aria-autocomplete="list"
+                       aria-controls="vehicle-model-results" aria-expanded="false"
+                       autocomplete="off" placeholder="e.g. Isuzu D-Max, BigBoy Pacer 200"/>
+              </label>
+              <label>Model year (optional)
+                <input id="vehicle-year-search" type="number"
+                       min="1900" max="2100" step="1"
+                       placeholder="e.g. 2021"/>
+              </label>
+            </div>
+            <div id="vehicle-model-results" class="vehicle-model-results"
+                 role="listbox" aria-label="Matching vehicle variants"></div>
+            <input type="hidden" id="vehicle-trip-select"/>
+            <p id="vehicle-selection-note" class="vehicle-selection-note">
+              Import and select an owned asset to fill in its model, year, registration and landscape automatically.
+            </p>
+          </div>
+          <div class="vehicle-preview" id="vehicle-trip-preview" aria-live="polite">
+            Enter a distance and choose a specific vehicle variant to see emissions.
+          </div>
+          <p class="vehicle-error" id="vehicle-form-error" role="alert"></p>
+          <p class="vehicle-note">Imported asset IDs and number plates, along with journey names, are stored only in this 
+            browser and included in exported journey backups. <strong>Do not share backup files outside of company grounds or 
+            commit backups or identifiable journey records to public repositories.</strong></p>
+          <p class="vehicle-edit-status" id="vehicle-edit-status" role="status" hidden></p>
+          <div class="vehicle-actions">
+            <button id="vehicle-save" type="submit" class="button button-primary">
+              Save vehicle journey
+            </button>
+            <button id="vehicle-clear" type="button" class="button button-secondary">
+              Clear form
+            </button>
+            <button id="vehicle-cancel-edit" type="button" class="button button-secondary" hidden>
+              Cancel editing
+            </button>
+          </div>
+        </form>
+      </section>
+      <section class="vehicle-panel vehicle-totals-panel" aria-labelledby="vehicle-totals-title">
+        <div class="vehicle-section-title">
+          <div>
+            <p class="eyebrow">SUMMARY STATISTICS</p>
+            <h2 id="vehicle-totals-title">Vehicle totals</h2>
+          </div>
+          <p class="vehicle-hint">Totals reflect saved journeys on this device, including edited records.</p>
+        </div>
+        <div class="summary-grid vehicle-summary-grid">
+          <article>
+            <span>Total operational emissions</span>
+            <strong id="vehicle-total-emissions">0.0000</strong>
+            <small>t CO₂e</small>
+          </article>
+          <article>
+            <span>Total distance travelled</span>
+            <strong id="vehicle-total-distance">0</strong>
+            <small>km</small>
+          </article>
+          <article>
+            <span>Recorded journeys</span>
+            <strong id="vehicle-total-journeys">0</strong>
+            <small>records</small>
+          </article>
+          <article>
+            <span>Distance-weighted emission intensity</span>
+            <strong id="vehicle-average-intensity">0.0</strong>
+            <small>g CO₂e/km</small>
+          </article>
+        </div>
+        <p class="vehicle-hint vehicle-totals-footnote">Emissions are estimates based on fleet-reported fuel consumption and the factors saved with each journey. Total emissions are reported as CO₂e, not CO₂ alone.</p>
+      </section>
+
+      <section class="vehicle-panel" aria-labelledby="vehicle-figures-title">
+        <div class="vehicle-section-title">
+          <div>
+            <p class="eyebrow">REPORTING FIGURES</p>
+            <h2 id="vehicle-figures-title">Vehicle activity and emissions</h2>
+          </div>
+          <p class="vehicle-hint">Only saved vehicle journeys are included. Hover over chart marks for details.</p>
+        </div>
+        <div class="vehicle-figure-grid">
+          <figure class="vehicle-figure vehicle-figure-wide">
+            <figcaption>Monthly operational emissions by landscape</figcaption>
+            <p class="vehicle-figure-subtitle">Stacked monthly totals · kg CO₂e · most recent 12 months <span class="vehicle-chart-scroll-hint">(scroll sideways to read months)</span></p>
+            <div class="vehicle-chart-scroll" role="region" tabindex="0" aria-label="Monthly operational emissions chart, scroll horizontally on narrow screens">
+              <svg id="vehicle-monthly-figure" viewBox="0 0 960 355" role="img"
+                 aria-label="Monthly stacked vehicle CO2 equivalent emissions, coloured by landscape"></svg>
+            </div>
+            <div id="vehicle-monthly-legend" class="vehicle-chart-legend" aria-label="Landscape colours"></div>
+            <p id="vehicle-monthly-caption" class="vehicle-hint"></p>
+          </figure>
+          <figure class="vehicle-figure">
+            <figcaption>Distance versus operational emissions</figcaption>
+            <p class="vehicle-figure-subtitle">Each point is one journey · coloured by body type</p>
+            <div class="vehicle-chart-scroll" role="region" tabindex="0" aria-label="Distance and operational emissions chart, scroll horizontally on narrow screens">
+              <svg id="vehicle-scatter-figure" viewBox="0 0 680 350" role="img"
+                 aria-label="Vehicle distance versus operational CO2 equivalent by body type"></svg>
+            </div>
+            <div id="vehicle-scatter-legend" class="vehicle-chart-legend" aria-label="Vehicle body type colours"></div>
+            <p id="vehicle-scatter-caption" class="vehicle-hint"></p>
+          </figure>
+          <figure class="vehicle-figure">
+            <figcaption>Emissions intensity by vehicle body type</figcaption>
+            <p class="vehicle-figure-subtitle">Distance-weighted kg CO₂e per 100 km</p>
+            <div class="vehicle-chart-scroll" role="region" tabindex="0" aria-label="Emissions intensity by body type chart, scroll horizontally on narrow screens">
+              <svg id="vehicle-source-figure" viewBox="0 0 680 350" role="img"
+                 aria-label="Operational emissions intensity per 100 kilometres for each vehicle body type"></svg>
+            </div>
+            <p id="vehicle-source-caption" class="vehicle-hint"></p>
+          </figure>
+        </div>
+      </section>
+      <section class="vehicle-panel" aria-labelledby="vehicle-records-title">
+        <div class="vehicle-section-title">
+          <div>
+            <p class="eyebrow">LOCAL RECORDS</p>
+            <h2 id="vehicle-records-title">Saved vehicle journeys</h2>
+          </div>
+          <button id="vehicle-export" type="button" class="button button-secondary">
+            Export vehicle CSV
+          </button>
+        </div>
+        <div class="vehicle-record-tools">
+          <label for="vehicle-record-search">Find a saved journey</label>
+          <input id="vehicle-record-search" type="search" maxlength="120"
+                 placeholder="Search driver, registration, model or landscape" autocomplete="off"/>
+        </div>
+        <div class="vehicle-table-scroll table-wrap" tabindex="0"
+             role="region" aria-label="Saved vehicle journeys, scrollable table">
+          <table class="vehicle-table vehicle-journeys-table">
+            <colgroup>
+              <col class="vehicle-col-date"/>
+              <col class="vehicle-col-model"/>
+              <col class="vehicle-col-area"/>
+              <col class="vehicle-col-distance"/>
+              <col class="vehicle-col-emissions"/>
+              <col class="vehicle-col-actions"/>
+            </colgroup>
+            <thead>
+              <tr>
+                <th scope="col">Date / Driver</th>
+                <th scope="col">Vehicle / Registration</th>
+                <th scope="col">Landscape / Body type</th>
+                <th scope="col">Distance</th>
+                <th scope="col">Operational CO₂e</th>
+                <th scope="col">Actions</th>
+              </tr>
+            </thead>
+            <tbody id="vehicle-record-rows"></tbody>
+          </table>
+        </div>
+        <p id="vehicle-record-count" class="vehicle-note"></p>
+      </section>
+
+    </div>
   </main>
   <footer class="site-footer">
-   <div class="page-shell footer-inner">
-    <div>
-     <strong>
-      WILD IMPACT
-     </strong>
-     <p>
-      Landscape Conservation &middot; Operational carbon records
-     </p>
+    <div class="page-shell footer-inner">
+      <div>
+        <strong>WILD IMPACT</strong>
+        <p>Landscape Conservation · Operational carbon records</p>
+      </div>
+      <div>
+        <span>Cleaner operations. Reduced emissions. Better outcomes.</span>
+        <p>Developed by Phemelo-R (Biodiversity &amp; Monitoring Intern).</p>
+      </div>
     </div>
-    <div>
-     <span>
-      Cleaner operations. Reduced emissions. Better outcomes.
-     </span>
-     <p>
-      Developed by Phemelo-R (Biodiversity & Monitoring Intern).
-     </p>
-    </div>
-   </div>
   </footer>
-  <div aria-live="polite" class="toast" id="toast" role="status">
-  </div>
-  <script defer="" src="../scripts/site.js">
-  </script>
- </body>
+  <div aria-live="polite" class="toast" id="toast" role="status"></div>
+</body>
 </html>
