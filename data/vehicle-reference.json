@@ -1,0 +1,194 @@
+{
+  "schema": "wild-impact-vehicle-catalogue-v1",
+  "version": 2,
+  "scope": "Models and variants present in the Wild Impact owned pilot fleet only",
+  "privacy": "No asset IDs, registration numbers, driver names or individual insurance records are included.",
+  "units": {
+    "consumption": "L/100 km",
+    "fuelCo2": "kg CO₂/L",
+    "operationalGas": "kg CO₂e"
+  },
+  "source": "User-provided Wild Impact Vehicle Fleet Database.csv, 24 November 2026",
+  "vehicles": [
+    {
+      "id": "fleet-model-01",
+      "brand": "Isuzu",
+      "model": "KB",
+      "variant": "250D-TEQ HO HI Rider P/U Extra-Cab",
+      "years": "2017",
+      "body": "Pick-up",
+      "technology": "Combustion Engine",
+      "fuel": "Diesel",
+      "fuelL100": 7.9,
+      "powerReported": 100.0,
+      "powerUnit": "not supplied",
+      "manufacturerCo2GKm": 208.0,
+      "batteryUsableKwh": null,
+      "batteryGrossKwh": null,
+      "electricRangeKm": null,
+      "source": "Wild Impact pilot fleet CSV; fuel-use rates as reported, not independently verified",
+      "warnings": [
+        "Reported fuel-consumption figure; measured consumption was not supplied.",
+        "Engine-power units were not specified; power is excluded from emissions estimation."
+      ]
+    },
+    {
+      "id": "fleet-model-02",
+      "brand": "Isuzu",
+      "model": "D-Max",
+      "variant": "Single Cab Fleetside",
+      "years": "2022",
+      "body": "Pick-up",
+      "technology": "Combustion Engine",
+      "fuel": "Diesel",
+      "fuelL100": 7.6,
+      "powerReported": 100.0,
+      "powerUnit": "not supplied",
+      "manufacturerCo2GKm": null,
+      "batteryUsableKwh": null,
+      "batteryGrossKwh": null,
+      "electricRangeKm": null,
+      "source": "Wild Impact pilot fleet CSV; fuel-use rates as reported, not independently verified",
+      "warnings": [
+        "Reported fuel-consumption figure; measured consumption was not supplied.",
+        "Engine-power units were not specified; power is excluded from emissions estimation.",
+        "Manufacturer CO₂ figure not supplied; calculated fuel-based emissions remain available."
+      ]
+    },
+    {
+      "id": "fleet-model-03",
+      "brand": "Isuzu",
+      "model": "D-Max",
+      "variant": "1.9 Ddi HR L Extra Cab",
+      "years": "2024",
+      "body": "Pick-up",
+      "technology": "Combustion Engine",
+      "fuel": "Diesel",
+      "fuelL100": 7.1,
+      "powerReported": 110.0,
+      "powerUnit": "not supplied",
+      "manufacturerCo2GKm": 186.0,
+      "batteryUsableKwh": null,
+      "batteryGrossKwh": null,
+      "electricRangeKm": null,
+      "source": "Wild Impact pilot fleet CSV; fuel-use rates as reported, not independently verified",
+      "warnings": [
+        "Reported fuel-consumption figure; measured consumption was not supplied.",
+        "Engine-power units were not specified; power is excluded from emissions estimation."
+      ]
+    },
+    {
+      "id": "fleet-model-04",
+      "brand": "Suzuki",
+      "model": "Ertiga",
+      "variant": "1.5L",
+      "years": "2025",
+      "body": "MPV",
+      "technology": "Combustion Engine",
+      "fuel": "Petrol",
+      "fuelL100": 6.2,
+      "powerReported": 77.0,
+      "powerUnit": "not supplied",
+      "manufacturerCo2GKm": null,
+      "batteryUsableKwh": null,
+      "batteryGrossKwh": null,
+      "electricRangeKm": null,
+      "source": "Wild Impact pilot fleet CSV; fuel-use rates as reported, not independently verified",
+      "warnings": [
+        "Reported fuel-consumption figure; measured consumption was not supplied.",
+        "Engine-power units were not specified; power is excluded from emissions estimation.",
+        "Manufacturer CO₂ figure not supplied; calculated fuel-based emissions remain available."
+      ]
+    },
+    {
+      "id": "fleet-model-05",
+      "brand": "Mahindra",
+      "model": "Pik-Up",
+      "variant": "2.2 mHawk",
+      "years": "2025",
+      "body": "Pick-up",
+      "technology": "Combustion Engine",
+      "fuel": "Diesel",
+      "fuelL100": 7.7,
+      "powerReported": 204.0,
+      "powerUnit": "not supplied",
+      "manufacturerCo2GKm": null,
+      "batteryUsableKwh": null,
+      "batteryGrossKwh": null,
+      "electricRangeKm": null,
+      "source": "Wild Impact pilot fleet CSV; fuel-use rates as reported, not independently verified",
+      "warnings": [
+        "Reported fuel-consumption figure; measured consumption was not supplied.",
+        "Engine-power units were not specified; power is excluded from emissions estimation.",
+        "Manufacturer CO₂ figure not supplied; calculated fuel-based emissions remain available."
+      ]
+    },
+    {
+      "id": "fleet-model-06",
+      "brand": "BigBoy",
+      "model": "Pacer 200",
+      "variant": "4-stroke 191cc",
+      "years": "2023",
+      "body": "Motorcycle",
+      "technology": "Combustion Engine",
+      "fuel": "Petrol",
+      "fuelL100": 2.3,
+      "powerReported": 10.0,
+      "powerUnit": "not supplied",
+      "manufacturerCo2GKm": null,
+      "batteryUsableKwh": null,
+      "batteryGrossKwh": null,
+      "electricRangeKm": null,
+      "source": "Wild Impact pilot fleet CSV; fuel-use rates as reported, not independently verified",
+      "warnings": [
+        "Reported fuel-consumption figure; measured consumption was not supplied.",
+        "Engine-power units were not specified; power is excluded from emissions estimation.",
+        "Manufacturer CO₂ figure not supplied; calculated fuel-based emissions remain available."
+      ]
+    },
+    {
+      "id": "fleet-model-07",
+      "brand": "Mahindra",
+      "model": "Scorpio Pik-Up",
+      "variant": "2.2 mHawk S6 REFRESH",
+      "years": "2023",
+      "body": "Pick-up",
+      "technology": "Combustion Engine",
+      "fuel": "Diesel",
+      "fuelL100": 7.9,
+      "powerReported": 103.0,
+      "powerUnit": "not supplied",
+      "manufacturerCo2GKm": 210.0,
+      "batteryUsableKwh": null,
+      "batteryGrossKwh": null,
+      "electricRangeKm": null,
+      "source": "Wild Impact pilot fleet CSV; fuel-use rates as reported, not independently verified",
+      "warnings": [
+        "Reported fuel-consumption figure; measured consumption was not supplied.",
+        "Engine-power units were not specified; power is excluded from emissions estimation."
+      ]
+    },
+    {
+      "id": "fleet-model-08",
+      "brand": "Toyota",
+      "model": "Hilux",
+      "variant": "3.0 Double Cab 4WD",
+      "years": "2015",
+      "body": "Pick-up",
+      "technology": "Combustion Engine",
+      "fuel": "Diesel",
+      "fuelL100": 7.6,
+      "powerReported": 171.0,
+      "powerUnit": "not supplied",
+      "manufacturerCo2GKm": 199.0,
+      "batteryUsableKwh": null,
+      "batteryGrossKwh": null,
+      "electricRangeKm": null,
+      "source": "Wild Impact pilot fleet CSV; fuel-use rates as reported, not independently verified",
+      "warnings": [
+        "Reported fuel-consumption figure; measured consumption was not supplied.",
+        "Engine-power units were not specified; power is excluded from emissions estimation."
+      ]
+    }
+  ]
+}
