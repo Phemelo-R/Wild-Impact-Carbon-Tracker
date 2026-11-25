@@ -36,21 +36,12 @@
      Menu
     </button>
     <nav aria-label="Primary navigation" class="main-nav" id="site-navigation">
-     <a aria-current="page" class="nav-link is-active" href="index.html">
-      Overview
-     </a>
-     <a aria-current="false" class="nav-link" href="pages/e-bikes.html">
-      E-bikes
-     </a>
-     <a aria-current="false" class="nav-link" href="pages/flights.html">
-      Flights
-     </a>
-     <a aria-current="false" class="nav-link" href="pages/boats.html">
-      Boats
-     </a>
-     <a aria-current="false" class="nav-link" href="pages/vehicles.html">
-      Vehicles
-     </a>
+     <a aria-current="page" class="nav-link is-active" href="index.html">Overview</a>
+     <a aria-current="false" class="nav-link" href="pages/e-bikes.html">E-bikes</a>
+     <a aria-current="false" class="nav-link" href="pages/flights.html">Flights</a>
+     <a aria-current="false" class="nav-link" href="pages/boats.html">Boats</a>
+     <a aria-current="false" class="nav-link" href="pages/vehicles.html">Vehicles</a>
+     <a aria-current="false" class="nav-link" href="pages/vehicle-guide.html">Vehicle Guide</a>
     </nav>
    </div>
   </header>
@@ -174,7 +165,7 @@
          <p><strong>Flights –</strong> Uses the ICAO-based model to calculate emissions from flights, including the impact of diffrent
             aircraft types, flight distances, and passenger loads.</p>
          <p><strong>Boats  –</strong> Uses measured or recorded petrol volumes and UK DESNZ 2026 fuel factors.</p>
-         <p><strong>Vehicles –</strong> Currently under development.</p>
+         <p><strong>Vehicles –</strong> Uses manufacturer-provided fuel efficiency data and UK DESNZ 2026 fuel factors over a certain distance.</p>
         </p>
        </article>
        <article>
@@ -287,29 +278,10 @@
       </p>
      </div>
      <div class="module-cards">
-      <a class="module-card" href="pages/flights.html">
-       <div class="module-card-header">
-        <span>
-         01 / AVIATION
-        </span>
-       </div>
-       <div class="module-card-art">
-        <img alt="" src="assets/module-flights.jpg"/>
-       </div>
-       <h3>
-        Flights
-       </h3>
-       <p>
-        Route-level calculations, aircraft configuration and cabin allocation.
-       </p>
-       <div class="module-card-bottom">
-        OPEN MODULE
-       </div>
-      </a>
       <a class="module-card" href="pages/e-bikes.html">
        <div class="module-card-header">
         <span>
-         02 / ELECTRIC MOTORCYCLES
+         01 / ELECTRIC MOTORCYCLES
         </span>
        </div>
        <div class="module-card-art">
@@ -320,6 +292,25 @@
        </h3>
        <p>
         Charging emissions and the displaced petrol-motorcycle baseline.
+       </p>
+       <div class="module-card-bottom">
+        OPEN MODULE
+       </div>
+      </a>
+      <a class="module-card" href="pages/flights.html">
+       <div class="module-card-header">
+        <span>
+         02 / AVIATION
+        </span>
+       </div>
+       <div class="module-card-art">
+        <img alt="" src="assets/module-flights.jpg"/>
+       </div>
+       <h3>
+        Flights
+       </h3>
+       <p>
+        Route-level calculations, aircraft configuration and cabin allocation.
        </p>
        <div class="module-card-bottom">
         OPEN MODULE
@@ -338,7 +329,7 @@
         Boats
        </h3>
        <p>
-        Petrol-based emissions with operational trip details and monthly comparisons.
+        Fuel-based emissions with operational trip details and monthly comparisons.
        </p>
        <div class="module-card-bottom">
         OPEN MODULE
@@ -349,9 +340,6 @@
         <span>
          04 / ROAD TRANSPORT
         </span>
-        <span class="coming-soon-tag">
-         COMING SOON
-        </span>
        </div>
        <div class="module-card-art">
         <img alt="" src="assets/module-vehicles.jpg"/>
@@ -360,10 +348,10 @@
         Vehicles
        </h3>
        <p>
-        Preparing the fuel-based model for the operational fleet.
+        Fuel-based emissions for Wild Impact vehicles with a distance-based calculation method and monthly comparisons.
        </p>
        <div class="module-card-bottom">
-        VIEW MODULE
+        OPEN MODULE
        </div>
       </a>
      </div>
