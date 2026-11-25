@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta http-equiv="Content-Security-Policy"
+        content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:;
+                 connect-src 'self'; font-src 'self' data:; object-src 'none';
+                 base-uri 'self'; form-action 'self'"/>
+  <meta name="theme-color" content="#F15A29"/>
+  <title>Fleet Guide · Wild Impact Carbon Tracker</title>
+  <link rel="icon" href="../assets/wild-impact-mark.png"/>
+  <link rel="stylesheet" href="../styles/site.css"/>
+  <script src="../scripts/vehicle-calculations.js" defer></script>
+  <script src="../scripts/vehicle-common.js" defer></script>
+  <script src="../scripts/vehicle-guide.js" defer></script>
+  <script src="../scripts/site.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#main-content">Skip to content</a>
+  <div class="accent-line"></div>
+  <header class="site-header">
+    <div class="page-shell header-content">
+      <a class="brand-lockup" href="../index.html"
+         aria-label="Wild Impact Carbon Tracker home">
+        <img src="../assets/wild-impact-mark.png" width="42" height="42" alt=""/>
+        <span>
+          <strong>WILD IMPACT</strong>
+          <small>Landscape Conservation / Carbon Tracker</small>
+        </span>
+      </a>
+      <button type="button" class="menu-toggle" id="menu-toggle"
+              aria-controls="site-navigation" aria-expanded="false">Menu</button>
+      <nav class="main-nav" id="site-navigation" aria-label="Primary navigation">
+        <a class="nav-link" href="../index.html">Overview</a>
+        <a class="nav-link" href="./e-bikes.html">E-bikes</a>
+        <a class="nav-link" href="./flights.html">Flights</a>
+        <a class="nav-link" href="./boats.html">Boats</a>
+        <a class="nav-link" href="./vehicles.html">Vehicles</a>
+        <a class="nav-link is-active" href="./vehicle-guide.html" aria-current="page">Fleet Guide</a>
+      </nav>
+    </div>
+  </header>
+  <main id="main-content">
+    <section class="module-hero">
+      <div class="page-shell module-hero-layout">
+        <div>
+          <p class="kicker">VEHICLE GUIDE / PURCHASING &amp; COMPARISONS</p>
+          <h1>Fleet Guide</h1>
+          <p>Explore models, fuel costs and operational-emissions comparisons.</p>
+        </div>
+        <div class="module-hero-aside">
+          <span class="eyebrow">MODEL LIBRARY</span>
+          <strong>Compare smarter.<br/>Buy with evidence.</strong>
+          <span>Indicative comparisons from declared specifications, not verified market offers.</span>
+        </div>
+      </div>
+    </section>
+    <div class="page-shell vehicle-layout">
+
+      <p class="vehicle-status" id="vehicle-status" role="status" aria-live="polite">
+        Loading vehicle comparison library…
+      </p>
+      <section class="vehicle-panel">
+        <div class="vehicle-section-title">
+          <div>
+            <p class="eyebrow">MODEL LIBRARY</p>
+            <h2>Compare models Wild Impact already owns</h2>
+          </div>
+          <a href="./vehicles.html" class="button button-secondary">
+            Return to carbon calculator
+          </a>
+        </div>
+        <p>This pilot includes only the models and variants listed in Wild Impact’s
+          current owned-fleet CSV. Each model family opens to its recorded variants.
+          Replacement suggestions compare <strong>the same body type</strong>, since a
+          motorcycle cannot substitute for a conservation fieldwork pick-up.</p>
+        <p class="vehicle-note">The fuel figures were supplied by taken from manufacturer specifications. Recommendations 
+          are screening comparisons, not procurement decisions: terrain, carrying capacity, purchase prices, maintenance and 
+          reliability remain relevant. Annual insurance can inform total ownership cost, but never enters CO₂ calculations.</p>
+      </section>
+
+      <p id="vehicle-fleet-guide-status" class="vehicle-note" role="status">
+        Model specifications are public; importing the fleet CSV on the Vehicles page
+        allows local asset counts and optional insurance figures to appear here.
+      </p>
+      <section class="vehicle-panel" aria-labelledby="vehicle-settings-title">
+        <div class="vehicle-section-title">
+          <div>
+            <p class="eyebrow">MODEL SETTINGS</p>
+            <h2 id="vehicle-settings-title">Location, energy and prices</h2>
+          </div>
+          <p class="vehicle-hint">Changes follow you between Vehicles and Vehicle Guide in this browser.</p>
+        </div>
+        <div class="vehicle-field-grid">
+          <label>Country / pricing region
+            <select id="vehicle-country">
+              <option value="ZA">South Africa · ZAR</option>
+              <option value="BW">Botswana · BWP</option>
+              <option value="KE">Kenya · KES</option>
+              <option value="MZ">Mozambique · MZN</option>
+              <option value="TZ">Tanzania · TZS</option>
+              <option value="NA">Namibia · NAD</option>
+              <option value="ZM">Zambia · ZMW</option>
+              <option value="GB">United Kingdom · GBP</option>
+              <option value="US">United States · USD</option>
+              <option value="EU">Euro area · EUR</option>
+              <option value="OTHER">Other location / custom</option>
+            </select>
+          </label>
+          <label>Operating landscape
+            <input id="vehicle-location" type="text" maxlength="100"
+                   placeholder="e.g. Lubombo, Gaborone, Nairobi"/>
+          </label>
+          <label>Grid factor (kg CO₂e/kWh)
+            <input id="vehicle-grid-factor" type="number" min="0.00001" max="10"
+                   step="0.001" value="0.960" placeholder="Enter local factor"/>
+          </label>
+          <label>Grid factor reference year
+            <input id="vehicle-grid-year" type="text" maxlength="16"
+                   value="2024" placeholder="e.g. 2026"/>
+          </label>
+          <label>Charging efficiency
+            <input id="vehicle-charge-efficiency" type="number"
+                   min="0.5" max="1" step="0.01" value="0.90"/>
+            <small class="vehicle-field-help">Fraction of electricity drawn from the grid
+              that reaches the vehicle battery; 0.90 assumes 10% charging losses.</small>
+          </label>
+          <label>Petrol price <span class="currency-unit">ZAR/L</span>
+            <input id="vehicle-petrol-price" type="number" min="0.01" step="0.01"
+                   placeholder="Enter local pump price"/>
+          </label>
+          <label>Diesel price <span class="currency-unit">ZAR/L</span>
+            <input id="vehicle-diesel-price" type="number" min="0.01" step="0.01"
+                   placeholder="Enter local pump price"/>
+          </label>
+          <label>Electricity price <span class="currency-unit">ZAR/kWh</span>
+            <input id="vehicle-electric-price" type="number" min="0.01" step="0.01"
+                   placeholder="Enter relevant tariff"/>
+          </label>
+        </div>
+        <div class="vehicle-field-grid" id="vehicle-custom-fields" hidden>
+          <label>Custom country name
+            <input id="vehicle-custom-country" type="text" maxlength="100"
+                   placeholder="Enter country"/>
+          </label>
+          <label>ISO currency code
+            <input id="vehicle-custom-currency" type="text" maxlength="3"
+                   value="USD" pattern="[A-Za-z]{3}" placeholder="e.g. ZAR"/>
+          </label>
+        </div>
+        <p class="vehicle-note" id="vehicle-currency-label">Price currency: ZAR.</p>
+        <p class="vehicle-note" id="vehicle-grid-warning"></p>
+        <p class="vehicle-note">
+          Fuel factors are fixed to the UK DESNZ 2026 average-biofuel-blend profile:
+          petrol 2.06107 kg CO₂/L (2.075 kg CO₂e/L) and diesel 2.55035 kg CO₂/L
+          (2.58354 kg CO₂e/L). They are not interchangeable with electricity's
+          CO₂e factor. Selecting a different country clears old prices to avoid mixing currencies.
+        </p>
+      </section>
+
+      <section class="vehicle-panel" aria-labelledby="vehicle-library-title">
+        <div class="vehicle-section-title">
+          <div>
+            <p class="eyebrow">VEHICLE GUIDE</p>
+            <h2 id="vehicle-library-title">Find your vehicle</h2>
+          </div>
+          <p class="vehicle-hint" id="vehicle-filter-status"></p>
+        </div>
+        <div class="vehicle-field-grid">
+          <label>Search model, brand or variant
+            <input id="vehicle-search" type="search"
+                   placeholder="e.g. BigBoy Pacer 200, Isuzu D-Max"/>
+          </label>
+          <label>Manufacturer
+            <select id="vehicle-brand">
+              <option value="">All manufacturers</option>
+            </select>
+          </label>
+          <label>Production year
+            <select id="vehicle-year">
+              <option value="">All model years</option>
+            </select>
+          </label>
+          <label>Emissions category
+            <select id="vehicle-band">
+              <option value="">All categories</option>
+              <option value="A">A · up to 120 g CO₂e/km</option>
+              <option value="B">B · 120–160 g CO₂e/km</option>
+              <option value="C">C · 160–200 g CO₂e/km</option>
+              <option value="D">D · 200–250 g CO₂e/km</option>
+              <option value="E">E · over 250 g CO₂e/km</option>
+              <option value="unrated">Not rated · data deficient</option>
+            </select>
+          </label>
+          <label>Powertrain
+            <select id="vehicle-technology">
+              <option value="">All powertrains</option>
+            </select>
+          </label>
+          <label>Energy source
+            <select id="vehicle-fuel">
+              <option value="">All energy sources</option>
+            </select>
+          </label>
+          <label>Recommend by
+            <select id="vehicle-sort">
+              <option value="emissions">Lowest operational CO₂e/km</option>
+              <option value="cost">Lowest energy running cost</option>
+              <option value="balanced">Balanced emissions and fuel cost</option>
+            </select>
+          </label>
+        </div>
+        <div class="vehicle-body-heading">
+          <strong>Select body type</strong>
+        </div>
+        <div id="vehicle-body-picker" class="vehicle-body-picker" role="group"
+             aria-label="Vehicle body type filter"></div>
+        <p id="vehicle-sort-warning" class="vehicle-note" role="status"></p>
+      </section>
+      <section class="vehicle-panel" aria-labelledby="vehicle-top-title">
+        <div class="vehicle-section-title">
+          <div>
+            <p class="eyebrow">BUYING INTELLIGENCE</p>
+            <h2 id="vehicle-top-title">Rebuy candidates from the existing fleet</h2>
+          </div>
+          <p class="vehicle-hint">Within-class rankings: up to ten existing model families, without inventing additional models.</p>
+        </div>
+        <div id="vehicle-purchase-rows" class="vehicle-purchase-rows"></div>
+        <p id="vehicle-purchase-summary" class="vehicle-note"></p>
+      </section>
+      <section class="vehicle-panel" aria-labelledby="vehicle-family-title">
+        <div class="vehicle-section-title">
+          <div>
+            <p class="eyebrow">MODEL EXPLORER</p>
+            <h2 id="vehicle-family-title">Browse model families</h2>
+          </div>
+          <p class="vehicle-hint">Open a model to compare owned variants and their specifications.</p>
+        </div>
+        <div id="vehicle-family-grid" class="vehicle-family-grid"></div>
+        <div class="vehicle-table-controls">
+          <span id="vehicle-showing"></span>
+          <button type="button" id="vehicle-more"
+                  class="button button-secondary">Show more models</button>
+        </div>
+      </section>
+      <section class="vehicle-panel" aria-labelledby="vehicle-comparison-title">
+        <div class="vehicle-section-title">
+          <div>
+            <p class="eyebrow">SIDE-BY-SIDE</p>
+            <h2 id="vehicle-comparison-title">Your comparison</h2>
+          </div>
+          <button type="button" id="vehicle-compare-clear"
+                  class="button button-secondary">Clear comparison</button>
+        </div>
+        <p>Choose up to three variants from the expanded model-family cards.</p>
+        <div id="vehicle-comparison-rows" class="vehicle-comparison-rows"></div>
+      </section>
+
+    </div>
+  </main>
+  <footer class="site-footer">
+    <div class="page-shell footer-inner">
+      <div>
+        <strong>WILD IMPACT</strong>
+        <p>Landscape Conservation · Operational carbon records</p>
+      </div>
+      <div>
+        <span>Cleaner operations. Reduced emissions. Better outcomes.</span>
+        <p>Developed by Phemelo-R (Biodiversity &amp; Monitoring Intern).</p>
+      </div>
+    </div>
+  </footer>
+  <div aria-live="polite" class="toast" id="toast" role="status"></div>
+</body>
+</html>
