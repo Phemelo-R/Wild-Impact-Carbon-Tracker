@@ -1724,3 +1724,1019 @@ tbody tr:hover {
     text-align: left;
   }
 }
+
+/* BEGIN WILD IMPACT VEHICLE REDESIGN 2026-11-11 */
+/* Wild Impact · vehicle redesign 2026-11-11
+ * These declarations belong at the end of shared styles/site.css.
+ * They preserve the existing learn-dropdown and module-hero design system.
+ */
+.vehicle-layout {
+  display: grid;
+  gap: 23px;
+  padding-top: 24px;
+  padding-bottom: 74px;
+}
+.vehicle-layout * { box-sizing: border-box; }
+.vehicle-layout [hidden] { display: none !important; }
+.vehicle-status {
+  margin: 0;
+  padding: 12px 18px;
+  border-left: 4px solid #F15A29;
+  border-radius: 8px;
+  background: #FFF8F2;
+  color: #45372C;
+  font-size: 13px;
+  line-height: 1.5;
+}
+.vehicle-status.is-error { background: #FFF0EA; color: #8A2F1D; }
+.vehicle-panel {
+  min-width: 0;
+  background: #fff;
+  border-radius: 16px;
+  padding: clamp(20px, 2.4vw, 29px);
+  border-top: 4px solid #F15A29;
+  box-shadow: 0 12px 26px rgba(48, 24, 10, .065);
+}
+.vehicle-panel h2 { margin: 4px 0 8px; font-size: clamp(25px, 2.5vw, 39px); }
+.vehicle-panel h3 { margin: 0; }
+.vehicle-panel > p, .vehicle-panel .vehicle-note { line-height: 1.62; }
+.vehicle-section-title {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 14px;
+  margin-bottom: 18px;
+}
+.vehicle-section-title .eyebrow {
+  color: #B84626;
+  font-weight: 700;
+  letter-spacing: .07em;
+  margin: 0 0 5px;
+}
+.vehicle-hint, .vehicle-field-help {
+  font-size: 12px;
+  font-weight: 400;
+  color: #685A4F;
+  line-height: 1.55;
+}
+.vehicle-note {
+  padding: 11px 14px;
+  border-radius: 8px;
+  background: #FBF4ED;
+  color: #594F49;
+  font-size: 13px;
+  margin: 11px 0 0;
+}
+.vehicle-note:empty, .vehicle-error:empty { display: none; }
+.vehicle-error {
+  color: #9F2F23;
+  font-size: 13px;
+  font-weight: 650;
+  margin-top: 12px;
+}
+.vehicle-field-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px 17px;
+  margin: 16px 0;
+}
+.vehicle-field-grid label {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  gap: 6px;
+  color: #372921;
+  font-size: 13px;
+  font-weight: 700;
+}
+.vehicle-field-grid input, .vehicle-field-grid select {
+  display: block;
+  width: 100%;
+  min-height: 44px;
+  padding: 9px 12px;
+  border: 1px solid #D4BDAA;
+  border-radius: 8px;
+  background: #FFFDFC;
+  color: #251E19;
+  font: inherit;
+  font-weight: 400;
+  font-size: 14px;
+}
+.vehicle-field-grid :is(input, select):focus-visible,
+.vehicle-body-choice:focus-visible,
+.vehicle-model-choice:focus-visible,
+.vehicle-small-button:focus-visible,
+.vehicle-family-detail summary:focus-visible {
+  outline: 3px solid #F15A29;
+  outline-offset: 2px;
+}
+.vehicle-field-help { display: block; }
+.currency-unit {
+  color: #8A2F1D;
+  font-size: 11px;
+  font-weight: 750;
+  text-transform: uppercase;
+}
+.vehicle-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 10px;
+  margin-top: 15px;
+}
+.vehicle-search-tools {
+  border: 1px solid #E3D0BC;
+  border-radius: 12px;
+  background: #FFF8F2;
+  padding: 15px 16px;
+  margin: 18px 0;
+}
+.vehicle-search-tools .vehicle-field-grid {
+  grid-template-columns: minmax(0, 2fr) minmax(160px, 1fr);
+  margin: 0 0 9px;
+}
+.vehicle-model-results {
+  display: grid;
+  max-height: 285px;
+  overflow-y: auto;
+  gap: 2px;
+}
+.vehicle-model-results:empty { display: none; }
+.vehicle-model-choice {
+  text-align: left;
+  cursor: pointer;
+  background: #fff;
+  border: 1px solid #F0DFD2;
+  border-radius: 7px;
+  padding: 10px 12px;
+  color: #2C221A;
+  display: flex;
+  gap: 8px;
+  flex-direction: column;
+  font: inherit;
+  font-size: 12px;
+}
+.vehicle-model-choice:hover, .vehicle-model-choice:focus-visible {
+  background: #FFEADD;
+  border-color: #F15A29;
+}
+.vehicle-model-choice strong { font-size: 13px; }
+.vehicle-model-choice span { color: #5E5349; }
+.vehicle-selection-note { margin: 12px 0 0; font-size: 13px; }
+.vehicle-preview {
+  border-radius: 12px;
+  padding: 18px 20px;
+  background: #FFF1E5;
+  border: 1px solid #F2C5A5;
+  min-height: 75px;
+  line-height: 1.65;
+}
+.vehicle-preview p { margin: 6px 0; }
+.vehicle-preview-total {
+  color: #8A2F1D;
+  font-weight: 800;
+  font-size: clamp(28px, 3.2vw, 42px);
+  line-height: 1.2;
+}
+.vehicle-figure-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+}
+.vehicle-figure {
+  margin: 0;
+  padding: 17px;
+  border: 1px solid #EADBCD;
+  border-radius: 12px;
+  background: #FFFDFC;
+}
+.vehicle-figure figcaption {
+  color: #1E1712;
+  font-size: 15px;
+  font-weight: 750;
+  margin-bottom: 10px;
+}
+.vehicle-figure > svg {
+  width: 100%;
+  height: auto;
+  display: block;
+  overflow: visible;
+}
+.vehicle-figure-wide { grid-column: 1 / -1; }
+.vehicle-table-scroll {
+  width: 100%;
+  overflow-x: auto;
+  border: 1px solid #E6D4C6;
+  border-radius: 10px;
+  -webkit-overflow-scrolling: touch;
+}
+.vehicle-table {
+  width: 100%;
+  min-width: 850px;
+  border-collapse: collapse;
+  text-align: left;
+  font-size: 12px;
+}
+.vehicle-table :is(th, td) { padding: 12px; vertical-align: top; }
+.vehicle-table th {
+  background: #211A16;
+  color: #fff;
+  letter-spacing: .015em;
+  font-weight: 650;
+}
+.vehicle-table tbody tr:nth-child(even) { background: #FCF7F3; }
+.vehicle-table tbody tr:not(:last-child) { border-bottom: 1px solid #EDE2D9; }
+.vehicle-small-button {
+  border: 1px solid #D0AA90;
+  border-radius: 8px;
+  background: white;
+  color: #8A2F1D;
+  font-size: 12px;
+  padding: 8px 10px;
+  cursor: pointer;
+  font-weight: 700;
+  font-family: inherit;
+  text-decoration: none;
+  display: inline-block;
+  white-space: nowrap;
+}
+.vehicle-small-button:hover { background: #FFF2E8; border-color: #F15A29; }
+.vehicle-body-heading {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  justify-content: space-between;
+  align-items: baseline;
+  margin: 23px 0 11px;
+  font-size: 13px;
+}
+.vehicle-body-heading > span { color: #6A5C50; font-size: 12px; }
+.vehicle-body-picker {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(95px, 1fr));
+  gap: 8px;
+  margin-bottom: 18px;
+}
+.vehicle-body-choice {
+  border: 1px solid #E3D3C4;
+  background: #FFFDFC;
+  border-radius: 11px;
+  padding: 9px 7px;
+  color: #5A473B;
+  cursor: pointer;
+  display: grid;
+  justify-items: center;
+  align-content: center;
+  gap: 4px;
+  font-family: inherit;
+  font-size: 11px;
+  font-weight: 750;
+}
+.vehicle-body-choice[aria-pressed="true"] {
+  color: #8A2F1D;
+  background: #FFF0E1;
+  border-color: #F15A29;
+  box-shadow: inset 0 0 0 1px #F15A29;
+}
+.vehicle-body-choice:hover { border-color: #F15A29; }
+.vehicle-body-svg { width: 85px; max-width: 100%; height: 42px; color: #563A2F; }
+.vehicle-all-bodies-icon {
+  display: grid;
+  place-items: center;
+  width: 74px;
+  height: 42px;
+  color: #8A2F1D;
+  font-size: 17px;
+  font-weight: 850;
+  letter-spacing: .08em;
+}
+.vehicle-purchase-rows {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 12px;
+  margin-top: 14px;
+}
+.vehicle-shortlist-card {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  gap: 6px;
+  border-radius: 12px;
+  border: 1px solid #E6D3C3;
+  background: #FFF9F3;
+  padding: 14px;
+  font-size: 12px;
+}
+.vehicle-shortlist-card .vehicle-body-svg { height: 32px; margin: 3px auto; }
+.vehicle-shortlist-card > p { margin: 2px 0; line-height: 1.4; }
+.vehicle-shortlist-title { display: flex; align-items: flex-start; gap: 8px; }
+.vehicle-shortlist-title strong { overflow-wrap: anywhere; font-size: 13px; }
+.vehicle-shortlist-rank {
+  display: grid;
+  place-items: center;
+  width: 24px;
+  height: 24px;
+  flex: 0 0 24px;
+  border-radius: 50%;
+  background: #F15A29;
+  color: white;
+  font-weight: 850;
+  font-size: 11px;
+}
+.vehicle-band-pill {
+  display: inline-block;
+  align-self: flex-start;
+  padding: 4px 8px;
+  font-size: 11px;
+  font-weight: 750;
+  border-radius: 100px;
+  background: #F0EAE5;
+  color: #4A3D33;
+}
+.vehicle-band-A { background: #E3F1E6; color: #275737; }
+.vehicle-band-B { background: #ECF0DC; color: #53672A; }
+.vehicle-band-C { background: #FBEDD2; color: #725316; }
+.vehicle-band-D { background: #FFE4D2; color: #963C19; }
+.vehicle-band-E { background: #FBE0DB; color: #952B24; }
+.vehicle-family-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 15px;
+}
+.vehicle-family-card {
+  background: #FFFBF7;
+  border-radius: 12px;
+  border: 1px solid #E5D3C4;
+  min-width: 0;
+  padding: 17px;
+}
+.vehicle-family-head { display: flex; gap: 9px; align-items: center; }
+.vehicle-family-head .vehicle-body-svg { flex: 0 0 85px; }
+.vehicle-family-head h3 { font-size: 17px; line-height: 1.35; }
+.vehicle-family-head p { margin: 6px 0 0; }
+.vehicle-family-primary { font-size: 13px; line-height: 1.5; margin: 12px 0; }
+.vehicle-family-detail { margin-top: 14px; border-top: 1px solid #E8D9CB; }
+.vehicle-family-detail summary {
+  padding: 14px 0 4px;
+  font-size: 13px;
+  color: #8A2F1D;
+  cursor: pointer;
+  font-weight: 750;
+}
+.vehicle-family-variants { display: grid; gap: 8px; margin-top: 12px; max-height: 480px; overflow-y: auto; }
+.vehicle-variant-row {
+  display: grid;
+  gap: 8px;
+  padding: 12px;
+  border-radius: 8px;
+  background: #F8EEE6;
+  border: 1px solid #EDDCCE;
+  min-width: 0;
+}
+.vehicle-variant-row strong { font-size: 12px; overflow-wrap: anywhere; }
+.vehicle-variant-row p { margin: 4px 0 0; font-size: 12px; }
+.vehicle-variant-actions { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; }
+.vehicle-comparison-rows {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+  margin-top: 14px;
+}
+.vehicle-compare-card { background: #FFF8F2; border: 1px solid #E6D2C1; border-radius: 11px; padding: 17px; }
+.vehicle-compare-card p { margin: 7px 0; font-size: 13px; }
+.vehicle-table-controls {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-top: 18px;
+  font-size: 13px;
+}
+@media (max-width: 1150px) {
+  .vehicle-purchase-rows { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .vehicle-family-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 850px) {
+  .vehicle-field-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .vehicle-purchase-rows { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 650px) {
+  .vehicle-field-grid,
+  .vehicle-search-tools .vehicle-field-grid,
+  .vehicle-figure-grid,
+  .vehicle-family-grid,
+  .vehicle-comparison-rows { grid-template-columns: minmax(0, 1fr); }
+  .vehicle-purchase-rows { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .vehicle-body-picker { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .vehicle-figure-wide { grid-column: auto; }
+  .vehicle-panel { padding: 19px; }
+  .vehicle-family-head .vehicle-body-svg { width: 76px; flex-basis: 76px; }
+  .vehicle-layout { padding-top: 19px; }
+  .vehicle-section-title { flex-direction: column; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .vehicle-layout *,
+  .vehicle-layout *::before,
+  .vehicle-layout *::after { scroll-behavior: auto !important; transition: none !important; }
+}
+/* END WILD IMPACT VEHICLE REDESIGN 2026-11-11 */
+
+
+/* -------------------------------------------------------------------------
+   BODY TYPE PHOTOGRAPHS | transparent Wild Impact vehicle icons
+   All images are 320 x 160 PNG files under assets/body-types/.
+   No background boxes, no cropping and no external image requests.
+   ------------------------------------------------------------------------- */
+.vehicle-body-image {
+  display: block;
+  width: 100%;
+  max-width: 110px;
+  height: 56px;
+  margin-inline: auto;
+  object-fit: contain;
+  object-position: center;
+  flex-shrink: 0;
+  background: transparent;
+}
+.vehicle-body-choice .vehicle-body-image {
+  width: 100%;
+  max-width: 112px;
+  height: 65px;
+}
+.vehicle-shortlist-card .vehicle-body-image {
+  max-width: 104px;
+  height: 50px;
+  margin: 0 auto 5px;
+}
+.vehicle-family-head .vehicle-body-image {
+  width: 110px;
+  max-width: 110px;
+  height: 62px;
+  flex: 0 0 110px;
+  margin: 0;
+}
+@media (max-width: 650px) {
+  .vehicle-body-choice .vehicle-body-image {
+    height: 58px;
+  }
+  .vehicle-family-head .vehicle-body-image {
+    width: 83px;
+    max-width: 83px;
+    height: 52px;
+    flex-basis: 83px;
+  }
+}
+
+
+/* WILD IMPACT / FLEET-ONLY PILOT — 24 NOVEMBER 2026
+   These rules are part of the complete site.css. No extra stylesheet required. */
+.vehicle-fleet-import-actions {
+  display: flex;
+  gap: 14px;
+  align-items: flex-end;
+  flex-wrap: wrap;
+  margin: 16px 0;
+}
+.vehicle-file-control {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  font-weight: 700;
+  font-size: 13px;
+  min-width: min(100%, 290px);
+}
+.vehicle-file-control input[type="file"] {
+  width: 100%;
+  max-width: 440px;
+  font: inherit;
+  background: #FFFDFC;
+  color: #30251D;
+  border: 1px solid #CFB9AA;
+  border-radius: 9px;
+  padding: 10px;
+}
+.vehicle-file-control input[type="file"]::file-selector-button {
+  border: 0;
+  background: #F15A29;
+  color: #FFF;
+  border-radius: 6px;
+  font-weight: 700;
+  padding: 9px 12px;
+  margin-right: 9px;
+  cursor: pointer;
+}
+.vehicle-recommendation-group { margin: 0 0 25px; min-width: 0; }
+.vehicle-recommendation-group + .vehicle-recommendation-group {
+  border-top: 1px solid #E6DAD0;
+  padding-top: 18px;
+}
+.vehicle-recommendation-group-title {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  margin: 0 0 13px;
+}
+.vehicle-recommendation-group-title h3 {
+  font-size: clamp(17px, 2vw, 22px);
+  margin: 0;
+}
+.vehicle-recommendation-group-title .vehicle-body-image {
+  width: 100px;
+  height: 62px;
+  object-fit: contain;
+  flex: none;
+}
+#vehicle-purchase-rows .vehicle-purchase-rows { margin: 0; }
+.vehicle-field-grid input[readonly] { background: #F7F0E9; color: #63554B; }
+#vehicle-fleet-guide-status { margin-bottom: 0; }
+@media (max-width: 620px) {
+  .vehicle-fleet-import-actions, .vehicle-fleet-import-actions .button { width: 100%; }
+  .vehicle-recommendation-group-title { flex-wrap: wrap; }
+}
+
+
+/* -------------------------------------------------------------------------
+   FLEET GUIDE | buying intelligence and body icons | 24 November 2026
+   Outer purchasing groups are stacked at full width.  Only their child
+   recommendation cards use a grid, preventing narrow vertical text wrapping.
+   ------------------------------------------------------------------------- */
+
+#vehicle-purchase-rows {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 28px;
+  width: 100%;
+  min-width: 0;
+  margin-top: 20px;
+}
+
+#vehicle-purchase-rows > .vehicle-recommendation-group {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  margin: 0;
+}
+
+#vehicle-purchase-rows > .vehicle-recommendation-group +
+.vehicle-recommendation-group {
+  border-top: 1px solid #e6d8cc;
+  padding-top: 24px;
+}
+
+#vehicle-purchase-rows .vehicle-recommendation-group-title {
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 17px;
+  min-height: 82px;
+  width: 100%;
+  margin-bottom: 16px;
+}
+
+#vehicle-purchase-rows .vehicle-recommendation-group-title h3 {
+  flex: 1 1 auto;
+  min-width: 0;
+  margin: 0;
+  font-size: clamp(19px, 2vw, 25px);
+  line-height: 1.25;
+  overflow-wrap: normal;
+  word-break: normal;
+}
+
+#vehicle-purchase-rows .vehicle-recommendation-group-title
+.vehicle-body-image {
+  display: block;
+  width: 136px;
+  height: 74px;
+  max-width: 136px;
+  flex: 0 0 136px;
+  margin: 0;
+  object-fit: contain;
+  object-position: center;
+}
+
+#vehicle-purchase-rows > .vehicle-recommendation-group >
+.vehicle-purchase-rows {
+  display: grid;
+  width: 100%;
+  min-width: 0;
+  margin: 0;
+  gap: 16px;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  align-items: stretch;
+}
+
+#vehicle-purchase-rows .vehicle-shortlist-card {
+  min-width: 0;
+  min-height: 100%;
+  padding: 18px 20px;
+  gap: 9px;
+  overflow-wrap: break-word;
+  word-break: normal;
+  line-height: 1.5;
+}
+
+#vehicle-purchase-rows .vehicle-shortlist-title {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  min-width: 0;
+}
+
+#vehicle-purchase-rows .vehicle-shortlist-title strong {
+  flex: 1 1 auto;
+  min-width: 0;
+  font-size: 15px;
+  line-height: 1.4;
+  overflow-wrap: break-word;
+  word-break: normal;
+}
+
+#vehicle-purchase-rows .vehicle-shortlist-card > p {
+  margin: 0;
+  line-height: 1.55;
+}
+
+#vehicle-purchase-rows .vehicle-shortlist-card .vehicle-small-button {
+  align-self: flex-start;
+  margin-top: auto;
+}
+
+/* A stable centred illustration slot keeps each body type at the same height.
+   MPV uses its own detailed icon, rather than the earlier generic van asset. */
+.vehicle-body-picker {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.vehicle-body-choice {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-width: 0;
+  min-height: 145px;
+  padding: 15px 12px;
+  gap: 10px;
+  text-align: center;
+  line-height: 1.4;
+  font-size: 13px;
+}
+
+.vehicle-body-choice .vehicle-body-image,
+.vehicle-body-choice .vehicle-all-bodies-icon {
+  display: block;
+  width: 100%;
+  max-width: 172px;
+  height: 82px;
+  min-height: 82px;
+  margin: 0 auto;
+  object-fit: contain;
+  object-position: center;
+  flex: 0 0 82px;
+}
+
+.vehicle-body-choice .vehicle-all-bodies-icon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.vehicle-body-choice > span:last-child {
+  display: block;
+  min-height: 18px;
+  text-align: center;
+}
+
+.vehicle-family-head {
+  display: flex;
+  align-items: center;
+  min-width: 0;
+  gap: 13px;
+}
+
+.vehicle-family-head .vehicle-body-image {
+  display: block;
+  flex: 0 0 108px;
+  width: 108px;
+  max-width: 108px;
+  height: 68px;
+  margin: 0;
+  object-fit: contain;
+  object-position: center;
+}
+
+.vehicle-family-head > div {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+@media (max-width: 1080px) {
+  #vehicle-purchase-rows > .vehicle-recommendation-group >
+  .vehicle-purchase-rows {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 760px) {
+  .vehicle-body-picker {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .vehicle-body-choice {
+    min-height: 133px;
+  }
+
+  .vehicle-body-choice .vehicle-body-image,
+  .vehicle-body-choice .vehicle-all-bodies-icon {
+    height: 69px;
+    min-height: 69px;
+    flex-basis: 69px;
+  }
+}
+
+@media (max-width: 650px) {
+  #vehicle-purchase-rows > .vehicle-recommendation-group >
+  .vehicle-purchase-rows {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  #vehicle-purchase-rows .vehicle-recommendation-group-title {
+    gap: 10px;
+    min-height: 65px;
+  }
+
+  #vehicle-purchase-rows .vehicle-recommendation-group-title
+  .vehicle-body-image {
+    width: 96px;
+    height: 60px;
+    max-width: 96px;
+    flex-basis: 96px;
+  }
+
+  #vehicle-purchase-rows .vehicle-recommendation-group-title h3 {
+    font-size: 18px;
+  }
+
+  .vehicle-family-head .vehicle-body-image {
+    width: 84px;
+    height: 56px;
+    max-width: 84px;
+    flex-basis: 84px;
+  }
+}
+
+
+/* ============================================================================
+   VEHICLE ACCOUNTING ALIGNMENT — 25 NOVEMBER 2026
+   All vehicle rules live in the existing shared site.css (no separate CSS).
+   The existing Flights, Boats, E-bikes, and Vehicle Guide structures are retained.
+   ============================================================================ */
+
+/* Fit complete photographs into the explanation panel instead of cutting off
+   a motorcycle, boat, aircraft wing or field vehicle at the centre crop. */
+.module-dropdown-media {
+  align-items: center;
+  min-width: 0;
+}
+.module-dropdown-media img {
+  display: block;
+  width: 100%;
+  height: 220px;
+  max-height: 250px;
+  object-fit: contain;
+  object-position: center center;
+  background: var(--soft);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+}
+.module-dropdown-media > div { min-width: 0; }
+
+/* The module now uses the same pale table header and scrollable record region
+   as its three sibling modules; the old black header is not reused. */
+.vehicle-layout .vehicle-table-scroll {
+  display: block;
+  width: 100%;
+  max-height: 455px;
+  overflow: auto;
+  background: var(--white);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  overscroll-behavior: contain;
+  -webkit-overflow-scrolling: touch;
+}
+.vehicle-layout .vehicle-table {
+  width: 100%;
+  min-width: 790px;
+  table-layout: fixed;
+  border-collapse: collapse;
+  font-size: 11px;
+  line-height: 1.48;
+}
+.vehicle-journeys-table .vehicle-col-date { width: 18%; }
+.vehicle-journeys-table .vehicle-col-model { width: 27%; }
+.vehicle-journeys-table .vehicle-col-area { width: 18%; }
+.vehicle-journeys-table .vehicle-col-distance { width: 11%; }
+.vehicle-journeys-table .vehicle-col-emissions { width: 13%; }
+.vehicle-journeys-table .vehicle-col-actions { width: 13%; }
+.vehicle-layout .vehicle-table th {
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  text-align: left;
+  padding: 12px;
+  background: rgba(188, 126, 39, .14);
+  color: var(--ink);
+  font-weight: 780;
+  border-bottom: 1px solid var(--line);
+  white-space: normal;
+}
+.vehicle-layout .vehicle-table td {
+  padding: 11px 12px;
+  vertical-align: top;
+  border-bottom: 1px solid var(--line);
+  color: var(--ink);
+  overflow-wrap: anywhere;
+  word-break: normal;
+}
+.vehicle-layout .vehicle-table td strong {
+  display: block;
+  font-size: 11px;
+  font-weight: 750;
+  margin: 0 0 4px;
+}
+.vehicle-layout .vehicle-table td small {
+  display: block;
+  font-size: 10px;
+  line-height: 1.5;
+  color: var(--muted);
+}
+.vehicle-layout .vehicle-table tbody tr:nth-child(even) { background: var(--white); }
+.vehicle-layout .vehicle-table tbody tr:hover { background: rgba(253, 185, 51, .08); }
+.vehicle-record-tools {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px 16px;
+  margin: 10px 0 15px;
+}
+.vehicle-record-tools label {
+  flex: 0 0 auto;
+  font-size: 12px;
+  font-weight: 720;
+}
+.vehicle-record-tools input {
+  flex: 0 1 315px;
+  width: min(315px, 100%);
+  min-height: 43px;
+  padding: 9px 12px;
+  border: 1px solid rgba(138,47,29,.30);
+  border-radius: 9px;
+  color: var(--ink);
+  background: var(--white);
+  font-size: 12px;
+  font-family: inherit;
+}
+.vehicle-record-tools .vehicle-hint { flex: 1 1 225px; }
+.vehicle-record-actions { display: flex; flex-wrap: wrap; gap: 8px; }
+.vehicle-layout .vehicle-small-button {
+  border: 0;
+  border-radius: 4px;
+  padding: 5px 1px;
+  font-size: 11px;
+  font-weight: 760;
+  color: var(--rust);
+  background: transparent;
+  white-space: nowrap;
+}
+.vehicle-layout .vehicle-small-button:hover,
+.vehicle-layout .vehicle-small-button:focus-visible {
+  color: var(--brick-red);
+  text-decoration: underline;
+  background: transparent;
+}
+.vehicle-layout .vehicle-small-button.is-delete { color: var(--brick-red); }
+.vehicle-edit-status {
+  background: rgba(241, 90, 41, .08);
+  color: var(--rust);
+  border-left: 3px solid var(--wild-orange);
+  border-radius: 5px;
+  padding: 11px 14px;
+  font-size: 12px;
+  line-height: 1.6;
+  margin: 15px 0 0;
+}
+.vehicle-layout .vehicle-table-scroll:focus-visible,
+.vehicle-record-tools input:focus-visible { outline: 3px solid var(--wild-orange); outline-offset: 3px; }
+
+.vehicle-totals-panel { margin-top: 0; }
+.vehicle-summary-grid {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  margin-top: 20px;
+}
+.vehicle-summary-grid article {
+  min-width: 0;
+  background: var(--white);
+  border-color: var(--line);
+}
+.vehicle-summary-grid strong {
+  font-size: clamp(1.45rem, 2.75vw, 2.4rem);
+  letter-spacing: -.04em;
+}
+.vehicle-totals-footnote { margin: 15px 0 0; }
+
+/* Reuse the light figure-card treatment and give axis labels breathing room. */
+.vehicle-layout .vehicle-figure-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+}
+.vehicle-layout .vehicle-figure {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  padding: 23px;
+  background: var(--white);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+}
+.vehicle-layout .vehicle-figure-wide { grid-column: 1 / -1; }
+.vehicle-layout .vehicle-figure figcaption {
+  margin: 0 0 5px;
+  font-size: 15px;
+  font-weight: 760;
+  line-height: 1.4;
+  color: var(--ink);
+}
+.vehicle-figure-subtitle {
+  margin: 0 0 13px;
+  font-size: 11px;
+  line-height: 1.55;
+  color: var(--muted);
+}
+.vehicle-layout .vehicle-figure svg {
+  display: block;
+  width: 100%;
+  height: auto;
+  min-width: 0;
+  max-width: 100%;
+  overflow: hidden;
+  background: var(--white);
+}
+.vehicle-chart-legend {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 7px 18px;
+  padding-top: 12px;
+}
+.vehicle-chart-legend:empty { display: none; }
+.vehicle-legend-item { display: inline-flex; align-items: center; gap: 7px; font-size: 11px; line-height: 1.5; color: var(--muted); }
+.vehicle-legend-swatch { display: inline-block; width: 12px; height: 12px; border-radius: 3px; flex-shrink: 0; }
+.vehicle-figure > .vehicle-hint { margin: 12px 0 0; }
+
+@media (max-width: 920px) {
+  .vehicle-summary-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 760px) {
+  .module-dropdown-media img { height: 205px; }
+  .vehicle-layout .vehicle-figure-grid { grid-template-columns: minmax(0, 1fr); }
+  .vehicle-layout .vehicle-figure-wide { grid-column: auto; }
+}
+@media (max-width: 520px) {
+  .module-dropdown-media img { height: 185px; }
+  .vehicle-summary-grid { grid-template-columns: minmax(0, 1fr); }
+  .vehicle-layout .vehicle-figure { padding: 14px; }
+  .vehicle-record-tools { align-items: stretch; }
+  .vehicle-record-tools input { flex: 1 1 100%; }
+}
+
+
+/* Small-screen chart scrolling preserves legible month and axis labels. */
+.vehicle-chart-scroll { width: 100%; min-width: 0; }
+.vehicle-chart-scroll > svg { display: block; width: 100%; height: auto; }
+.vehicle-chart-scroll-hint { display: none; }
+@media (max-width: 760px) {
+  .vehicle-chart-scroll {
+    overflow-x: auto;
+    overscroll-behavior-inline: contain;
+    -webkit-overflow-scrolling: touch;
+    padding-bottom: 7px;
+  }
+  .vehicle-chart-scroll > #vehicle-monthly-figure { min-width: 900px; }
+  .vehicle-chart-scroll > #vehicle-scatter-figure,
+  .vehicle-chart-scroll > #vehicle-source-figure { min-width: 620px; }
+  .vehicle-chart-scroll-hint { display: inline; }
+}
+.vehicle-chart-scroll:focus-visible {
+  outline: 2px solid var(--wild-orange);
+  outline-offset: 3px;
+}
