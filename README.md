@@ -230,7 +230,7 @@ The repository snapshot does not include a software licence. Public visibility d
 
 ## Development and contact
 
-Developed for Wild Impact's Landscape Conservation programme by **[Phemelo-R](https://github.com/Phemelo-R)** with some help from **Anthropic (Claude)** and **ChatGPT (OpenAI)**.
+Developed for Wild Impact's Landscape Conservation programme by **[Phemelo-R](https://github.com/Phemelo-R)** with some help from **Claude (Anthropic)** and **ChatGPT (OpenAI)**.
 
 For technical queries, maintenance requests or suggestions, contact the project developer or use the repository's [Issues](https://github.com/Phemelo-R/Wild-Impact-Carbon-Tracker/issues) page. Do not include confidential operational or personal information in public issues or pull requests.
 
